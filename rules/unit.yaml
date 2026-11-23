@@ -1,0 +1,8 @@
+# 数量单位换算系数（按套销售 / 按个采购）
+version: 2026-11-01
+effective_from: 2026-11-01
+factors:
+  套->个: 12
+  箱->个: 24
+  套->箱: 0.5
+rounding: HALF_UP

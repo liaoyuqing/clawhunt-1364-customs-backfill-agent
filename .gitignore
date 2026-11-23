@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+_t.txt
+_dbg.txt
+_dbg.py
+_s.txt

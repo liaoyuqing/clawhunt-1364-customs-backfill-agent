@@ -1,0 +1,8759 @@
+{
+  "cells": 1686,
+  "expected": {
+    "B2026-0001": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00901",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0001",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0001",
+        "reason": ""
+      }
+    },
+    "B2026-0001#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00901",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0001",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0001",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0001#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00901",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0001",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0001",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "11.00",
+        "reason": ""
+      }
+    },
+    "B2026-0001#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00901",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0001",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0001",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0002": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00902",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0002",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0002",
+        "reason": ""
+      }
+    },
+    "B2026-0002#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00902",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0002",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0002",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.48",
+        "reason": ""
+      }
+    },
+    "B2026-0002#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00902",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0002",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0002",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0003": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00903",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0003",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0003",
+        "reason": ""
+      }
+    },
+    "B2026-0003#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00903",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0003",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0003",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "8.40",
+        "reason": ""
+      }
+    },
+    "B2026-0003#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00903",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0003",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0003",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0003#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00903",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0003",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0003",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.55",
+        "reason": ""
+      }
+    },
+    "B2026-0004": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00904",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0004",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0004",
+        "reason": ""
+      }
+    },
+    "B2026-0004#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00904",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0004",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0004",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.20",
+        "reason": ""
+      }
+    },
+    "B2026-0004#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00904",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0004",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0004",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.20",
+        "reason": ""
+      }
+    },
+    "B2026-0005": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00905",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0005",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0005",
+        "reason": ""
+      }
+    },
+    "B2026-0005#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00905",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0005",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0005",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0005#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00905",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0005",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0005",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0006": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00906",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0006",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0006",
+        "reason": ""
+      }
+    },
+    "B2026-0006#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00906",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0006",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0006",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "11.00",
+        "reason": ""
+      }
+    },
+    "B2026-0006#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00906",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0006",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0006",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0007": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00907",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0007",
+        "reason": ""
+      }
+    },
+    "B2026-0007#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00907",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0007",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "16",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0007#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00907",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0007",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0007#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00907",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0007",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.62",
+        "reason": ""
+      }
+    },
+    "B2026-0007#3": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00907",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0007",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0008": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00908",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0008",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0008",
+        "reason": ""
+      }
+    },
+    "B2026-0008#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00908",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0008",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0008",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.10",
+        "reason": ""
+      }
+    },
+    "B2026-0009": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00909",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0009",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0009",
+        "reason": ""
+      }
+    },
+    "B2026-0009#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00909",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0009",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0009",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.10",
+        "reason": ""
+      }
+    },
+    "B2026-0009#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00909",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0009",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0009",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0010": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00910",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0010",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0010",
+        "reason": ""
+      }
+    },
+    "B2026-0010#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00910",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0010",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0010",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0010#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00910",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0010",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0010",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0010#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00910",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0010",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0010",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0011": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00911",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0011",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0011",
+        "reason": ""
+      }
+    },
+    "B2026-0011#0": {
+      "HSCODE": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_hscode"
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1006",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "硅胶隔热垫",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00911",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0011",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1006",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "汕头",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0011",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.56",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "硅胶",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "厨房用品",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "11.00",
+        "reason": ""
+      }
+    },
+    "B2026-0012": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00912",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0012",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0012",
+        "reason": ""
+      }
+    },
+    "B2026-0012#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00912",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0012",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0012",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0012#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00912",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0012",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0012",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0013": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00913",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0013",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0013",
+        "reason": ""
+      }
+    },
+    "B2026-0013#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4202320000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1007",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "帆布笔袋",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00913",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0013",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_model"
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "义乌",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0013",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.45",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "帆布",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0013#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00913",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0013",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0013",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "11.00",
+        "reason": ""
+      }
+    },
+    "B2026-0013#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00913",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0013",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0013",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0014": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00914",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0014",
+        "reason": ""
+      }
+    },
+    "B2026-0014#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00914",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0014",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0014#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00914",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0014",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0014#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00914",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0014",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0014#3": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00914",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0014",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0015": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00915",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0015",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0015",
+        "reason": ""
+      }
+    },
+    "B2026-0015#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00915",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0015",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0015",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0016": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00916",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0016",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0016",
+        "reason": ""
+      }
+    },
+    "B2026-0016#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00916",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0016",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0016",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0016#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00916",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0016",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0016",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.20",
+        "reason": ""
+      }
+    },
+    "B2026-0017": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00917",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0017",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0017",
+        "reason": ""
+      }
+    },
+    "B2026-0017#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00917",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0017",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0017",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0018": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00918",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0018",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0018",
+        "reason": ""
+      }
+    },
+    "B2026-0018#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00918",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0018",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0018",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0018#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00918",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0018",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0018",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.20",
+        "reason": ""
+      }
+    },
+    "B2026-0018#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00918",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0018",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0018",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0019": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00919",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0019",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0019",
+        "reason": ""
+      }
+    },
+    "B2026-0019#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00919",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0019",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0019",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.55",
+        "reason": ""
+      }
+    },
+    "B2026-0020": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00920",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0020",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0020",
+        "reason": ""
+      }
+    },
+    "B2026-0020#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00920",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0020",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0020",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.26",
+        "reason": ""
+      }
+    },
+    "B2026-0020#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00920",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0020",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0020",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "8.40",
+        "reason": ""
+      }
+    },
+    "B2026-0021": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00921",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0021",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0021",
+        "reason": ""
+      }
+    },
+    "B2026-0021#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00921",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0021",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0021",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "4",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0021#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00921",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0021",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0021",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0022": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00922",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0022",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0022",
+        "reason": ""
+      }
+    },
+    "B2026-0022#0": {
+      "HSCODE": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_hscode"
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1006",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "硅胶隔热垫",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00922",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0022",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1006",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "汕头",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0022",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.56",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "硅胶",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "厨房用品",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.10",
+        "reason": ""
+      }
+    },
+    "B2026-0023": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00923",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0023",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0023",
+        "reason": ""
+      }
+    },
+    "B2026-0023#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00923",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0023",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0023",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.10",
+        "reason": ""
+      }
+    },
+    "B2026-0024": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00924",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0024",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0024",
+        "reason": ""
+      }
+    },
+    "B2026-0024#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00924",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0024",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0024",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0025": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00925",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0025",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0025",
+        "reason": ""
+      }
+    },
+    "B2026-0025#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00925",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0025",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0025",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.26",
+        "reason": ""
+      }
+    },
+    "B2026-0025#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00925",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0025",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0025",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0026": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00926",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0026",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0026",
+        "reason": ""
+      }
+    },
+    "B2026-0026#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4202320000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1007",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "帆布笔袋",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00926",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0026",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_model"
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "义乌",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0026",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.45",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "帆布",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "8.40",
+        "reason": ""
+      }
+    },
+    "B2026-0026#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00926",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0026",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0026",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.72",
+        "reason": ""
+      }
+    },
+    "B2026-0026#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00926",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0026",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0026",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0027": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00927",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0027",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0027",
+        "reason": ""
+      }
+    },
+    "B2026-0027#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00927",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0027",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0027",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0028": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00928",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0028",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0028",
+        "reason": ""
+      }
+    },
+    "B2026-0028#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00928",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0028",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0028",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0028#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1005",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00928",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0028",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1005|替代:SKU-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0028",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "2.67",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "金属与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0029": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00929",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0029",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0029",
+        "reason": ""
+      }
+    },
+    "B2026-0029#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00929",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0029",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0029",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0029#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00929",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0029",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0029",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0030": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00930",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0030",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0030",
+        "reason": ""
+      }
+    },
+    "B2026-0030#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00930",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0030",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0030",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0030#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00930",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0030",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0030",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.20",
+        "reason": ""
+      }
+    },
+    "B2026-0030#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00930",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0030",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0030",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.10",
+        "reason": ""
+      }
+    },
+    "B2026-0031": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00931",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0031",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0031",
+        "reason": ""
+      }
+    },
+    "B2026-0031#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00931",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0031",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0031",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0031#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00931",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0031",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0031",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.48",
+        "reason": ""
+      }
+    },
+    "B2026-0032": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00932",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0032",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0032",
+        "reason": ""
+      }
+    },
+    "B2026-0032#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00932",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0032",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0032",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "5.04",
+        "reason": ""
+      }
+    },
+    "B2026-0032#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00932",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0032",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0032",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0033": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00933",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0033",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0033",
+        "reason": ""
+      }
+    },
+    "B2026-0033#0": {
+      "HSCODE": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_hscode"
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1006",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "硅胶隔热垫",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00933",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0033",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1006",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "汕头",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0033",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.56",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "硅胶",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "厨房用品",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.72",
+        "reason": ""
+      }
+    },
+    "B2026-0033#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00933",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0033",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0033",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.10",
+        "reason": ""
+      }
+    },
+    "B2026-0034": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00934",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0034",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0034",
+        "reason": ""
+      }
+    },
+    "B2026-0034#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00934",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0034",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0034",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0035": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00935",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0035",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0035",
+        "reason": ""
+      }
+    },
+    "B2026-0035#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00935",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0035",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0035",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0035#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00935",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0035",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0035",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0035#2": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00935",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0035",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0035",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0036": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00936",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0036",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0036",
+        "reason": ""
+      }
+    },
+    "B2026-0036#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00936",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0036",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0036",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.72",
+        "reason": ""
+      }
+    },
+    "B2026-0036#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00936",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0036",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0036",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.93",
+        "reason": ""
+      }
+    },
+    "B2026-0037": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00937",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0037",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0037",
+        "reason": ""
+      }
+    },
+    "B2026-0037#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00937",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0037",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0037",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.36",
+        "reason": ""
+      }
+    },
+    "B2026-0037#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00937",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0037",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0037",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "24",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0038": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00938",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0038",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0038",
+        "reason": ""
+      }
+    },
+    "B2026-0038#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00938",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0038",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0038",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "54",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0039": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00939",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0039",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0039",
+        "reason": ""
+      }
+    },
+    "B2026-0039#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4202320000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1007",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "帆布笔袋",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00939",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0039",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_model"
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "义乌",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0039",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.45",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "帆布",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "8.40",
+        "reason": ""
+      }
+    },
+    "B2026-0039#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00939",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0039",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0039",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "11.00",
+        "reason": ""
+      }
+    },
+    "B2026-0040": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00940",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0040",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0040",
+        "reason": ""
+      }
+    },
+    "B2026-0040#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00940",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0040",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0040",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0040#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00940",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0040",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0040",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "6.60",
+        "reason": ""
+      }
+    },
+    "B2026-0041": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00941",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0041",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0041",
+        "reason": ""
+      }
+    },
+    "B2026-0041#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00941",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0041",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0041",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.10",
+        "reason": ""
+      }
+    },
+    "B2026-0042": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00942",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0042",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0042",
+        "reason": ""
+      }
+    },
+    "B2026-0042#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00942",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0042",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0042",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "10",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.55",
+        "reason": ""
+      }
+    },
+    "B2026-0042#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00942",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0042",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0042",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.55",
+        "reason": ""
+      }
+    },
+    "B2026-0043": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00943",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0043",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0043",
+        "reason": ""
+      }
+    },
+    "B2026-0043#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00943",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0043",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0043",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "50",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.65",
+        "reason": ""
+      }
+    },
+    "B2026-0044": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00944",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0044",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0044",
+        "reason": ""
+      }
+    },
+    "B2026-0044#0": {
+      "HSCODE": {
+        "decidable": false,
+        "expected": "",
+        "reason": "missing_hscode"
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1006",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "硅胶隔热垫",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00944",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0044",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1006",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "汕头",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0044",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.56",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "硅胶",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "厨房用品",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.10",
+        "reason": ""
+      }
+    },
+    "B2026-0045": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00945",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0045",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0045",
+        "reason": ""
+      }
+    },
+    "B2026-0045#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00945",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0045",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0045",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.72",
+        "reason": ""
+      }
+    },
+    "B2026-0045#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00945",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0045",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0045",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.75",
+        "reason": ""
+      }
+    },
+    "B2026-0046": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00946",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0046",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0046",
+        "reason": ""
+      }
+    },
+    "B2026-0046#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00946",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0046",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0046",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0047": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00947",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0047",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0047",
+        "reason": ""
+      }
+    },
+    "B2026-0047#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "义乌礼品包装厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00947",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0047",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0047",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "2.48",
+        "reason": ""
+      }
+    },
+    "B2026-0048": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00948",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0048",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0048",
+        "reason": ""
+      }
+    },
+    "B2026-0048#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "9608100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1003",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "文具套装",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00948",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0048",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1003",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "宁波",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0048",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "6.44",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "套",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "纸与塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "学生文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "34",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "3.72",
+        "reason": ""
+      }
+    },
+    "B2026-0048#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "4819200000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1004",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "礼品卡套",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00948",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0048",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1004",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "广州",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0048",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "1.86",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "牛皮纸",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "礼品包装",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "30",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "0.84",
+        "reason": ""
+      }
+    },
+    "B2026-0049": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00949",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0049",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0049",
+        "reason": ""
+      }
+    },
+    "B2026-0049#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00949",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0049",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0049",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "16",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0049#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "深圳宝安收纳制品厂",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00949",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0049",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0049",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": "bundle_split"
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    },
+    "B2026-0050": {
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00950",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0050",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0050",
+        "reason": ""
+      }
+    },
+    "B2026-0050#0": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3924900000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1001",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面收纳盒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00950",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0050",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1001",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "深圳",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0050",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "7.68",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "ABS 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "家居收纳",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "14",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "1.26",
+        "reason": ""
+      }
+    },
+    "B2026-0050#1": {
+      "HSCODE": {
+        "decidable": true,
+        "expected": "3926100000",
+        "reason": ""
+      },
+      "SKU": {
+        "decidable": true,
+        "expected": "SKU-1002",
+        "reason": ""
+      },
+      "产品中文报关名": {
+        "decidable": true,
+        "expected": "桌面笔筒",
+        "reason": ""
+      },
+      "供应商": {
+        "decidable": true,
+        "expected": "东莞文具制造有限公司",
+        "reason": ""
+      },
+      "发货单号": {
+        "decidable": true,
+        "expected": "FBA-SF-00950",
+        "reason": ""
+      },
+      "合同号": {
+        "decidable": true,
+        "expected": "HT-2026-0050",
+        "reason": ""
+      },
+      "型号": {
+        "decidable": true,
+        "expected": "M-1002",
+        "reason": ""
+      },
+      "境内货源地": {
+        "decidable": true,
+        "expected": "东莞",
+        "reason": ""
+      },
+      "批次号": {
+        "decidable": true,
+        "expected": "B2026-0050",
+        "reason": ""
+      },
+      "报关单价": {
+        "decidable": true,
+        "expected": "3.84",
+        "reason": ""
+      },
+      "报关单位": {
+        "decidable": true,
+        "expected": "个",
+        "reason": ""
+      },
+      "数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
+      "材质": {
+        "decidable": true,
+        "expected": "PP 塑料",
+        "reason": ""
+      },
+      "用途": {
+        "decidable": true,
+        "expected": "办公文具",
+        "reason": ""
+      },
+      "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "重量KG": {
+        "decidable": true,
+        "expected": "4.40",
+        "reason": ""
+      }
+    }
+  },
+  "rows": 146,
+  "rule_versions": {
+    "brand_words": "2026-11-01",
+    "bundle": "2026-11-01",
+    "declare_price": "2026-11-01",
+    "invoice_companies": "2026-11-01",
+    "ledger_columns": "2026-11-01",
+    "required_fields": "2026-11-01",
+    "unit": "2026-11-01"
+  },
+  "source_errors": [
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0011#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0022#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0033#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0044#0"
+    }
+  ]
+}

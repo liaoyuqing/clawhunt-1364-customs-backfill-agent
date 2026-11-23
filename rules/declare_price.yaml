@@ -1,0 +1,10 @@
+# 申报单价定价规则：按品类系数 × 采购单价，保留两位小数
+version: 2026-11-01
+effective_from: 2026-11-01
+default_ratio: 0.62
+by_category:
+  家居: 0.60
+  文具: 0.65
+  礼品: 0.58
+rounding: 2
+currency: USD

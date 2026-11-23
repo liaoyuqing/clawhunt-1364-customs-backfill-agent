@@ -1,0 +1,40 @@
+{
+  "batches": 50,
+  "rows": 146,
+  "cells_compared": 1679,
+  "cells_consistent": 1679,
+  "cells_undecidable": 7,
+  "consistency_rate": 1.0,
+  "passes_threshold": true,
+  "source_kind_missing": 0,
+  "bad_source_kinds": {},
+  "differences": [],
+  "difference_count": 0,
+  "issues": [
+    {
+      "code": "missing_field",
+      "batch_no": "B2026-0011",
+      "column": "HSCODE",
+      "message": "必填字段为空"
+    },
+    {
+      "code": "missing_field",
+      "batch_no": "B2026-0022",
+      "column": "HSCODE",
+      "message": "必填字段为空"
+    },
+    {
+      "code": "missing_field",
+      "batch_no": "B2026-0033",
+      "column": "HSCODE",
+      "message": "必填字段为空"
+    },
+    {
+      "code": "missing_field",
+      "batch_no": "B2026-0044",
+      "column": "HSCODE",
+      "message": "必填字段为空"
+    }
+  ],
+  "issue_count": 4
+}

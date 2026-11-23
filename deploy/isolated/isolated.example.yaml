@@ -1,0 +1,7 @@
+# 模块四启动自检配置样例
+egress_whitelist:
+  - 10.20.0.0/16
+  - 192.168.10.0/24
+  - 127.0.0.1/32
+model_base_url: http://127.0.0.1:11434/v1
+archive_path: /srv/invoice-archive

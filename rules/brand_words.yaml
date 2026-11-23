@@ -1,0 +1,12 @@
+# 品名去品牌词表：清洗后再做归并，避免同物异名被当成新品
+version: 2026-11-01
+effective_from: 2026-11-01
+words:
+  - 旗舰版
+  - 官方正品
+  - 优选
+  - Pro
+  - Plus
+normalize:
+  spaces: true
+  fullwidth_to_halfwidth: true

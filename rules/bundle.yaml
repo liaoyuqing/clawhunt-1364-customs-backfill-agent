@@ -1,0 +1,26 @@
+# 组合产品拆分规则：父 SKU -> 子 SKU 与每套用量
+version: 2026-11-01
+effective_from: 2026-11-01
+bundles:
+  BND-2S:
+    parent_name: 桌面组合套装A
+    children:
+      - {sku: SKU-1001, qty: 2}
+      - {sku: SKU-1002, qty: 1}
+  BND-3S:
+    parent_name: 桌面组合套装B
+    children:
+      - {sku: SKU-1001, qty: 1}
+      - {sku: SKU-1002, qty: 1}
+      - {sku: SKU-1003, qty: 1}
+  BND-GIFT:
+    parent_name: 礼品组合
+    children:
+      - {sku: SKU-1002, qty: 1, gift: true}
+      - {sku: SKU-1004, qty: 1}
+  BND-ALT:
+    parent_name: 替代料组合
+    alt_group: ALT-1
+    children:
+      - {sku: SKU-1003, qty: 1}
+      - {sku: SKU-1005, qty: 1, alt_of: SKU-1003}

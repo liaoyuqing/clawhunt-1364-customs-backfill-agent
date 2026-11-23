@@ -1,0 +1,8 @@
+# 品类到开票公司与联系人的匹配表
+version: 2026-11-01
+effective_from: 2026-11-01
+by_category:
+  家居: {company: 深圳前海家居供应链有限公司, tax_no: "91440300MA5F0001XA", contact: 供应商A-李工}
+  文具: {company: 深圳南山文具有限公司, tax_no: "91440300MA5F0002XB", contact: 供应商B-王工}
+  礼品: {company: 广州礼品进出口有限公司, tax_no: "91440100MA5F0003XC", contact: 供应商C-赵工}
+tax_rate: 0.13

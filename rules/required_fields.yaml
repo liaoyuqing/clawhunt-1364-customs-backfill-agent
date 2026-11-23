@@ -1,0 +1,29 @@
+# 台账必填字段与勾稽规则（缺失即进待补清单，不做静默填充）
+version: 2026-11-01
+effective_from: 2026-11-01
+required:
+  - 批次号
+  - 产品中文报关名
+  - 材质
+  - 用途
+  - 报关单位
+  - 境内货源地
+  - HSCODE
+  - 报关单价
+  - 供应商
+  - SKU
+  - 数量
+hscode_pattern: "^[0-9]{10}$"
+reconciliation:
+  - id: R1
+    name: 采购数量与装箱数量一致
+    left: purchase_qty
+    right: shipment_qty
+  - id: R2
+    name: 报关单位与产品单位一致
+    left: declare_unit
+    right: product_unit
+  - id: R3
+    name: 合同号在同一批次内唯一
+    left: contract_no
+    right: contract_no
