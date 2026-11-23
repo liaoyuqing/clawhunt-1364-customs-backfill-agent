@@ -60,16 +60,22 @@ def tree_hash(paths):
     return digest.hexdigest()
 
 
+def interpreter() -> str:
+    """优先用工作区 venv；干净 clone 里没有 venv 时回落到当前解释器。"""
+    candidate = os.path.join(ROOT, ".venv", "Scripts", "python.exe")
+    return candidate if os.path.exists(candidate) else sys.executable
+
+
 def main() -> int:
     code, pytest_out = run([
-        os.path.join(ROOT, ".venv", "Scripts", "python.exe"),
+        interpreter(),
         "-m", "pytest", "-o", "addopts=", "-q",
     ])
     test_files = sorted(
         name for name in os.listdir(os.path.join(ROOT, "tests")) if name.startswith("test_") and name.endswith(".py")
     )
     collect_code, collect_out = run([
-        os.path.join(ROOT, ".venv", "Scripts", "python.exe"),
+        interpreter(),
         "-m", "pytest", "-o", "addopts=", "--collect-only", "-q",
     ])
     test_cases = 0
