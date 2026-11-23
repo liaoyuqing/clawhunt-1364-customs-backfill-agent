@@ -1,8 +1,0 @@
-fix: cli name book keys on hscode, matching pipeline.build_name_book
-
-- core/cli.py observed declare_name -> sku, which made every product a distinct
-  code (reused 0, conflict 1). Switch to product hscode so the same declare name
-  reuses one entry, consistent with core/pipeline.py build_name_book.
-  Measured on fixtures: new 9 / reused 1 / conflict 0 / skipped 1.
-- docs/operations.md documents the module1_name_book summary fields.
-- reports/metrics.json recollected (tree_sha256 0d5c44ae...).
