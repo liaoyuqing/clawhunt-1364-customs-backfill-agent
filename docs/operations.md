@@ -37,6 +37,7 @@ stdout 是一份 JSON 摘要，关键字段：
 | `module4_invoice_ledger.rows` / `.categories` / `.archive_link` | 模块四回填的明细行数、涉及的发票品类、本批次归档共享链接 |
 | `module4_invoice_ledger.usage[]` | 每个品类的 `invoiced_qty`（票面数量）、`used`（累计耗用）、`remaining`（剩余可用）、`stamp`（重算戳） |
 | `module2_fill.conversions[]` | 单位换算留痕：原始单位 / 原始数量 / 系数 / 折算后单位与数量 |
+| `module1_name_book.new` / `.reused` / `.conflict` / `.skipped` | 品名知识库本次运行登记情况：新增条目、命中复用、同名不同编码的冲突、缺报关名或缺海关编码而跳过的条数 |
 | `human_gate.approved` / `.reason` | 无人工确认时恒为 `false`，并在 `reason` 里写明被封装的载荷摘要 |
 
 退出码：`0` 跑通；`1` 批次不存在；`2` 规则包或夹具加载失败（原因写在 stderr 的中文提示里）。**看到非 0 就别继续往下回填**，先按 stderr 修数据或规则包。

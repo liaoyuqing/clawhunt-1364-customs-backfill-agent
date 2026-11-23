@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-23T13:32:06+00:00",
+  "collected_at": "2026-11-23T13:34:36+00:00",
   "column_fill_rates": {
     "columns": 23,
     "rates": {
@@ -29,7 +29,7 @@
     },
     "rows": 146
   },
-  "core_loc": 2438,
+  "core_loc": 2439,
   "core_py_files": 22,
   "fixture_batches": 50,
   "fixture_lines": 87,
@@ -37,7 +37,7 @@
   "fixture_suppliers": 3,
   "ledger_columns": 23,
   "pytest_exit_code": 0,
-  "pytest_tail": "124 passed in 2.07s",
+  "pytest_tail": "124 passed in 2.36s",
   "python_version": "3.11.9",
   "rule_tables": 7,
   "rule_versions": {
@@ -64,5 +64,5 @@
   "test_files": 19,
   "tests_loc": 1672,
   "tracked_files": 84,
-  "tree_sha256": "edb1e3929969a972889d94175fa37331cfb0115c403155096f4f53fe437875c0"
+  "tree_sha256": "0d5c44aec398fa95cb1332cc5dd25a629510e55cb1162401b884ecdd15bb434e"
 }

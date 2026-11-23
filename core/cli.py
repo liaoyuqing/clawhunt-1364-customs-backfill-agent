@@ -220,7 +220,8 @@ def run(
     """模块一知识库沉淀：报关名首次出现记新条目，再次出现直接复用同一编码。"""
     book = DeclareNameBook(rules.brand_words)
     for sku in sorted(products):
-        book.observe(str(products[sku].get("declare_name", "")), sku)
+        product = products[sku]
+        book.observe(str(product.get("declare_name", "")), str(product.get("hscode", "")))
 
     ledger = Ledger(rules.columns)
     filled = BatchFiller(rules).fill(ledger, BatchContext(batch=batch, products=products, suppliers=suppliers))
