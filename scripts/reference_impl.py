@@ -9,6 +9,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import sys
@@ -110,11 +111,13 @@ def price_for(product, rules, scale):
 SOURCE_ERROR_Hscode = "missing_hscode"
 
 
-def load_invoices():
-    path = os.path.join(ROOT, "fixtures", "invoices", "ledger.json")
-    with open(path, encoding="utf-8") as handle:
-        rows = json.load(handle)
-    return {str(row["category"]): row for row in rows}
+def load_invoices(records=None):
+    """发票台账：默认读仓库夹具，也可以传入来源侧拿到的那份。"""
+    if records is None:
+        path = os.path.join(ROOT, "fixtures", "invoices", "ledger.json")
+        with open(path, encoding="utf-8") as handle:
+            records = json.load(handle)
+    return {str(row["category"]): row for row in records}
 
 
 def build_expected(batches, products, suppliers, rules, invoices):
@@ -195,23 +198,42 @@ def build_expected(batches, products, suppliers, rules, invoices):
     return expected, source_errors
 
 
-def main() -> int:
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(prog="python scripts/reference_impl.py")
+    parser.add_argument(
+        "--source",
+        default="recorded",
+        choices=["fixture", "recorded", "lingxing"],
+        help="数据来源，默认 recorded（本地合成录制回放）",
+    )
+    args = parser.parse_args(list(argv) if argv is not None else None)
+
     rules = load_rules()
-    fixtures = os.path.join(ROOT, "fixtures", "lingxing")
-    with open(os.path.join(fixtures, "batches.json"), encoding="utf-8") as handle:
-        batches = json.load(handle)
-    with open(os.path.join(fixtures, "products.json"), encoding="utf-8") as handle:
-        products = {item["sku"]: item for item in json.load(handle)}
-    with open(os.path.join(fixtures, "suppliers.json"), encoding="utf-8") as handle:
-        suppliers = {item["id"]: item for item in json.load(handle)}
-    invoices = load_invoices()
+    from source_data import SourceDataError, load_source_data
+
+    try:
+        data = load_source_data(args.source)
+    except SourceDataError as exc:
+        print("数据源不可用：%s" % exc, file=sys.stderr)
+        return 2
+    batches = data["batches"]
+    products = data["products"]
+    suppliers = data["suppliers"]
+    invoices = load_invoices(data["invoices"])
     expected, source_errors = build_expected(batches, products, suppliers, rules, invoices)
     columns = set()
     for cells in expected.values():
         columns.update(cells)
+    provenance = data["provenance"]
     payload = {
         "rule_versions": {name: str(doc.get("version")) for name, doc in rules.items()},
         "expected": expected,
+        "source": provenance.get("source", args.source),
+        "source_origin": provenance.get("origin", ""),
+        "source_files": provenance.get("files", []),
+        "source_fetched_at": provenance.get("fetched_at", ""),
+        "source_label": provenance.get("label", ""),
+        "source_synthetic": bool(provenance.get("synthetic", False)),
         "source_errors": source_errors,
         "rows": len(expected),
         "cells": sum(len(cells) for cells in expected.values()),
@@ -223,6 +245,10 @@ def main() -> int:
     print(
         "rows %d cells %d columns %d source_errors %d -> %s"
         % (payload["rows"], payload["cells"], len(columns), len(source_errors), out),
+    )
+    print(
+        "source %s origin %s fetched_at %s"
+        % (payload["source"], payload["source_origin"], payload["source_fetched_at"]),
     )
     return 0
 

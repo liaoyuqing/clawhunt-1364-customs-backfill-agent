@@ -28,7 +28,7 @@ python -m venv .venv
 预期输出（干净 clone 实测）：
 
 ```text
-124 passed
+172 passed
 ```
 
 只依赖标准库 + `PyYAML`（规则包解析）+ `pytest`（自测），没有其它运行期依赖。
@@ -56,7 +56,7 @@ core/cli.py       命令行入口：python -m core.cli --batch <批次号>（模
 prepublish/       模块四启动自检：python -m prepublish.check --config <yaml>（复用 core/preflight.py）
 scripts/          make_fixtures / reference_impl / sample50 / collect_metrics / secret_scan /
                   invoice_diff_report（AC3 差异清单与期望自证）
-tests/            19 个测试文件，124 个用例
+tests/            26 个测试文件，172 个用例
 fixtures/         合成源数据（batches/products/suppliers）、发票预览件（invoices/）与 expected.json
 reports/          sample50_report.json / metrics.json / secret_scan_report.json /
                   invoice_diff_report.md / invoice_diff_report.json
@@ -87,7 +87,7 @@ docs/             部署文档与操作手册
 在买家自己的机器上，从干净 clone 起逐条执行，全部离线、无外网调用：
 
 1. 装依赖：`.venv/Scripts/python.exe -m pip install -r requirements.txt` —— 预期退出码 `0`（只有 PyYAML 与 pytest 两个包）。
-2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `124 passed`。
+2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `172 passed`。
 3. 跑差异清单：`.venv/Scripts/python.exe scripts/invoice_diff_report.py` —— 预期退出码 `0`，打印 `invoices 6 clean 3 dirty 3 diffs 3 ... verified yes`，并生成 `reports/invoice_diff_report.md` 与 `reports/invoice_diff_report.json`。
 4. 跑主流程：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001` —— 预期退出码 `0`，stdout 是一份 JSON 摘要（`batch_no` / 行数 / 列数 / `module4_invoice_ledger` 的耗用与剩余 / 差异条数 / 闸门状态）；换个不存在的批次号则退出码 `1`、stderr 有中文原因。
 5. 跑模块四自检：`.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` —— 预期退出码 `0`、末行 `ok`；把配置里的白名单换成公网 IP、模型地址换成公网域名、原件目录放进 OneDrive，再跑一次预期退出码 `2` 并逐条列出 3 条 `problems`。
@@ -104,15 +104,29 @@ docs/             部署文档与操作手册
 
 单位换算的原始单位与系数留痕在 `core.cli` 摘要的 `module2_fill.conversions` 与 `reports/unit_conversions.json`（50 批次共 23 条「套→个」换算），台账列序按 `rules/ledger_columns.yaml` 保持不变，因此不额外增设备注列 —— 换算前后都在留痕文件里可查。
 
+## 真实调用路径（凭据全部来自环境变量）
+
+四条外部连接都已实现，仓库里**没有任何地址、账号或密钥**，全靠环境变量注入；不配任何变量时，全部行为与纯离线自验一致。
+
+| 连接 | 代码 | 环境变量 | 触发方式 |
+| --- | --- | --- | --- |
+| 领星 ERP 开放 API | `core/lingxing_client.py` | `LINGXING_BASE_URL` / `LINGXING_APP_KEY` / `LINGXING_APP_SECRET` / `LINGXING_ACCESS_TOKEN` | `python -m core.cli --batch ... --source lingxing` |
+| 钉钉开放平台（表格读写） | `core/dingtalk_client.py` | `DINGTALK_BASE_URL` / `DINGTALK_APP_KEY` / `DINGTALK_APP_SECRET` / `DINGTALK_SHEET_ID` | `--source dingtalk`，写回加 `--write-sheet` |
+| 视觉模型 + Computer Use | `core/vision_client.py` / `core/computer_use.py` | `VISION_BASE_URL` / `VISION_API_KEY` / `VISION_MODEL` / `VISION_THRESHOLD`；`COMPUTER_USE_BASE_URL` / `COMPUTER_USE_API_KEY` | `--vision-image <含 {row_key} 的地址模板>` 与 `--computer-use` |
+| 模块四本地模型 | `core/local_model.py` | `LOCAL_MODEL_BASE_URL`（必须回环或内网）/ `LOCAL_MODEL_API_KEY` / `LOCAL_MODEL_MODEL` | `--local-model-image <地址模板>`（可配 `--egress-whitelist`） |
+| 电子税务局 | `core/etax.py` | `ETAX_BASE_URL` / `ETAX_APP_KEY` / `ETAX_APP_SECRET` / `ETAX_TOKEN` | `--etax`（提交仍需人工闸门确认） |
+
+冒烟脚本 `scripts/recorded_smoke.py` 有两个模式：`--source recorded`（默认，回放仓库里的本地合成响应）与 `--source live`（打真实接口，凭据来自上面的环境变量）。
+
 ## 未实现 / 主动降级清单
 
 | 项 | 现状 | 为什么 |
 | --- | --- | --- |
-| 电子税务局开票 | 只做到「填单后停等人工提交」，无税局接口调用 | 客户要求有人工闸门，自动提交不在本单范围 |
+| 电子税务局自动提交 | 只做到「Agent 填单 + 人工确认后提交」，默认闸门无人值守时零提交 | 客户要求有人工确认，自动提交不在本单范围 |
 | 退税链路 | 不做 | 工单明确列为后续另发（单一窗口导出、加密报关单、免退税配单） |
-| 领星 / 钉钉真实开放平台连接 | 以 `FixtureTransport` 回放夹具代替，接口契约与分页逻辑一致 | 交付环境无客户凭据，联网与密钥均在本单硬约束之外 |
-| 视觉补位真实模型 | `ScreenshotSource` 走注入的识别结果，不内置 OCR 模型 | 客户现场模型未知；接口、置信度阈值与转人工规则已实现 |
+| 真实凭据 | 仓库里一条都没有；`fixtures/recorded/` 是**本地合成**的可重放响应 | 交付环境无客户账号；换真实账号后跑 `scripts/recorded_smoke.py --source live` 即可复验同一条调用路径 |
 | 渠道列 | 台账 23 列里没有渠道列，合并判定时由调用方传 `channels` 映射 | 客户台账列序已锁定，新增列需客户确认 |
+| 视觉识别率 | 依赖客户现场的截图质量与模型能力；低置信度一律转人工 | 识别率由现场决定，代码只保证「低置信度不静默写错格」 |
 
 ## 边界（本单不做）
 

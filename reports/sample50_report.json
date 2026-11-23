@@ -37,5 +37,38 @@
       "message": "必填字段为空"
     }
   ],
-  "issue_count": 4
+  "issue_count": 4,
+  "source": "fixture",
+  "source_origin": "synthetic fixtures in this repository",
+  "source_files": [
+    "fixtures/lingxing/batches.json",
+    "fixtures/lingxing/products.json",
+    "fixtures/lingxing/suppliers.json"
+  ],
+  "source_fetched_at": "2026-11-24T00:34:28+08:00",
+  "source_label": "source=fixture(synthetic) 取数时间 2026-11-24T00:34:28+08:00",
+  "source_synthetic": true,
+  "source_errors": [
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0011#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0022#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0033#0"
+    },
+    {
+      "column": "HSCODE",
+      "reason": "missing_hscode",
+      "row_key": "B2026-0044#0"
+    }
+  ],
+  "source_error_count": 4
 }

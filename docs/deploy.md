@@ -27,7 +27,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pytest -q
 ```
 
-最后一条预期退出码 `0`、末行 `124 passed`。
+最后一条预期退出码 `0`、末行 `172 passed`。
 
 ### 2.1 配置项
 
@@ -90,6 +90,74 @@ stdout 只输出 JSON、不掺日志，便于直接 `| jq` 或喂给下游脚本
 2. 同时把该文件的 `version` 与 `effective_from` 改到新日期；
 3. 跑 `pytest -q` 与 `scripts/sample50.py`，两者都过才允许上线；
 4. 上线后旧版本留档在 `rules/archive/<version>/`。
+
+## 2.4 接入真实平台（申请授权 → 配环境变量 → 冒烟 → 写台账）
+
+四条外部连接都不在仓库里存地址与凭据，全部从环境变量读。**不配任何变量时，命令行为与纯离线自验完全一致。**
+
+### 步骤 1：申请授权
+
+| 平台 | 申请什么 | 拿到什么 |
+| --- | --- | --- |
+| 领星 ERP | 开放平台应用 | `app_key` / `app_secret`（或一个可用的 `access_token`）、所需资源调用权限 |
+| 钉钉 | 企业内部应用 | `app_key` / `app_secret`、目标表格的 `sheet_id`、对该文档的读写权限 |
+| 视觉模型 | OpenAI 兼容服务地址 | `base_url`、`api_key`（内网自建服务可留空） |
+| 模块四本地模型 | 单独虚拟机上的本地 OpenAI 兼容服务 | `base_url`（必须回环或内网）、`model` 名 |
+| 电子税务局 | 按当地对接方式 | `base_url`、`token` 或 `app_key`/`app_secret` |
+
+### 步骤 2：配环境变量（不要写进仓库）
+
+| 变量 | 用途 |
+| --- | --- |
+| `LINGXING_BASE_URL` / `LINGXING_APP_KEY` / `LINGXING_APP_SECRET` / `LINGXING_ACCESS_TOKEN` | 领星开放 API |
+| `LINGXING_PAGE_SIZE` | 领星分页大小，默认 100 |
+| `DINGTALK_BASE_URL` / `DINGTALK_APP_KEY` / `DINGTALK_APP_SECRET` / `DINGTALK_SHEET_ID` | 钉钉开放平台 |
+| `DINGTALK_TOKEN_PATH` / `DINGTALK_WRITE_PATH` / `DINGTALK_LIST_PATH` | 钉钉路由覆盖（不同版本可用不同路径） |
+| `VISION_BASE_URL` / `VISION_API_KEY` / `VISION_MODEL` / `VISION_THRESHOLD` | 视觉模型；阈值默认 0.85 |
+| `COMPUTER_USE_BASE_URL` / `COMPUTER_USE_API_KEY` / `COMPUTER_USE_MODEL` | 界面操作执行器 |
+| `LOCAL_MODEL_BASE_URL` / `LOCAL_MODEL_API_KEY` / `LOCAL_MODEL_MODEL` | 模块四本地模型（地址必须回环或内网） |
+| `ETAX_BASE_URL` / `ETAX_APP_KEY` / `ETAX_APP_SECRET` / `ETAX_TOKEN` / `ETAX_SUBMIT_PATH` | 电子税务局 |
+| `CLAWHUNT_KNOWLEDGE_DB` | 品名知识库落盘路径，默认 `~/.clawhunt-1364/knowledge.json`（仓库外） |
+
+### 步骤 3：冒烟（拉 1 个批次）
+
+```bash
+# 先用本地合成响应验证调用路径与解析逻辑
+.venv/Scripts/python.exe scripts/recorded_smoke.py --source recorded
+
+# 换真实账号后打真实接口（凭据上一步已配好）
+.venv/Scripts/python.exe scripts/recorded_smoke.py --source live
+```
+
+冒烟会打印实际发出的请求（方法 / URL / 鉴权头名，值已脱敏 / body 键名）与平台应答；能取到商品报关八字段、能写回一行，才算接通。
+
+### 步骤 4：跑一个批次并写回台账
+
+```bash
+# 领星真实取数（不写台账）
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001 --source lingxing
+
+# 台账直连钉钉：读现有行 + 写回本次回填结果
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001 --source dingtalk --write-sheet
+```
+
+真实调用路径的开关（都需要先配好对应环境变量，否则命令会以退出码 2 明确报缺哪个变量）：
+
+```bash
+# 视觉补位 + 界面操作（图片地址模板支持 {batch_no} 与 {row_key}）
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001 \
+  --vision-image "http://127.0.0.1:9000/shot-{row_key}.png" --computer-use
+
+# 模块四本地模型识别发票原件（地址必须过内网白名单）
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001 \
+  --local-model-image "http://127.0.0.1:8000/invoice-{row_key}.png" \
+  --egress-whitelist "10.20.0.0/16,192.168.10.0/24"
+
+# 电子税务局草稿 + 人工确认后提交
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001 --etax
+```
+
+摘要里对应四段：`module2_vision`（调用次数 / 写入数 / 人工队列数）、`module2_computer_use`（动作数）、`module4_local_model`（识别次数 / 结果 / 问题码）、`module3_etax`（草稿 / 是否提交 / 提交单号）。**默认闸门无人值守，`--etax` 只产出草稿，一次提交请求都不会发出。**
 
 ## 3. 模块四独立虚拟机部署
 

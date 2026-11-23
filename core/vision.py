@@ -71,3 +71,32 @@ class ScreenshotSource:
 
     def manual_queue(self) -> List[Dict[str, Any]]:
         return [f.as_dict() for f in self.fields if f.needs_manual]
+
+
+
+def apply_vision_fields(ledger, row_key, fields, at=""):
+    """把视觉识别结果写进指定明细行。
+
+    fields 是 core.vision_client.to_vision_fields 的输出（字典列表，含
+    name / text / confidence / needs_manual）。高置信度字段写台账，来源标记
+    为 vision；低置信度字段不写，落到返回的 manual 列表交给人工。
+    已被占用的格不覆盖，避免触发 DuplicateWrite。
+    """
+    from .models import SourceRef
+
+    written = []
+    manual = []
+    row = ledger.row(row_key)
+    for field in fields:
+        name = str(field.get("name", ""))
+        if name not in ledger.columns:
+            continue
+        if row.get(name) is not None:
+            continue
+        if bool(field.get("needs_manual")):
+            manual.append(dict(field))
+            continue
+        shot = str(field.get("screenshot_id", ""))
+        ledger.write(row_key, name, str(field.get("text", "")), SourceRef(kind="vision", ref=shot, at=at))
+        written.append(dict(field))
+    return written, manual

@@ -1,0 +1,1344 @@
+{
+  "_provenance": "local synthetic replay, not a capture from the vendor API",
+  "_note": "以下为本地合成的可重放响应，用于证明调用路径与解析逻辑正确；接贵方账号后用 scripts/recorded_smoke.py --source live 拉真实数据做同样断言",
+  "code": 0,
+  "msg": "synthetic replay",
+  "data": {
+    "list": [
+      {
+        "batch_no": "B2026-0001",
+        "shipment_no": "FBA-SF-00901",
+        "contract_no": "HT-2026-0001",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 3,
+            "cartons": 20,
+            "weight_kg": "1.65",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 20,
+            "cartons": 20,
+            "weight_kg": "11.00",
+            "supplier_id": "S01",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 8,
+            "cartons": 30,
+            "weight_kg": "4.40",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 1,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0002",
+        "shipment_no": "FBA-SF-00902",
+        "contract_no": "HT-2026-0002",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 8,
+            "cartons": 30,
+            "weight_kg": "2.48",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "4.40",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 2,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0003",
+        "shipment_no": "FBA-SF-00903",
+        "contract_no": "HT-2026-0003",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 20,
+            "cartons": 34,
+            "weight_kg": "8.40",
+            "supplier_id": "S03",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 54,
+            "weight_kg": "6.60",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 5,
+            "cartons": 30,
+            "weight_kg": "1.55",
+            "supplier_id": "S02",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 3,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0004",
+        "shipment_no": "FBA-SF-00904",
+        "contract_no": "HT-2026-0004",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 20,
+            "cartons": 24,
+            "weight_kg": "6.20",
+            "supplier_id": "S02",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 20,
+            "cartons": 30,
+            "weight_kg": "6.20",
+            "supplier_id": "S03",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          }
+        ],
+        "id": 4,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0005",
+        "shipment_no": "FBA-SF-00905",
+        "contract_no": "HT-2026-0005",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 12,
+            "cartons": 24,
+            "weight_kg": "6.60",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 5,
+            "cartons": 14,
+            "weight_kg": "2.75",
+            "supplier_id": "S01",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 5,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0006",
+        "shipment_no": "FBA-SF-00906",
+        "contract_no": "HT-2026-0006",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 20,
+            "cartons": 34,
+            "weight_kg": "11.00",
+            "supplier_id": "S02",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 3,
+            "cartons": 54,
+            "weight_kg": "1.65",
+            "supplier_id": "S01",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 6,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0007",
+        "shipment_no": "FBA-SF-00907",
+        "contract_no": "HT-2026-0007",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "BND-2S",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "3.36",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 2,
+            "cartons": 14,
+            "weight_kg": "0.62",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 3,
+            "cartons": 24,
+            "weight_kg": "0.93",
+            "supplier_id": "S03",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 7,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0008",
+        "shipment_no": "FBA-SF-00908",
+        "contract_no": "HT-2026-0008",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 5,
+            "cartons": 34,
+            "weight_kg": "2.10",
+            "supplier_id": "S01",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 8,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0009",
+        "shipment_no": "FBA-SF-00909",
+        "contract_no": "HT-2026-0009",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 5,
+            "cartons": 24,
+            "weight_kg": "2.10",
+            "supplier_id": "S03",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 12,
+            "cartons": 34,
+            "weight_kg": "6.60",
+            "supplier_id": "S03",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 9,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0010",
+        "shipment_no": "FBA-SF-00910",
+        "contract_no": "HT-2026-0010",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 2,
+            "cartons": 50,
+            "weight_kg": "0.84",
+            "supplier_id": "S01",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 5,
+            "cartons": 24,
+            "weight_kg": "2.75",
+            "supplier_id": "S03",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 5,
+            "cartons": 10,
+            "weight_kg": "2.75",
+            "supplier_id": "S01",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 10,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0011",
+        "shipment_no": "FBA-SF-00911",
+        "contract_no": "HT-2026-0011",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1006",
+            "qty": 20,
+            "cartons": 30,
+            "weight_kg": "11.00",
+            "supplier_id": "S01",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          }
+        ],
+        "id": 11,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0012",
+        "shipment_no": "FBA-SF-00912",
+        "contract_no": "HT-2026-0012",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 8,
+            "cartons": 10,
+            "weight_kg": "3.36",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 12,
+            "cartons": 30,
+            "weight_kg": "5.04",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 12,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0013",
+        "shipment_no": "FBA-SF-00913",
+        "contract_no": "HT-2026-0013",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1007",
+            "qty": 12,
+            "cartons": 20,
+            "weight_kg": "6.60",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 20,
+            "cartons": 50,
+            "weight_kg": "11.00",
+            "supplier_id": "S02",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 24,
+            "weight_kg": "5.04",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 13,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0014",
+        "shipment_no": "FBA-SF-00914",
+        "contract_no": "HT-2026-0014",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "BND-3S",
+            "qty": 5,
+            "cartons": 54,
+            "weight_kg": "2.75",
+            "supplier_id": "S02",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 2,
+            "cartons": 30,
+            "weight_kg": "0.84",
+            "supplier_id": "S03",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 14,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0015",
+        "shipment_no": "FBA-SF-00915",
+        "contract_no": "HT-2026-0015",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 3,
+            "cartons": 10,
+            "weight_kg": "0.93",
+            "supplier_id": "S03",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 15,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0016",
+        "shipment_no": "FBA-SF-00916",
+        "contract_no": "HT-2026-0016",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 8,
+            "cartons": 10,
+            "weight_kg": "4.40",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 20,
+            "cartons": 30,
+            "weight_kg": "6.20",
+            "supplier_id": "S03",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          }
+        ],
+        "id": 16,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0017",
+        "shipment_no": "FBA-SF-00917",
+        "contract_no": "HT-2026-0017",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 8,
+            "cartons": 50,
+            "weight_kg": "3.36",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 17,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0018",
+        "shipment_no": "FBA-SF-00918",
+        "contract_no": "HT-2026-0018",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 2,
+            "cartons": 10,
+            "weight_kg": "0.84",
+            "supplier_id": "S01",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 20,
+            "cartons": 54,
+            "weight_kg": "6.20",
+            "supplier_id": "S02",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 3,
+            "cartons": 54,
+            "weight_kg": "0.93",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 18,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0019",
+        "shipment_no": "FBA-SF-00919",
+        "contract_no": "HT-2026-0019",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 5,
+            "cartons": 14,
+            "weight_kg": "1.55",
+            "supplier_id": "S03",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 19,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0020",
+        "shipment_no": "FBA-SF-00920",
+        "contract_no": "HT-2026-0020",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 3,
+            "cartons": 34,
+            "weight_kg": "1.26",
+            "supplier_id": "S03",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 20,
+            "cartons": 54,
+            "weight_kg": "8.40",
+            "supplier_id": "S01",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          }
+        ],
+        "id": 20,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0021",
+        "shipment_no": "FBA-SF-00921",
+        "contract_no": "HT-2026-0021",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "BND-2S",
+            "qty": 2,
+            "cartons": 14,
+            "weight_kg": "0.84",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 21,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0022",
+        "shipment_no": "FBA-SF-00922",
+        "contract_no": "HT-2026-0022",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1006",
+            "qty": 2,
+            "cartons": 14,
+            "weight_kg": "1.10",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 22,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0023",
+        "shipment_no": "FBA-SF-00923",
+        "contract_no": "HT-2026-0023",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 2,
+            "cartons": 30,
+            "weight_kg": "1.10",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 23,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0024",
+        "shipment_no": "FBA-SF-00924",
+        "contract_no": "HT-2026-0024",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 34,
+            "weight_kg": "5.04",
+            "supplier_id": "S03",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 24,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0025",
+        "shipment_no": "FBA-SF-00925",
+        "contract_no": "HT-2026-0025",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 3,
+            "cartons": 30,
+            "weight_kg": "1.26",
+            "supplier_id": "S01",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 12,
+            "cartons": 10,
+            "weight_kg": "6.60",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 25,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0026",
+        "shipment_no": "FBA-SF-00926",
+        "contract_no": "HT-2026-0026",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1007",
+            "qty": 20,
+            "cartons": 20,
+            "weight_kg": "8.40",
+            "supplier_id": "S03",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 12,
+            "cartons": 34,
+            "weight_kg": "3.72",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 2,
+            "cartons": 34,
+            "weight_kg": "0.84",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 26,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0027",
+        "shipment_no": "FBA-SF-00927",
+        "contract_no": "HT-2026-0027",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 2,
+            "cartons": 20,
+            "weight_kg": "0.84",
+            "supplier_id": "S02",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 27,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0028",
+        "shipment_no": "FBA-SF-00928",
+        "contract_no": "HT-2026-0028",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "BND-ALT",
+            "qty": 3,
+            "cartons": 24,
+            "weight_kg": "0.93",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 28,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0029",
+        "shipment_no": "FBA-SF-00929",
+        "contract_no": "HT-2026-0029",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 30,
+            "weight_kg": "5.04",
+            "supplier_id": "S03",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 12,
+            "cartons": 20,
+            "weight_kg": "5.04",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 29,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0030",
+        "shipment_no": "FBA-SF-00930",
+        "contract_no": "HT-2026-0030",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 3,
+            "cartons": 24,
+            "weight_kg": "1.65",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 20,
+            "cartons": 10,
+            "weight_kg": "6.20",
+            "supplier_id": "S01",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 2,
+            "cartons": 54,
+            "weight_kg": "1.10",
+            "supplier_id": "S01",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 30,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0031",
+        "shipment_no": "FBA-SF-00931",
+        "contract_no": "HT-2026-0031",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 12,
+            "cartons": 24,
+            "weight_kg": "6.60",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 8,
+            "cartons": 14,
+            "weight_kg": "2.48",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 31,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0032",
+        "shipment_no": "FBA-SF-00932",
+        "contract_no": "HT-2026-0032",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 14,
+            "weight_kg": "5.04",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "3.36",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 32,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0033",
+        "shipment_no": "FBA-SF-00933",
+        "contract_no": "HT-2026-0033",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1006",
+            "qty": 12,
+            "cartons": 10,
+            "weight_kg": "3.72",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 5,
+            "cartons": 30,
+            "weight_kg": "2.10",
+            "supplier_id": "S01",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 33,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0034",
+        "shipment_no": "FBA-SF-00934",
+        "contract_no": "HT-2026-0034",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 5,
+            "cartons": 20,
+            "weight_kg": "2.75",
+            "supplier_id": "S03",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 34,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0035",
+        "shipment_no": "FBA-SF-00935",
+        "contract_no": "HT-2026-0035",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "BND-3S",
+            "qty": 3,
+            "cartons": 24,
+            "weight_kg": "1.65",
+            "supplier_id": "S01",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 35,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0036",
+        "shipment_no": "FBA-SF-00936",
+        "contract_no": "HT-2026-0036",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 12,
+            "cartons": 50,
+            "weight_kg": "3.72",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 3,
+            "cartons": 50,
+            "weight_kg": "0.93",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 36,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0037",
+        "shipment_no": "FBA-SF-00937",
+        "contract_no": "HT-2026-0037",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 8,
+            "cartons": 34,
+            "weight_kg": "3.36",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          },
+          {
+            "sku": "SKU-1001",
+            "qty": 12,
+            "cartons": 24,
+            "weight_kg": "6.60",
+            "supplier_id": "S03",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 37,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0038",
+        "shipment_no": "FBA-SF-00938",
+        "contract_no": "HT-2026-0038",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 12,
+            "cartons": 54,
+            "weight_kg": "6.60",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 38,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0039",
+        "shipment_no": "FBA-SF-00939",
+        "contract_no": "HT-2026-0039",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1007",
+            "qty": 20,
+            "cartons": 50,
+            "weight_kg": "8.40",
+            "supplier_id": "S01",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 20,
+            "cartons": 50,
+            "weight_kg": "11.00",
+            "supplier_id": "S03",
+            "purchase_qty": 20,
+            "shipment_qty": 20
+          }
+        ],
+        "id": 39,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0040",
+        "shipment_no": "FBA-SF-00940",
+        "contract_no": "HT-2026-0040",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 2,
+            "cartons": 30,
+            "weight_kg": "0.84",
+            "supplier_id": "S01",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          },
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 20,
+            "weight_kg": "6.60",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          }
+        ],
+        "id": 40,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0041",
+        "shipment_no": "FBA-SF-00941",
+        "contract_no": "HT-2026-0041",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1002",
+            "qty": 2,
+            "cartons": 30,
+            "weight_kg": "1.10",
+            "supplier_id": "S03",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 41,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0042",
+        "shipment_no": "FBA-SF-00942",
+        "contract_no": "HT-2026-0042",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "BND-2S",
+            "qty": 5,
+            "cartons": 14,
+            "weight_kg": "1.55",
+            "supplier_id": "S02",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 42,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0043",
+        "shipment_no": "FBA-SF-00943",
+        "contract_no": "HT-2026-0043",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 3,
+            "cartons": 50,
+            "weight_kg": "1.65",
+            "supplier_id": "S03",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          }
+        ],
+        "id": 43,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0044",
+        "shipment_no": "FBA-SF-00944",
+        "contract_no": "HT-2026-0044",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1006",
+            "qty": 5,
+            "cartons": 10,
+            "weight_kg": "2.10",
+            "supplier_id": "S02",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 44,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0045",
+        "shipment_no": "FBA-SF-00945",
+        "contract_no": "HT-2026-0045",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 34,
+            "weight_kg": "3.72",
+            "supplier_id": "S02",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 5,
+            "cartons": 20,
+            "weight_kg": "2.75",
+            "supplier_id": "S02",
+            "purchase_qty": 5,
+            "shipment_qty": 5
+          }
+        ],
+        "id": 45,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0046",
+        "shipment_no": "FBA-SF-00946",
+        "contract_no": "HT-2026-0046",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1004",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "4.40",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 46,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0047",
+        "shipment_no": "FBA-SF-00947",
+        "contract_no": "HT-2026-0047",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 8,
+            "cartons": 34,
+            "weight_kg": "2.48",
+            "supplier_id": "S03",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 47,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0048",
+        "shipment_no": "FBA-SF-00948",
+        "contract_no": "HT-2026-0048",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1003",
+            "qty": 12,
+            "cartons": 34,
+            "weight_kg": "3.72",
+            "supplier_id": "S01",
+            "purchase_qty": 12,
+            "shipment_qty": 12
+          },
+          {
+            "sku": "SKU-1004",
+            "qty": 2,
+            "cartons": 30,
+            "weight_kg": "0.84",
+            "supplier_id": "S01",
+            "purchase_qty": 2,
+            "shipment_qty": 2
+          }
+        ],
+        "id": 48,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0049",
+        "shipment_no": "FBA-SF-00949",
+        "contract_no": "HT-2026-0049",
+        "channel": "FBA-US",
+        "marketplace": "亚马逊美国站",
+        "lines": [
+          {
+            "sku": "BND-2S",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "4.40",
+            "supplier_id": "S01",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 49,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "batch_no": "B2026-0050",
+        "shipment_no": "FBA-SF-00950",
+        "contract_no": "HT-2026-0050",
+        "channel": "FBA-UK",
+        "marketplace": "亚马逊英国站",
+        "lines": [
+          {
+            "sku": "SKU-1001",
+            "qty": 3,
+            "cartons": 14,
+            "weight_kg": "1.26",
+            "supplier_id": "S02",
+            "purchase_qty": 3,
+            "shipment_qty": 3
+          },
+          {
+            "sku": "SKU-1002",
+            "qty": 8,
+            "cartons": 20,
+            "weight_kg": "4.40",
+            "supplier_id": "S02",
+            "purchase_qty": 8,
+            "shipment_qty": 8
+          }
+        ],
+        "id": 50,
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      }
+    ],
+    "total": 50
+  }
+}

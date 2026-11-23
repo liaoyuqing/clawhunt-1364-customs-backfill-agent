@@ -1,0 +1,13 @@
+{
+  "_provenance": "local synthetic replay, not a capture from the vendor API",
+  "_note": "以下为本地合成的可重放响应，用于证明调用路径与解析逻辑正确；接贵方账号后用 scripts/recorded_smoke.py --source live 拉真实数据做同样断言",
+  "_usage": "钉钉开放平台写回一行的应答形状，sheetId 是示意值不是真实文档 id",
+  "errcode": 0,
+  "errmsg": "ok",
+  "result": {
+    "rowKey": "B2026-0001#0",
+    "sheetId": "SHEET-SYNTHETIC-NOT-REAL",
+    "updated": true,
+    "updatedAt": "2026-11-23T00:00:00+08:00"
+  }
+}

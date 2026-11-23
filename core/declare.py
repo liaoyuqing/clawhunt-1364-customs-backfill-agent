@@ -50,10 +50,19 @@ class BatchContext:
 class BatchFiller:
     """批次号进来，台账行出去。组合拆分、单位换算、单价换算都读配置。"""
 
-    def __init__(self, rules: Rules, at: str = AT) -> None:
+    def __init__(
+        self,
+        rules: Rules,
+        at: str = AT,
+        name_book: Optional[Any] = None,
+        gate_unconfirmed_names: bool = False,
+    ) -> None:
         self.rules = rules
         self.at = at
+        self.name_book = name_book
+        self.gate_unconfirmed_names = bool(gate_unconfirmed_names)
         self.api = SourceRef(kind="api", ref="lingxing/products+purchase+fba_shipment", at=at)
+        self.manual_name = SourceRef(kind="manual", ref="knowledge/confirmed_name_code", at=at)
         self.cfg_price = SourceRef(kind="config", ref="rules/declare_price.yaml", at=at)
         self.cfg_unit = SourceRef(kind="config", ref="rules/unit.yaml", at=at)
         self.cfg_bundle = SourceRef(kind="config", ref="rules/bundle.yaml", at=at)
@@ -70,7 +79,15 @@ class BatchFiller:
         self._seq = 0
         for line in batch.get("lines", []):
             self._fill_line(ledger, result, ctx, line)
+        """视觉补位：键是 "batch:<批次号>" 时补到批次表头行，
+        键是 "row:<明细行键>" 时补到该明细行（例如某格源数据没给，靠识别补）。"""
         for name, payload in ctx.vision.items():
+            if name.startswith("row:"):
+                row_key = name[len("row:"):]
+                if row_key not in result.row_keys:
+                    continue
+                self._fill_vision(ledger, result, row_key, payload)
+                continue
             target = name[len("batch:"):] if name.startswith("batch:") else name
             if target != batch_no:
                 continue
@@ -95,8 +112,40 @@ class BatchFiller:
             ledger.write(row_key, "批次号", result.batch_no, self.api)
             ledger.write(row_key, "发货单号", str(ctx.batch.get("shipment_no", "")), self.api)
             ledger.write(row_key, "合同号", str(ctx.batch.get("contract_no", "")), self.api)
-            for column in ("产品中文报关名", "材质", "用途", "境内货源地", "HSCODE", "SKU"):
+            declare_name = fields["产品中文报关名"]
+            for column in ("产品中文报关名", "材质", "用途", "境内货源地", "SKU"):
                 ledger.write(row_key, column, fields[column], self.api)
+            """HSCODE：知识库里已确认的编码优先；未到 confirmed 的品名按开关决定是否写源值。"""
+            hscode_value = fields["HSCODE"]
+            hscode_source = self.api
+            if self.name_book is not None:
+                state = str(self.name_book.state_of(declare_name) or "")
+                confirmed = str(self.name_book.confirmed_codes().get(declare_name, "")).strip()
+                if confirmed:
+                    if hscode_value and confirmed != hscode_value:
+                        result.issues.append(
+                            Issue(
+                                code="confirmed_code_conflict",
+                                batch_no=result.batch_no,
+                                column="HSCODE",
+                                message="知识库确认编码 %s 与源系统 %s 不一致，按确认编码写入" % (confirmed, hscode_value),
+                            )
+                        )
+                    hscode_value = confirmed
+                    hscode_source = self.manual_name
+                elif state and self.gate_unconfirmed_names:
+                    result.issues.append(
+                        Issue(
+                            code="name_not_confirmed",
+                            batch_no=result.batch_no,
+                            column="HSCODE",
+                            message="报关名 %r 尚未完成供应商与内部两步确认（当前状态 %s），确认编码不写入台账"
+                            % (declare_name, state),
+                        )
+                    )
+                    hscode_value = ""
+            if hscode_value:
+                ledger.write(row_key, "HSCODE", hscode_value, hscode_source)
             model = fields["型号"]
             if part.gift:
                 model = "%s%s" % (model, "|赠品")

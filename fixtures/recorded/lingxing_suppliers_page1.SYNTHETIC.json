@@ -1,0 +1,32 @@
+{
+  "_provenance": "local synthetic replay, not a capture from the vendor API",
+  "_note": "以下为本地合成的可重放响应，用于证明调用路径与解析逻辑正确；接贵方账号后用 scripts/recorded_smoke.py --source live 拉真实数据做同样断言",
+  "code": 0,
+  "msg": "synthetic replay",
+  "data": {
+    "list": [
+      {
+        "id": "S01",
+        "name": "深圳宝安收纳制品厂",
+        "contact": "李工",
+        "tax_no": "91440300MA5F1001XA",
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "id": "S02",
+        "name": "东莞文具制造有限公司",
+        "contact": "王工",
+        "tax_no": "91441900MA5F1002XB",
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      },
+      {
+        "id": "S03",
+        "name": "义乌礼品包装厂",
+        "contact": "赵工",
+        "tax_no": "91330782MA5F1003XC",
+        "_provenance": "local synthetic replay, not a capture from the vendor API"
+      }
+    ],
+    "total": 3
+  }
+}

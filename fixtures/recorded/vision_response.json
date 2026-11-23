@@ -1,0 +1,18 @@
+{
+  "_provenance": "local synthetic replay, not a capture from the vendor API",
+  "_note": "以下为本地合成的可重放响应，用于证明调用路径与解析逻辑正确；接贵方账号后用 scripts/recorded_smoke.py --source live 拉真实数据做同样断言",
+  "_usage": "scripts/recorded_smoke.py --source recorded 会把本文件回放给视觉模型客户端，证明请求体与解析逻辑",
+  "id": "vision-chatcmpl-local-synthetic-0001",
+  "object": "chat.completion",
+  "model": "vision-latest",
+  "choices": [
+    {
+      "index": 0,
+      "finish_reason": "stop",
+      "message": {
+        "role": "assistant",
+        "content": "{\"fields\": {\"SKU\": {\"text\": \"SKU-1001\", \"confidence\": 0.96}, \"规格\": {\"text\": \"M-1001\", \"confidence\": 0.91}, \"数量\": {\"text\": \"8\", \"confidence\": 0.62}}}"
+      }
+    }
+  ]
+}

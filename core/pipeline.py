@@ -1,4 +1,7 @@
-"""离线主流水线：模块二回填 + 模块四发票/归档回填，串成一条可复现的链路。"""
+"""离线主流水线：模块二回填 + 模块四发票/归档回填，串成一条可复现的链路。
+
+数据来源由 core.sources 决定（夹具 / 录制回放 / 真实领星 API），本模块只管流水。
+"""
 
 from __future__ import annotations
 
@@ -33,19 +36,38 @@ def load_invoices(path: str) -> InvoiceLedger:
     return InvoiceLedger(records=load_json(path))
 
 
-def build_name_book(rules: Rules, products: Dict[str, Dict[str, Any]]) -> DeclareNameBook:
+def build_name_book(
+    rules: Rules,
+    products: Dict[str, Dict[str, Any]],
+    path: Optional[str] = None,
+) -> DeclareNameBook:
     """模块一知识库沉淀：报关名 -> 标准编码（海关编码）。
 
     同一个报关名第二次出现时直接复用已登记的海关编码，不再新增条目；只有同名却
     指向不同海关编码时才记为冲突（保留首个，不覆盖）。空报关名或空海关编码跳过。
+
+    path 非空时知识库落盘，进程重启后仍能读回。
     """
-    book = DeclareNameBook(rules.brand_words)
+    book = DeclareNameBook(rules.brand_words, path=path)
     for sku in sorted(products):
         product = products[sku]
-        book.observe(str(product.get("declare_name", "")), str(product.get("hscode", "")))
+        book.observe(
+            str(product.get("declare_name", "")),
+            str(product.get("hscode", "")),
+            material=str(product.get("material", "")),
+            usage=str(product.get("usage", "")),
+            unit=str(product.get("declare_unit", "")),
+        )
     return book
 
 
+
+
+def computer_actions(payload: Dict[str, Any], threshold: float = 0.85):
+    """把视觉结果转成界面动作；低置信度的部分留在人工队列里。"""
+    from .computer_use import plan_actions
+
+    return plan_actions(payload, threshold)
 def run_pipeline(
     rules: Rules,
     batches: List[Dict[str, Any]],
@@ -54,10 +76,16 @@ def run_pipeline(
     invoices: InvoiceLedger,
     archive_root: Optional[str] = None,
     at: str = AT,
+    name_book: Optional[DeclareNameBook] = None,
+    gate_unconfirmed_names: bool = False,
 ) -> Dict[str, Any]:
-    """跑完 50 批次：模块二写 16 列，模块四补后 7 列，最后做批次间勾稽。"""
+    """跑完 50 批次：模块二写 16 列，模块四补后 7 列，最后做批次间勾稽。
+
+    name_book 非空时，品名必须走到 confirmed 才把确认编码写进台账；
+    gate_unconfirmed_names 为真时，未确认的品名报 name_not_confirmed 且不写编码。
+    """
     ledger = Ledger(rules.columns)
-    filler = BatchFiller(rules, at=at)
+    filler = BatchFiller(rules, at=at, name_book=name_book, gate_unconfirmed_names=gate_unconfirmed_names)
     m4 = Module4Filler(rules, invoices, archive_root=archive_root, at=at)
     fills: List[FillResult] = []
     module4: List[Module4Result] = []

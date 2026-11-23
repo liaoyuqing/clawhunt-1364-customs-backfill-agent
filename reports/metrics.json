@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-23T13:35:06+00:00",
+  "collected_at": "2026-11-23T16:33:09+00:00",
   "column_fill_rates": {
     "columns": 23,
     "rates": {
@@ -29,15 +29,15 @@
     },
     "rows": 146
   },
-  "core_loc": 2439,
-  "core_py_files": 22,
+  "core_loc": 4617,
+  "core_py_files": 30,
   "fixture_batches": 50,
   "fixture_lines": 87,
   "fixture_products": 11,
   "fixture_suppliers": 3,
   "ledger_columns": 23,
   "pytest_exit_code": 0,
-  "pytest_tail": "124 passed in 2.26s",
+  "pytest_tail": "172 passed in 5.07s",
   "python_version": "3.11.9",
   "rule_tables": 7,
   "rule_versions": {
@@ -57,12 +57,12 @@
   "sample_passes_threshold": true,
   "sample_rows": 146,
   "sample_source_kind_missing": 0,
-  "scripts_loc": 923,
-  "scripts_py_files": 6,
-  "test_cases_collected": 124,
-  "test_cases_passed": 124,
-  "test_files": 19,
-  "tests_loc": 1672,
+  "scripts_loc": 1429,
+  "scripts_py_files": 10,
+  "test_cases_collected": 172,
+  "test_cases_passed": 172,
+  "test_files": 26,
+  "tests_loc": 2751,
   "tracked_files": 84,
-  "tree_sha256": "f68ccb122583e2e5d73c7c8ff1ac0c62432800e4c078ba4f531f0e9f14c70e42"
+  "tree_sha256": "db648d7cd289bff35b8875346b410e25687fcefabff5bfcd3b1e9b46ac15e2ae"
 }

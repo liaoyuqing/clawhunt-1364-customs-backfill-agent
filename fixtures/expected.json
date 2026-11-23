@@ -12369,6 +12369,7 @@
     "required_fields": "2026-11-02",
     "unit": "2026-11-02"
   },
+  "source": "recorded",
   "source_errors": [
     {
       "column": "HSCODE",
@@ -12390,5 +12391,15 @@
       "reason": "missing_hscode",
       "row_key": "B2026-0044#0"
     }
-  ]
+  ],
+  "source_fetched_at": "2026-11-24T00:32:41+08:00",
+  "source_files": [
+    "fixtures/recorded/lingxing_batches_page1.SYNTHETIC.json",
+    "fixtures/recorded/lingxing_products_page1.SYNTHETIC.json",
+    "fixtures/recorded/lingxing_suppliers_page1.SYNTHETIC.json",
+    "fixtures/recorded/dingtalk_write_response.json"
+  ],
+  "source_label": "source=recorded(synthetic) 取数时间 2026-11-24T00:32:41+08:00",
+  "source_origin": "local synthetic replay, not a capture from the vendor API",
+  "source_synthetic": true
 }

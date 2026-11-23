@@ -4,6 +4,8 @@ __all__ = [
     "config", "models", "ledger", "naming", "knowledge", "price", "units", "bundle",
     "checks", "declare", "module4", "pipeline", "archive", "gates", "vision",
     "lingxing", "dingtalk", "invoice", "contract", "preflight", "cli",
+    "http_client", "lingxing_client", "dingtalk_client", "vision_client",
+    "local_model", "computer_use", "etax", "sources",
 ]
 
 __version__ = "0.5.0"

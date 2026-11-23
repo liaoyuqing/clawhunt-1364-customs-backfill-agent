@@ -87,6 +87,33 @@ class AuditLog:
                     out.append(json.loads(line))
         return out
 
+    def query(
+        self,
+        batch_no: Optional[str] = None,
+        action: Optional[str] = None,
+        operator: Optional[str] = None,
+    ) -> List[Dict[str, str]]:
+        """按批次号 / 动作 / 操作人检索**落盘**的审计行。
+
+        每次都从审计文件重新读，所以进程重启后（新 AuditLog 实例）依然查得到历史。
+        没有任何过滤条件时返回全部落盘行；文件不存在返回空列表。
+        """
+        rows = self.read_back()
+        out: List[Dict[str, str]] = []
+        for row in rows:
+            if batch_no is not None and str(row.get("batch_no", "")) != str(batch_no):
+                continue
+            if action is not None and str(row.get("action", "")) != str(action):
+                continue
+            if operator is not None and str(row.get("operator", "")) != str(operator):
+                continue
+            out.append(row)
+        return out
+
+    def query_by_batch(self, batch_no: str) -> List[Dict[str, str]]:
+        """只按批次号检索（落盘口径）。"""
+        return self.query(batch_no=batch_no)
+
     def by_batch(self, batch_no: str) -> List[Dict[str, str]]:
         return [e for e in self.entries if e.get("batch_no") == batch_no]
 
