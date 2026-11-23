@@ -42,9 +42,15 @@ def py_files(folder):
     return sorted(out)
 
 
+VOLATILE = {"reports/metrics.json"}
+
+
 def tree_hash(paths):
+    """对 tracked 文件求树哈希；metrics.json 自身随每次采集变化，排除在外。"""
     digest = hashlib.sha256()
     for rel in sorted(paths):
+        if rel in VOLATILE:
+            continue
         full = os.path.join(ROOT, rel)
         if not os.path.exists(full):
             continue
@@ -57,14 +63,14 @@ def tree_hash(paths):
 def main() -> int:
     code, pytest_out = run([
         os.path.join(ROOT, ".venv", "Scripts", "python.exe"),
-        "-m", "pytest", "-q",
+        "-m", "pytest", "-o", "addopts=", "-q",
     ])
     test_files = sorted(
         name for name in os.listdir(os.path.join(ROOT, "tests")) if name.startswith("test_") and name.endswith(".py")
     )
     collect_code, collect_out = run([
         os.path.join(ROOT, ".venv", "Scripts", "python.exe"),
-        "-m", "pytest", "--collect-only", "-q",
+        "-m", "pytest", "-o", "addopts=", "--collect-only", "-q",
     ])
     test_cases = 0
     for line in collect_out.splitlines():

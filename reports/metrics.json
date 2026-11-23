@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-23T02:06:06+00:00",
+  "collected_at": "2026-11-23T02:08:29+00:00",
   "core_loc": 1460,
   "core_py_files": 18,
   "fixture_batches": 50,
@@ -8,7 +8,7 @@
   "fixture_suppliers": 3,
   "ledger_columns": 23,
   "pytest_exit_code": 0,
-  "pytest_tail": "............................................................             [100%]",
+  "pytest_tail": "60 passed in 0.12s",
   "python_version": "3.11.9",
   "rule_tables": 7,
   "rule_versions": {
@@ -28,12 +28,12 @@
   "sample_passes_threshold": true,
   "sample_rows": 146,
   "sample_source_kind_missing": 0,
-  "scripts_loc": 602,
+  "scripts_loc": 611,
   "scripts_py_files": 5,
-  "test_cases_declared": 51,
-  "test_cases_reported": 0,
+  "test_cases_collected": 60,
+  "test_cases_passed": 60,
   "test_files": 10,
   "tests_loc": 844,
-  "tracked_files": 0,
-  "tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  "tracked_files": 58,
+  "tree_sha256": "2598dfd65609dc26a8bd38d9aea4e4f19b51fa044f80058ae8dfe1c96946bf22"
 }
