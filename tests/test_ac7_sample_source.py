@@ -16,6 +16,13 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from source_data import SourceDataError, load_source_data  # noqa: E402
 
 
+def _child_env():
+    """子进程 stdout 固定 UTF-8，避免在 cp936 等非 UTF-8 代码页的机器上假失败。"""
+    env = dict(os.environ)
+    env["PYTHONIOENCODING"] = "utf-8"
+    return env
+
+
 def _run_sample50(*args):
     return subprocess.run(
         [sys.executable, os.path.join("scripts", "sample50.py")] + list(args),
@@ -24,6 +31,7 @@ def _run_sample50(*args):
         text=True,
         encoding="utf-8",
         errors="replace",
+        env=_child_env(),
         timeout=300,
     )
 
@@ -82,7 +90,7 @@ def test_fixture_source_is_explicitly_marked_synthetic():
 
 def test_lingxing_source_requires_environment_variables():
     """真实源缺环境变量必须报错退出，不得静默回退到合成数据。"""
-    env = dict(os.environ)
+    env = _child_env()
     for key in ("LINGXING_BASE_URL", "LINGXING_APP_KEY", "LINGXING_APP_SECRET"):
         env.pop(key, None)
     proc = subprocess.run(

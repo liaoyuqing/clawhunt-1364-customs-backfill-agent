@@ -12,6 +12,13 @@ FIXTURES = os.path.join(ROOT, "fixtures", "lingxing")
 RULES = os.path.join(ROOT, "rules")
 
 
+def _child_env():
+    """子进程 stdout 固定 UTF-8，避免在 cp936 等非 UTF-8 代码页的机器上假失败。"""
+    env = dict(os.environ)
+    env["PYTHONIOENCODING"] = "utf-8"
+    return env
+
+
 def run_cli(*args):
     """用当前解释器跑真入口，不 import core.cli，保证验的是「命令行能不能跑」。"""
     return subprocess.run(
@@ -21,6 +28,7 @@ def run_cli(*args):
         text=True,
         encoding="utf-8",
         errors="replace",
+        env=_child_env(),
         timeout=180,
     )
 

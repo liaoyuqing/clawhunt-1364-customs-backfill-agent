@@ -70,19 +70,27 @@ def test_knowledge_survives_a_new_process(tmp_path):
     book.confirm_supplier("桌面收纳盒", operator="供应商张")
     book.confirm_internal("桌面收纳盒", operator="内部李")
 
+    """子进程输出必须与控制台代码页无关：ensure_ascii=True 让 stdout 全是 ASCII，
+    父进程 json.loads 之后中文自动还原；再显式把 stdout 设成 UTF-8 作双保险。"""
     probe = os.path.join(str(tmp_path), "probe.py")
     probe_source = "\n".join([
         "import json, sys",
+        "try:",
+        "    sys.stdout.reconfigure(encoding='utf-8')",
+        "except (AttributeError, ValueError):",
+        "    pass",
         "sys.path.insert(0, %r)" % ROOT,
         "from core.knowledge import DeclareNameBook",
         "book = DeclareNameBook({}, path=%r)" % path,
         "print(json.dumps({'state': book.state_of('桌面收纳盒'), "
         " 'confirmed': book.confirmed_codes(), "
         " 'entries': len(book.entries), "
-        " 'errors': book.load_errors}, ensure_ascii=False))",
+        " 'errors': book.load_errors}, ensure_ascii=True))",
     ])
     with open(probe, "w", encoding="utf-8") as handle:
         handle.write(probe_source)
+    env = dict(os.environ)
+    env["PYTHONIOENCODING"] = "utf-8"
     proc = subprocess.run(
         [sys.executable, probe],
         cwd=ROOT,
@@ -90,6 +98,7 @@ def test_knowledge_survives_a_new_process(tmp_path):
         text=True,
         encoding="utf-8",
         errors="replace",
+        env=env,
         timeout=120,
     )
     assert proc.returncode == 0, proc.stderr

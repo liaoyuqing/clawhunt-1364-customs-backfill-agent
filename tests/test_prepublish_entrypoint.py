@@ -12,6 +12,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXAMPLE = os.path.join(ROOT, "deploy", "isolated", "isolated.example.yaml")
 
 
+def _child_env():
+    """子进程 stdout 固定 UTF-8，避免在 cp936 等非 UTF-8 代码页的机器上假失败。"""
+    env = dict(os.environ)
+    env["PYTHONIOENCODING"] = "utf-8"
+    return env
+
+
 def run_check(path, module="prepublish.check"):
     return subprocess.run(
         [sys.executable, "-m", module, "--config", str(path)],
@@ -20,6 +27,7 @@ def run_check(path, module="prepublish.check"):
         text=True,
         encoding="utf-8",
         errors="replace",
+        env=_child_env(),
         timeout=120,
     )
 
