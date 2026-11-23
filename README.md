@@ -8,8 +8,8 @@
 | --- | --- | --- |
 | 一 下单确定 | `core/contract.py`、`core/naming.py` | 可报关产品判定与品名归并（去品牌词）、采购合同生成（合同品名=开票名=报关名强制一致）、要件检查与盖章回传件核验 |
 | 二 报关表回填 | `core/declare.py`、`core/ledger.py`、`core/lingxing.py`、`core/dingtalk.py`、`core/vision.py` | 按批次号建行并逐字段回填，组合产品拆子 SKU、按套/按个换算、多批次合并与部分报关、缺失与勾稽提醒；接口覆盖不到的场景走视觉并标注来源 |
-| 三 开票 | `core/invoice.py` | 品类匹配开票公司与联系人、生成开票通知、发票预览件与合同逐项核对输出差异清单（含抬头公司名与税号） |
-| 四 发票回填与归档 | `core/archive.py`、`core/preflight.py` | 发票号/开票日期/耗用数量/剩余可用回填、结余 Decimal 实时计算、四类原件归档并回填共享链接；单独虚拟机 + 本地模型，启动三项自检 |
+| 三 开票 | `core/invoice.py`、`scripts/invoice_diff_report.py` | 品类匹配开票公司与联系人、生成开票通知、发票预览件与合同逐项核对输出差异清单（含抬头公司名与税号） |
+| 四 发票回填与归档 | `core/archive.py`、`core/preflight.py`、`prepublish/` | 发票号/开票日期/耗用数量/剩余可用回填、结余 Decimal 实时计算、四类原件归档并回填共享链接；单独虚拟机 + 本地模型，启动三项自检 |
 
 ## 三条贯穿全场的设计
 
@@ -28,8 +28,10 @@ python -m venv .venv
 预期输出（干净 clone 实测）：
 
 ```text
-60 passed in 0.14s
+82 passed
 ```
+
+只依赖标准库 + `PyYAML`（规则包解析）+ `pytest`（自测），没有其它运行期依赖。
 
 ## 生成源数据与参考值
 
@@ -47,19 +49,47 @@ python -m venv .venv
 rules/            七张规则表（业务规则唯一来源）
 core/             引擎：models/config/ledger/naming/price/units/bundle/checks/gates/
                   lingxing/dingtalk/vision/declare/contract/invoice/archive/preflight
-scripts/          make_fixtures / reference_impl / sample50 / collect_metrics / secret_scan
-tests/            9 个测试文件，60 个用例
-fixtures/         合成源数据（batches/products/suppliers）与 expected.json
-reports/          sample50_report.json / metrics.json / secret_scan_report.json
-deploy/isolated/  模块四单独虚拟机的 compose 与启动自检
+core/cli.py       命令行入口：python -m core.cli --batch <批次号>（模块一~三主流程，离线可跑）
+prepublish/       模块四启动自检：python -m prepublish.check --config <yaml>（复用 core/preflight.py）
+scripts/          make_fixtures / reference_impl / sample50 / collect_metrics / secret_scan /
+                  invoice_diff_report（AC3 差异清单与期望自证）
+tests/            13 个测试文件，82 个用例
+fixtures/         合成源数据（batches/products/suppliers）、发票预览件（invoices/）与 expected.json
+reports/          sample50_report.json / metrics.json / secret_scan_report.json /
+                  invoice_diff_report.md / invoice_diff_report.json
+deploy/isolated/  模块四单独虚拟机的 compose、自检配置样例与上线说明
 docs/             部署文档与操作手册
 ```
 
 ## 两套部署
 
-**主环境**（模块一、二、三）：接领星与钉钉的开放平台应用，跑 `python -m core.cli --batch B2026-0001`。详见 `docs/deploy.md`。
+**主环境**（模块一、二、三）：接领星与钉钉的开放平台应用，跑
 
-**模块四独立虚拟机**：只接内网，出网白名单只留内网 CIDR，模型 base_url 指向本机；启动前 `python -m prepublish.check` 三项自检，任一不满足退出码 2。详见 `deploy/isolated/README.md`。
+```bash
+.venv/Scripts/python.exe -m core.cli --batch B2026-0001
+```
+
+`core/cli.py` 是一个**真实存在、可直接执行**的入口：默认回放仓库自带夹具（`fixtures/lingxing/`），不连领星、不连钉钉、不联网，对指定批次跑模块一（采购合同与要件检查）、模块二（批次回填并写钉钉台账的内存投影）、模块三（发票预览件与合同逐项核对），最后把结果打印成一份 JSON 摘要。真实接入时只把 `LingxingClient` 的 `transport` 换成开放平台实现，命令与参数不变。详见 `docs/deploy.md`。
+
+**模块四独立虚拟机**：只接内网，出网白名单只留内网 CIDR，模型 base_url 指向本机；启动前跑
+
+```bash
+.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml
+```
+
+三项自检（白名单只有私有网段 / 模型地址是回环或内网 / 原件目录不在云同步路径）全部复用 `core/preflight.py` 的判定函数，任一不过逐条打印 `problems` 并退出码 2，进程不启动。详见 `deploy/isolated/README.md`。
+
+## 买家自验清单（不依赖交付方服务器）
+
+在买家自己的机器上，从干净 clone 起逐条执行，全部离线、无外网调用：
+
+1. 装依赖：`.venv/Scripts/python.exe -m pip install -r requirements.txt` —— 预期退出码 `0`（只有 PyYAML 与 pytest 两个包）。
+2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `82 passed`。
+3. 跑差异清单：`.venv/Scripts/python.exe scripts/invoice_diff_report.py` —— 预期退出码 `0`，打印 `invoices 6 clean 3 dirty 3 diffs 3 ... verified yes`，并生成 `reports/invoice_diff_report.md` 与 `reports/invoice_diff_report.json`。
+4. 跑主流程：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001` —— 预期退出码 `0`，stdout 是一份 JSON 摘要（`batch_no` / 行数 / 列数 / 差异条数 / 闸门状态）；换个不存在的批次号则退出码 `1`、stderr 有中文原因。
+5. 跑模块四自检：`.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` —— 预期退出码 `0`、末行 `ok`；把配置里的白名单换成公网 IP、模型地址换成公网域名、原件目录放进 OneDrive，再跑一次预期退出码 `2` 并逐条列出 3 条 `problems`。
+
+以上 5 条都不需要访问领星、钉钉或任何外网地址。
 
 ## 边界（本单不做）
 

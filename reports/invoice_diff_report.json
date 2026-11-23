@@ -1,0 +1,112 @@
+{
+  "batch_no": "B2026-0001",
+  "contract_no": "HT-2026-0001",
+  "check_fields": [
+    "抬头公司名",
+    "税号",
+    "发票类型",
+    "品名",
+    "规格",
+    "数量",
+    "金额"
+  ],
+  "invoices_total": 6,
+  "clean": 3,
+  "dirty": 3,
+  "difference_count": 3,
+  "dirty_fields_sequence": [
+    "抬头公司名",
+    "税号",
+    "规格"
+  ],
+  "expected_dirty_fields_sequence": [
+    "抬头公司名",
+    "税号",
+    "规格"
+  ],
+  "sequence_matches": true,
+  "missed": [],
+  "extra": [],
+  "no_missed": true,
+  "no_extra": true,
+  "verified": true,
+  "expected": {
+    "INV-2026-1001": [],
+    "INV-2026-1002": [],
+    "INV-2026-1003": [],
+    "INV-2026-1004": [
+      "抬头公司名"
+    ],
+    "INV-2026-1005": [
+      "税号"
+    ],
+    "INV-2026-1006": [
+      "规格"
+    ]
+  },
+  "results": [
+    {
+      "invoice_no": "INV-2026-1001",
+      "clean": true,
+      "differences": []
+    },
+    {
+      "invoice_no": "INV-2026-1002",
+      "clean": true,
+      "differences": []
+    },
+    {
+      "invoice_no": "INV-2026-1003",
+      "clean": true,
+      "differences": []
+    },
+    {
+      "invoice_no": "INV-2026-1004",
+      "clean": false,
+      "differences": [
+        {
+          "field": "抬头公司名",
+          "expected": "深圳前海跨境电子商务有限公司",
+          "actual": "广州某某贸易有限公司",
+          "batch_no": "B2026-0001",
+          "kind": "mismatch"
+        }
+      ]
+    },
+    {
+      "invoice_no": "INV-2026-1005",
+      "clean": false,
+      "differences": [
+        {
+          "field": "税号",
+          "expected": "91440300MA5F0000XA",
+          "actual": "91440300MA5F0000XB",
+          "batch_no": "B2026-0001",
+          "kind": "mismatch"
+        }
+      ]
+    },
+    {
+      "invoice_no": "INV-2026-1006",
+      "clean": false,
+      "differences": [
+        {
+          "field": "规格",
+          "expected": "型号 M-1004",
+          "actual": "型号 M-9999",
+          "batch_no": "B2026-0001",
+          "kind": "mismatch"
+        }
+      ]
+    }
+  ],
+  "contract": {
+    "buyer_name": "深圳前海跨境电子商务有限公司",
+    "buyer_tax_no": "91440300MA5F0000XA",
+    "invoice_type": "增值税专用发票",
+    "product_name": "礼品卡套",
+    "spec": "型号 M-1004",
+    "quantity": "3",
+    "amount": "9.60"
+  }
+}

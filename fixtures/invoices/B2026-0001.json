@@ -1,0 +1,22 @@
+[
+  {
+    "invoice_no": "INV-2026-000101",
+    "buyer_name": "深圳前海跨境电子商务有限公司",
+    "buyer_tax_no": "91440300MA5F0000XA",
+    "invoice_type": "增值税专用发票",
+    "product_name": "礼品卡套",
+    "spec": "型号 M-1004",
+    "quantity": "3",
+    "amount": "9.60"
+  },
+  {
+    "invoice_no": "INV-2026-000102",
+    "buyer_name": "深圳前海跨境电子商务有限公司",
+    "buyer_tax_no": "91440300MA5F0000XB",
+    "invoice_type": "增值税专用发票",
+    "product_name": "礼品卡套",
+    "spec": "型号 M-1004",
+    "quantity": "3",
+    "amount": "9.60"
+  }
+]
