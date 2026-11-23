@@ -1,4 +1,4 @@
-"""共用夹具：规则包、50 批次源数据、内存台账。"""
+"""共用夹具：规则包、50 批次源数据、内存台账（含模块四 7 列）。"""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
+from core import pipeline  # noqa: E402
 from core.config import Rules  # noqa: E402
 from core.declare import BatchContext, BatchFiller  # noqa: E402
 from core.ledger import Ledger  # noqa: E402
@@ -45,11 +46,20 @@ def suppliers():
 
 
 @pytest.fixture(scope="session")
-def filled(rules, batches, products, suppliers):
-    ledger = Ledger(rules.columns)
-    filler = BatchFiller(rules)
-    results = [filler.fill(ledger, BatchContext(batch=b, products=products, suppliers=suppliers)) for b in batches]
-    return ledger, results
+def invoices(rules):
+    return pipeline.load_invoices(os.path.join(FIX, "invoices", "ledger.json"))
+
+
+@pytest.fixture(scope="session")
+def filled(rules, batches, products, suppliers, invoices):
+    """走完整链路：模块二 16 列 + 模块四 7 列，与 core.cli 同一条流水线。"""
+    result = pipeline.run_pipeline(rules, batches, products, suppliers, invoices)
+    return result["ledger"], result["fills"]
+
+
+@pytest.fixture(scope="session")
+def pipeline_result(rules, batches, products, suppliers, invoices):
+    return pipeline.run_pipeline(rules, batches, products, suppliers, invoices)
 
 
 @pytest.fixture(scope="session")

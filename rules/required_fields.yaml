@@ -1,6 +1,6 @@
 # 台账必填字段与勾稽规则（缺失即进待补清单，不做静默填充）
-version: 2026-11-01
-effective_from: 2026-11-01
+version: 2026-11-02
+effective_from: 2026-11-02
 required:
   - 批次号
   - 产品中文报关名
@@ -14,16 +14,14 @@ required:
   - SKU
   - 数量
 hscode_pattern: "^[0-9]{10}$"
+# R1 逐行比对采购数量与装箱数量；R2 比对台账报关单位与基础单位；
+# R3 由 core.declare.contract_no_issues 做批次间唯一性校验（同一份台账内无法自比）。
 reconciliation:
   - id: R1
     name: 采购数量与装箱数量一致
     left: purchase_qty
     right: shipment_qty
   - id: R2
-    name: 报关单位与产品单位一致
+    name: 报关单位与基础单位一致
     left: declare_unit
     right: product_unit
-  - id: R3
-    name: 合同号在同一批次内唯一
-    left: contract_no
-    right: contract_no

@@ -1,8 +1,10 @@
 # 模块四：只有内网，不给外网出口
 services:
   app:
+    build:
+      context: ../..
+      dockerfile: deploy/isolated/Dockerfile
     image: clawhunt-1364-module4:latest
-    network_mode: bridge
     networks:
       - intranet_only
     volumes:
@@ -11,7 +13,14 @@ services:
     environment:
       - CLAWHUNT_1364_RULES=/app/rules
       - CLAWHUNT_1364_ISOLATED=/etc/clawhunt/isolated.yaml
-    command: ["python", "-m", "prepublish.check", "--config", "/etc/clawhunt/isolated.yaml"]
+    command: ["--config", "/etc/clawhunt/isolated.yaml"]
+    # 健康探针就是自检本身：不通过即 unhealthy，编排层不会把流量放进来
+    healthcheck:
+      test: ["CMD", "python", "-m", "prepublish.check", "--config", "/etc/clawhunt/isolated.yaml"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
 
 networks:
   intranet_only:

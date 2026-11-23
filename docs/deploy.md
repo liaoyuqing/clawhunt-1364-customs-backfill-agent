@@ -4,7 +4,7 @@
 
 | 入口 | 用途 | 默认数据源 |
 | --- | --- | --- |
-| `python -m core.cli --batch <批次号>` | 模块一~三主流程（合同生成、批次回填、发票核对） | 仓库自带夹具 `fixtures/lingxing/`，离线回放 |
+| `python -m core.cli --batch <批次号>` | 模块一~四主流程（合同生成、批次回填、发票核对、发票/归档回填） | 仓库自带夹具 `fixtures/lingxing/` 与 `fixtures/invoices/`，离线回放 |
 | `python -m prepublish.check --config <yaml>` | 模块四启动自检（白名单 / 本地模型 / 原件目录） | 只读配置文件，不发任何请求 |
 
 ## 1. 环境要求
@@ -27,7 +27,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pytest -q
 ```
 
-最后一条预期退出码 `0`、末行 `82 passed`。
+最后一条预期退出码 `0`、末行 `124 passed`。
 
 ### 2.1 配置项
 
@@ -59,7 +59,7 @@ rules_root: rules
 | `--batch` | 是 | — | 批次号，例如 `B2026-0001`；不在回放数据里即失败 |
 | `--fixtures` | 否 | `fixtures/lingxing` | 回放夹具目录，含 `batches.json` / `products.json` / `suppliers.json` |
 | `--rules` | 否 | 仓库内 `rules/` | 规则包目录（七张 yaml） |
-| `--invoices` | 否 | `fixtures/invoices` | 发票预览件夹具目录，文件名 `<批次号>.json`；缺失时该步记 0 张并说明 |
+| `--invoices` | 否 | `fixtures/invoices` | 发票夹具目录，含发票台账 `ledger.json`（品类/票面数量/开票日期）与预览件 `<批次号>.json`；预览件缺失时该步记 0 张并说明 |
 
 它做的事，与接真实开放平台时完全同一套代码路径：
 
@@ -68,7 +68,9 @@ rules_root: rules
 3. **模块一**：批次明细生成采购合同 `build_contract`（合同品名=开票名=报关名），并跑 `requirement_issues` 清点缺失要件；
 4. **模块二**：`BatchFiller.fill` 逐字段回填 `Ledger`（每格带 `SourceRef`），再把台账写进 `DingTalkSheet` 的内存投影，统计行数 / 列数 / 格数 / 待补清单；
 5. **模块三**：该批次的发票预览件与合同逐字段比对，输出差异清单；
-6. **人工闸门**：调用 `HumanGate.require_human("tax_bureau_submit", ...)`，无确认时如实报告「被阻断」，绝不静默放行。
+6. **模块四**：`Module4Filler` 按品类扣减发票额度（`InvoiceUsage.use()` → `core.archive.remaining()`），把后 7 列写进台账，并生成四类原件归档链接；
+7. **模块一知识库**：`DeclareNameBook` 按报关名登记海关编码，同名复用不重复建条目；
+8. **人工闸门**：调用 `HumanGate.require_human("tax_bureau_submit", ...)`，无确认时如实报告「被阻断」，绝不静默放行；有确认时审计行同时追加到 `logs/audit.log`（JSONL）。
 
 退出码语义：
 
@@ -91,11 +93,17 @@ stdout 只输出 JSON、不掺日志，便于直接 `| jq` 或喂给下游脚本
 
 ## 3. 模块四独立虚拟机部署
 
+镜像由仓库内的 `deploy/isolated/Dockerfile` 现场构建（`python:3.11-slim` + `pip install -r requirements.txt`，不拉外部包），compose 里是 `build:` 段而不是远端镜像：
+
 ```bash
 cd deploy/isolated
+docker compose build            # 用本仓库源码构建 clawhunt-1364-module4:latest
 docker compose up -d
 docker compose exec app python -m prepublish.check --config /etc/clawhunt/isolated.yaml
+docker compose ps               # STATUS 里应出现 (healthy)：healthcheck 跑的就是这条自检
 ```
+
+`prepublish.check` 既是容器启动命令，也是 healthcheck 探针：退出码非 0 即容器退出或不健康，编排层不会把流量放进来。
 
 本机（不用 docker）直接跑同样一条：
 
@@ -128,11 +136,13 @@ docker-compose 把该命令设为容器启动命令，退出码 `2` 时容器直
 1. 规则包回滚：把 `rules/` 换回上一版目录，改 `effective_from` 为回滚当日，重启进程；
 2. 代码回滚：`git revert <commit>` 后重跑 `pytest -q`；
 3. 台账回滚：钉钉表格按行版本恢复（每次写入前 `DingTalkSheet.writes` 留了行级写入记录，可据此定位）；
-4. 模块四回滚：`docker compose down` 后切回上一镜像 tag，原件目录不受影响。
+4. 模块四回滚：`docker compose down` 后把源码 checkout 回上一个 tag 重新 `docker compose build`（镜像是本地 build，没有远端 tag 可切），原件目录与 `logs/audit.log` 不受影响。
 
 ## 5. 日志
 
-`core.cli` 每次运行在 stdout 输出一行 JSON 摘要（批次号、行数、列数、格数、差异条数、闸门状态），重定向即得日志：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001 > logs/cli-$(date +%Y%m%d).json`。审计行单独写 `logs/audit.log`，字段 `action/operator/digest/at/batch_no`。
+`core.cli` 每次运行在 stdout 打印一份 JSON 摘要（批次号、行数、列数、格数、模块四耗用与剩余、差异条数、闸门状态），重定向即得日志：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001 > logs/cli-$(date +%Y%m%d).json`。
+
+审计行单独落盘到 `logs/audit.log`（JSONL，一行一条，字段 `action/operator/digest/at/batch_no`），目录由 `AuditLog` 自动创建，`logs/` 已在 `.gitignore` 中。落盘是尽力而为：目录只读等情况下闸门判定照常，失败原因记在 `AuditLog.write_failures`，`AuditLog.persisted` 为 `False`。
 
 ## 6. 不依赖交付方服务器
 

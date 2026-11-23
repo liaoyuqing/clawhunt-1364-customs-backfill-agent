@@ -1,8 +1,16 @@
 # 数量单位换算系数（按套销售 / 按个采购）
-version: 2026-11-01
-effective_from: 2026-11-01
+version: 2026-11-02
+effective_from: 2026-11-02
 factors:
   套->个: 12
   箱->个: 24
   套->箱: 0.5
 rounding: HALF_UP
+# 申报口径：报关单位统一折算到基础单位，数量按系数换算，报关单价同步除以同一系数，
+# 保证 报关单价 × 数量 与合同金额同口径（四舍五入到分）。换算前的原始单位与数量写入
+# reports/unit_conversions.json 与 core.cli 摘要，台账不再单独设备注列（列序由 ledger_columns.yaml 锁定）。
+base_unit: 个
+declaration:
+  convert_to_base_unit: true
+  price_scaled_by_factor: true
+  rounding: 2

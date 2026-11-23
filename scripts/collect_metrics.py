@@ -60,6 +60,25 @@ def tree_hash(paths):
     return digest.hexdigest()
 
 
+def column_fill_rates() -> dict:
+    """按台账 23 列统计 146 行的非空率，证明模块四 7 列真的写进去了。"""
+    sys.path.insert(0, ROOT)
+    from core import pipeline
+    from core.config import Rules
+
+    rules = Rules()
+    batches, products, suppliers = pipeline.load_fixtures(os.path.join(ROOT, "fixtures", "lingxing"))
+    invoices = pipeline.load_invoices(os.path.join(ROOT, "fixtures", "invoices", "ledger.json"))
+    result = pipeline.run_pipeline(rules, batches, products, suppliers, invoices)
+    ledger = result["ledger"]
+    keys = ledger.keys()
+    rates = {}
+    for column in rules.columns:
+        filled = sum(1 for key in keys if ledger.row(key).cells.get(column) and ledger.row(key).cells[column].value)
+        rates[column] = round(filled / len(keys), 4) if keys else 0.0
+    return {"rows": len(keys), "columns": len(rules.columns), "rates": rates}
+
+
 def interpreter() -> str:
     """优先用工作区 venv；干净 clone 里没有 venv 时回落到当前解释器。"""
     candidate = os.path.join(ROOT, ".venv", "Scripts", "python.exe")
@@ -135,6 +154,7 @@ def main() -> int:
         "sample_source_kind_missing": sample["source_kind_missing"],
         "sample_differences": sample["difference_count"],
         "sample_passes_threshold": sample["passes_threshold"],
+        "column_fill_rates": column_fill_rates(),
         "tracked_files": len(files),
         "tree_sha256": tree_hash(files),
     }

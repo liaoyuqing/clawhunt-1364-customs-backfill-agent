@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "sku": "RC-1",
+    "declare_name": "测试托盘A",
+    "model": "RC-M1",
+    "material": "塑料",
+    "usage": "仓储",
+    "declare_unit": "个",
+    "origin_place": "深圳",
+    "hscode": "3924900000",
+    "category": "家居",
+    "purchase_price": "10.00"
+  },
+  {
+    "id": 2,
+    "sku": "RC-2",
+    "declare_name": "测试托盘B",
+    "model": "RC-M2",
+    "material": "塑料",
+    "usage": "仓储",
+    "declare_unit": "托盘",
+    "origin_place": "深圳",
+    "hscode": "3924900000",
+    "category": "家居",
+    "purchase_price": "20.00"
+  }
+]

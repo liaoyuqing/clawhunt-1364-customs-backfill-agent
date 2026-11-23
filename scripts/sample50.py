@@ -1,4 +1,7 @@
-"""50 批次抽检：逐格比对回填结果与独立参考实现，输出一致率与三类差异。"""
+"""50 批次抽检：逐格比对回填结果与独立参考实现，输出一致率与三类差异。
+
+分母是台账全部 23 列（模块二 16 列 + 模块四 7 列），不再只看模块二的 16 列。
+"""
 
 from __future__ import annotations
 
@@ -9,9 +12,8 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
+from core import pipeline  # noqa: E402
 from core.config import Rules  # noqa: E402
-from core.declare import BatchContext, BatchFiller  # noqa: E402
-from core.ledger import Ledger  # noqa: E402
 from core.models import SOURCE_KINDS  # noqa: E402
 
 FIX = os.path.join(ROOT, "fixtures")
@@ -23,16 +25,21 @@ def load(name):
 
 
 def build_ledger(rules):
-    batches = load(os.path.join("lingxing", "batches.json"))
-    products = {item["sku"]: item for item in load(os.path.join("lingxing", "products.json"))}
-    suppliers = {item["id"]: item for item in load(os.path.join("lingxing", "suppliers.json"))}
-    ledger = Ledger(rules.columns)
-    filler = BatchFiller(rules)
-    results = []
-    for batch in batches:
-        ctx = BatchContext(batch=batch, products=products, suppliers=suppliers)
-        results.append(filler.fill(ledger, ctx))
-    return ledger, results, batches
+    """与 core.cli 同一条流水线：模块二回填 + 模块四发票/归档回填。"""
+    batches, products, suppliers = pipeline.load_fixtures(os.path.join(FIX, "lingxing"))
+    invoices = pipeline.load_invoices(os.path.join(FIX, "invoices", "ledger.json"))
+    result = pipeline.run_pipeline(rules, batches, products, suppliers, invoices)
+    """单位换算留痕单独落一份，台账列序不变但换算前后可查。"""
+    out_dir = os.path.join(ROOT, "reports")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "unit_conversions.json"), "w", encoding="utf-8") as handle:
+        json.dump(
+            {"total": len(result["conversions"]), "rows": result["conversions"]},
+            handle,
+            ensure_ascii=False,
+            indent=2,
+        )
+    return result["ledger"], result["fills"], batches
 
 
 def compare(ledger, expected_bundle):
@@ -86,6 +93,7 @@ def main() -> int:
     payload = {
         "batches": len(batches),
         "rows": len(ledger.keys()),
+        "columns": len(rules.columns),
         "cells_compared": decidable,
         "cells_consistent": consistent,
         "cells_undecidable": undecidable,
@@ -104,8 +112,8 @@ def main() -> int:
     with open(path, "w", encoding="utf-8") as handle:
         json.dump(payload, handle, ensure_ascii=False, indent=2)
     print(
-        "batches %d rows %d compared %d consistent %d undecidable %d rate %.6f source_missing %d diffs %d"
-        % (payload["batches"], payload["rows"], decidable, consistent, undecidable, rate, len(source_missing), len(diffs)),
+        "batches %d rows %d columns %d compared %d consistent %d undecidable %d rate %.6f source_missing %d diffs %d"
+        % (payload["batches"], payload["rows"], payload["columns"], decidable, consistent, undecidable, rate, len(source_missing), len(diffs)),
     )
     print("report -> %s" % path)
     return 0 if (rate >= 0.995 and not source_missing and not diffs) else 1

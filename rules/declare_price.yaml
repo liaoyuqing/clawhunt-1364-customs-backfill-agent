@@ -1,10 +1,12 @@
-# 申报单价定价规则：按品类系数 × 采购单价，保留两位小数
-version: 2026-11-01
-effective_from: 2026-11-01
+# 申报单价定价规则：采购单价 × 品类系数；折算到基础单位时同除换算系数
+version: 2026-11-02
+effective_from: 2026-11-02
 default_ratio: 0.62
 by_category:
   家居: 0.60
   文具: 0.65
   礼品: 0.58
-rounding: 2
+# 单价内部按 5 位小数计算后再去尾零，保证「单价 × 数量」与合同金额的误差小于一分钱
+rounding: 5
+min_decimals: 2
 currency: USD

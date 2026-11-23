@@ -6,7 +6,7 @@
 
 1. 在预报表里填入本周批次号（形如 `B2026-0001`）；
 2. 点「回填」，系统从领星拉产品报关资料、供应商开票资料、采购单明细、FBA 发货计划与装箱明细，按批次建行并逐字段写入钉钉台账；
-3. 看回填结果三件事：**建了几行**、**几格是视觉识别来的**（`source.kind == vision`）、**待补清单几条**；
+3. 看回填结果三件事：**建了几行**、**几格是视觉识别来的**（`source.kind == vision`）、**待补清单几条**；模块四在同一趟里补后 7 列（开票公司 / 发票号 / 开票日期 / 耗用发票数量 / 发票剩余可用数量 / 结余 / 归档共享链接）；
 4. 待补清单每条给出 `批次号 / 列名 / 原因`，按清单补完再点一次回填（同格重写会被拒绝，需先清空该格）。
 
 ### 命令行跑同一件事：`python -m core.cli`
@@ -22,7 +22,7 @@
 | `--batch` | 是 | — | 批次号 |
 | `--fixtures` | 否 | `fixtures/lingxing` | 回放夹具目录 |
 | `--rules` | 否 | 仓库内 `rules/` | 规则包目录 |
-| `--invoices` | 否 | `fixtures/invoices` | 发票预览件夹具目录（`<批次号>.json`） |
+| `--invoices` | 否 | `fixtures/invoices` | 发票夹具目录：`ledger.json`（台账，含品类/票面数量/开票日期）+ 预览件 `<批次号>.json` |
 
 stdout 是一份 JSON 摘要，关键字段：
 
@@ -34,6 +34,9 @@ stdout 是一份 JSON 摘要，关键字段：
 | `module2_fill.sources` | 各来源格数（`api` / `vision` / `manual` / `config`） |
 | `module2_fill.pending_list` | 待补清单（批次号 / 列名 / 原因） |
 | `module3_invoice.invoices` / `.clean` / `.dirty` / `.fields` | 本次核对的发票张数、一致张数、有差异张数、差异字段序列 |
+| `module4_invoice_ledger.rows` / `.categories` / `.archive_link` | 模块四回填的明细行数、涉及的发票品类、本批次归档共享链接 |
+| `module4_invoice_ledger.usage[]` | 每个品类的 `invoiced_qty`（票面数量）、`used`（累计耗用）、`remaining`（剩余可用）、`stamp`（重算戳） |
+| `module2_fill.conversions[]` | 单位换算留痕：原始单位 / 原始数量 / 系数 / 折算后单位与数量 |
 | `human_gate.approved` / `.reason` | 无人工确认时恒为 `false`，并在 `reason` 里写明被封装的载荷摘要 |
 
 退出码：`0` 跑通；`1` 批次不存在；`2` 规则包或夹具加载失败（原因写在 stderr 的中文提示里）。**看到非 0 就别继续往下回填**，先按 stderr 修数据或规则包。
@@ -44,7 +47,7 @@ stdout 是一份 JSON 摘要，关键字段：
 
 ### 合并报关与部分报关
 
-同渠道且「产品中文报关名 / 型号 / HSCODE / 境内货源地 / 报关单价」五列相同的行才允许合并，系统按这五列自动分组；部分报关按箱段（`carton_from`–`carton_to`）筛行，返回被选中的行与箱数合计。
+同渠道且「产品中文报关名 / 型号 / HSCODE / 境内货源地 / 报关单价」五列相同（**再加上渠道**共 6 个键位）的行才允许合并，系统自动分组；渠道由调用方传 `channels: 批次号 -> 渠道`，同五列但跨渠道（FBA-US vs FBA-UK）判为不可合并；部分报关按箱段（`carton_from`–`carton_to`）筛行，返回被选中的行与箱数合计。
 
 ## 二、财务：开票与归档
 
@@ -52,7 +55,7 @@ stdout 是一份 JSON 摘要，关键字段：
 2. 收到发票预览件后上传，系统与合同逐项比对 7 个字段：抬头公司名、税号、发票类型、品名、规格、数量、金额；有差异输出 `field / expected / actual` 三元组，**一条不漏全部列出**；
 3. 差异清零后走「提交税局」按钮 —— 这一步必须有人在弹窗里点确认，未确认时进程阻塞并 10 秒超时退出，**不会发出任何请求**；
 4. 确认通过后提交并写审计行；发票原件、合同、送货单、对公支付凭证四类归档到同一目录，生成共享链接回填台账「归档共享链接」列；
-5. 结余自动重算：`remaining = invoiced_total - sum(used_by_batch)`，用 Decimal 计算，本批次耗用超过剩余可用时直接拒绝并提示剩余值。
+5. 结余自动重算：`remaining = invoiced_total - sum(used_by_batch)`，用 Decimal 计算，本批次耗用超过剩余可用时直接拒绝并提示剩余值。台账里两个余量口径刻意分开：**「发票剩余可用数量」= 票面数量 − 全部批次累计耗用**（跨批次共享同一张发票），**「结余」= 票面数量 − 本批次累计耗用**；两者都由 `core.archive.remaining()` 算出，不在原地另写减法。
 
 ### 差异清单可复现证据：`python scripts/invoice_diff_report.py`
 
@@ -76,7 +79,17 @@ stdout 是一份 JSON 摘要，关键字段：
 
 ### 看审计
 
-`logs/audit.log` 按批次号可检索，每行含操作人、动作、时间、载荷摘要前 8 位。要追「谁在什么时候点了提交税局」，按 `action=tax_bureau_submit` 过滤。
+审计行同时留在进程内与落盘：`core.gates.AuditLog` 每 append 一行就追加到 `logs/audit.log`（JSONL，一行一条，默认路径可用 `AuditLog(path=...)` 或 `persist=False` 改成只留进程内）。每行字段 `action / operator / digest / at / batch_no`，`digest` 是载荷摘要前 8 位。
+
+要追「谁在什么时候点了提交税局」，按动作过滤：
+
+```bash
+grep '"action": "tax_bureau_submit"' logs/audit.log          # 所有税局提交
+grep '"batch_no": "B2026-0001"' logs/audit.log               # 某个批次的全部审计行
+python -c "import json;[print(r) for r in map(json.loads,open('logs/audit.log',encoding='utf-8')) if r['operator']=='ops']"
+```
+
+`logs/` 已在 `.gitignore` 里，审计文件不会进仓库；落盘失败（目录只读等）不会阻断闸门，失败原因记在 `AuditLog.write_failures`，`AuditLog.persisted` 为 `False`。
 
 ### 抽检
 
@@ -84,7 +97,9 @@ stdout 是一份 JSON 摘要，关键字段：
 .venv/Scripts/python.exe scripts/sample50.py
 ```
 
-输出：批次数、行数、可比格数、一致格数、不可判定格数、一致率、来源缺失格数、差异条数。**一致率 < 99.5% 或差异不为 0 时退出码 1。**
+输出：批次数、行数、列数、可比格数、一致格数、不可判定格数、一致率、来源缺失格数、差异条数。分母是**全部 23 列**（模块二 16 列 + 模块四 7 列），50 批次 146 行共 2408 格、2401 格可判定、差异 0。**一致率 < 99.5% 或差异不为 0 时退出码 1。**
+
+脚本同时把单位换算留痕写到 `reports/unit_conversions.json`（50 批次共 23 条「套→个」，每条含原始单位/原始数量/系数/折算后数量）。
 
 ## 四、模块四单独虚拟机上线清单（逐条对应 AC4）
 

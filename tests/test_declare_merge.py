@@ -34,7 +34,43 @@ def test_merge_batches_groups_only_identical_keys(rules, products, suppliers):
     assert groups[0]["rows"] == ["M-A#0", "M-B#0"]
     header = [g for g in groups if g.get("skipped")]
     assert header and sorted(header[0]["rows"]) == ["M-A", "M-B", "M-C"]
-    assert len(mergable[0]["key"]) == 5
+    """关键列 5 列 + 渠道 1 列，共 6 列；渠道为空时仍占一个键位。"""
+    assert len(mergable[0]["key"]) == 6
+    assert mergable[0]["key"][-1] == ""
+
+
+def test_merge_batches_refuses_cross_channel_merge(rules, products, suppliers):
+    """反向用例：同样 5 个关键列，但分属 FBA-US 与 FBA-UK 两个渠道，不得合并。"""
+    batch_us = {"batch_no": "CH-US", "shipment_no": "S-US", "contract_no": "C-US",
+                "lines": [{"sku": "SKU-1001", "qty": 2, "cartons": 10, "weight_kg": "0.62", "supplier_id": "S01",
+                           "purchase_qty": 2, "shipment_qty": 2}]}
+    batch_uk = {"batch_no": "CH-UK", "shipment_no": "S-UK", "contract_no": "C-UK",
+                "lines": [{"sku": "SKU-1001", "qty": 2, "cartons": 10, "weight_kg": "0.62", "supplier_id": "S01",
+                           "purchase_qty": 2, "shipment_qty": 2}]}
+    ledgers = [_fill(rules, products, suppliers, b) for b in (batch_us, batch_uk)]
+    groups = merge_batches(ledgers, channels={"CH-US": "FBA-US", "CH-UK": "FBA-UK"})
+    mergable = [g for g in groups if g["mergable"]]
+    assert mergable == [], "跨渠道同关键列不得合并"
+    keys = sorted(tuple(g["key"]) for g in groups if not g.get("skipped"))
+    assert keys == [
+        ("桌面收纳盒", "M-1001", "3924900000", "深圳", "7.68", "FBA-UK"),
+        ("桌面收纳盒", "M-1001", "3924900000", "深圳", "7.68", "FBA-US"),
+    ]
+
+
+def test_merge_batches_merges_within_same_channel(rules, products, suppliers):
+    """正例：同渠道同关键列仍然合并。"""
+    def make(batch_no):
+        return {"batch_no": batch_no, "shipment_no": "S-" + batch_no, "contract_no": "C-" + batch_no,
+                "lines": [{"sku": "SKU-1001", "qty": 1, "cartons": 5, "weight_kg": "0.31", "supplier_id": "S01",
+                           "purchase_qty": 1, "shipment_qty": 1}]}
+
+    ledgers = [_fill(rules, products, suppliers, make(name)) for name in ("SAME-1", "SAME-2")]
+    groups = merge_batches(ledgers, channels={"SAME-1": "FBA-US", "SAME-2": "FBA-US"})
+    mergable = [g for g in groups if g["mergable"]]
+    assert len(mergable) == 1
+    assert sorted(mergable[0]["rows"]) == ["SAME-1#0", "SAME-2#0"]
+    assert mergable[0]["key"][-1] == "FBA-US"
 
 
 def test_partial_declare_selects_carton_range(rules, products, suppliers):

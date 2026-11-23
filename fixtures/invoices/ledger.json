@@ -1,0 +1,26 @@
+[
+  {
+    "category": "家居",
+    "invoice_no": "INV-2026-HOME-01",
+    "invoiced_qty": "1200.00",
+    "issued_at": "2026-11-02",
+    "invoice_type": "增值税专用发票",
+    "unit": "个"
+  },
+  {
+    "category": "文具",
+    "invoice_no": "INV-2026-STAT-01",
+    "invoiced_qty": "3000.00",
+    "issued_at": "2026-11-03",
+    "invoice_type": "增值税专用发票",
+    "unit": "个"
+  },
+  {
+    "category": "礼品",
+    "invoice_no": "INV-2026-GIFT-01",
+    "invoiced_qty": "150.00",
+    "issued_at": "2026-11-04",
+    "invoice_type": "增值税专用发票",
+    "unit": "个"
+  }
+]

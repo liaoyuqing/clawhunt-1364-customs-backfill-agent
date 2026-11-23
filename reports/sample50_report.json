@@ -1,8 +1,9 @@
 {
   "batches": 50,
   "rows": 146,
-  "cells_compared": 1679,
-  "cells_consistent": 1679,
+  "columns": 23,
+  "cells_compared": 2401,
+  "cells_consistent": 2401,
   "cells_undecidable": 7,
   "consistency_rate": 1.0,
   "passes_threshold": true,

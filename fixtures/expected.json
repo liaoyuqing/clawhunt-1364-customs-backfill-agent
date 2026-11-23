@@ -1,5 +1,30 @@
 {
-  "cells": 1686,
+  "cells": 2408,
+  "columns_covered": [
+    "HSCODE",
+    "SKU",
+    "产品中文报关名",
+    "供应商",
+    "发票剩余可用数量",
+    "发票号",
+    "发货单号",
+    "合同号",
+    "型号",
+    "境内货源地",
+    "开票公司",
+    "开票日期",
+    "归档共享链接",
+    "批次号",
+    "报关单价",
+    "报关单位",
+    "数量",
+    "材质",
+    "用途",
+    "箱数",
+    "结余",
+    "耗用发票数量",
+    "重量KG"
+  ],
   "expected": {
     "B2026-0001": {
       "发货单号": {
@@ -10,6 +35,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0001",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0001",
         "reason": ""
       },
       "批次号": {
@@ -39,6 +69,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "147.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00901",
@@ -59,6 +99,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0001",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0001",
@@ -66,7 +121,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -92,6 +147,16 @@
       "箱数": {
         "decidable": true,
         "expected": "20",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "147.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
         "reason": ""
       },
       "重量KG": {
@@ -121,6 +186,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "127.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00901",
@@ -141,6 +216,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0001",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0001",
@@ -148,7 +238,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -172,6 +262,16 @@
         "reason": ""
       },
       "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "127.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
         "decidable": true,
         "expected": "20",
         "reason": ""
@@ -203,6 +303,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00901",
@@ -221,6 +331,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0001",
         "reason": ""
       },
       "批次号": {
@@ -258,6 +383,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -273,6 +408,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0002",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0002",
         "reason": ""
       },
       "批次号": {
@@ -302,6 +442,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2904.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00902",
@@ -322,6 +472,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0002",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0002",
@@ -329,17 +494,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "8",
+        "expected": "96",
         "reason": ""
       },
       "材质": {
@@ -355,6 +520,16 @@
       "箱数": {
         "decidable": true,
         "expected": "30",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2904.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "96",
         "reason": ""
       },
       "重量KG": {
@@ -384,6 +559,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1184.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00902",
@@ -402,6 +587,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0002",
         "reason": ""
       },
       "批次号": {
@@ -439,6 +639,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -454,6 +664,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0003",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0003",
         "reason": ""
       },
       "批次号": {
@@ -483,6 +698,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1164.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00903",
@@ -501,6 +726,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0003",
         "reason": ""
       },
       "批次号": {
@@ -538,6 +778,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "8.40",
@@ -565,6 +815,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2760.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00903",
@@ -585,6 +845,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0003",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0003",
@@ -592,17 +867,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -618,6 +893,16 @@
       "箱数": {
         "decidable": true,
         "expected": "54",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
         "reason": ""
       },
       "重量KG": {
@@ -647,6 +932,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2700.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00903",
@@ -667,6 +962,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0003",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0003",
@@ -674,17 +984,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "5",
+        "expected": "60",
         "reason": ""
       },
       "材质": {
@@ -702,6 +1012,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2796.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "60",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.55",
@@ -717,6 +1037,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0004",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0004",
         "reason": ""
       },
       "批次号": {
@@ -746,6 +1071,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "107.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00904",
@@ -766,6 +1101,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0004",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0004",
@@ -773,7 +1123,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -799,6 +1149,16 @@
       "箱数": {
         "decidable": true,
         "expected": "24",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "130.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
         "reason": ""
       },
       "重量KG": {
@@ -828,6 +1188,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "87.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00904",
@@ -848,6 +1218,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0004",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0004",
@@ -855,7 +1240,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -883,6 +1268,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "110.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.20",
@@ -898,6 +1293,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0005",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0005",
         "reason": ""
       },
       "批次号": {
@@ -927,6 +1327,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "75.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00905",
@@ -947,6 +1357,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0005",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0005",
@@ -954,7 +1379,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -980,6 +1405,16 @@
       "箱数": {
         "decidable": true,
         "expected": "24",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "138.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
         "reason": ""
       },
       "重量KG": {
@@ -1009,6 +1444,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1159.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00905",
@@ -1027,6 +1472,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0005",
         "reason": ""
       },
       "批次号": {
@@ -1064,6 +1524,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -1079,6 +1549,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0006",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0006",
         "reason": ""
       },
       "批次号": {
@@ -1108,6 +1583,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1139.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00906",
@@ -1126,6 +1611,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0006",
         "reason": ""
       },
       "批次号": {
@@ -1163,6 +1663,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "11.00",
@@ -1190,6 +1700,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "72.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00906",
@@ -1210,6 +1730,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0006",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0006",
@@ -1217,7 +1752,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -1245,6 +1780,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "147.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.65",
@@ -1260,6 +1805,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0007",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0007",
         "reason": ""
       },
       "批次号": {
@@ -1289,6 +1839,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1123.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00907",
@@ -1307,6 +1867,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0007",
         "reason": ""
       },
       "批次号": {
@@ -1344,6 +1919,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1184.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "16",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.36",
@@ -1371,6 +1956,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1115.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00907",
@@ -1389,6 +1984,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0007",
         "reason": ""
       },
       "批次号": {
@@ -1426,6 +2036,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1176.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.36",
@@ -1453,6 +2073,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1113.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00907",
@@ -1471,6 +2101,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0007",
         "reason": ""
       },
       "批次号": {
@@ -1508,6 +2153,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1174.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.62",
@@ -1535,6 +2190,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "69.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00907",
@@ -1555,6 +2220,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0007",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0007",
@@ -1562,7 +2242,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -1590,6 +2270,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "147.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.93",
@@ -1605,6 +2295,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0008",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0008",
         "reason": ""
       },
       "批次号": {
@@ -1634,6 +2329,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "64.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00908",
@@ -1654,6 +2359,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0008",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0008",
@@ -1661,7 +2381,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -1689,6 +2409,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "145.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.10",
@@ -1704,6 +2434,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0009",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0009",
         "reason": ""
       },
       "批次号": {
@@ -1733,6 +2468,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2640.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00909",
@@ -1753,6 +2498,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0009",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0009",
@@ -1760,17 +2520,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "5",
+        "expected": "60",
         "reason": ""
       },
       "材质": {
@@ -1786,6 +2546,16 @@
       "箱数": {
         "decidable": true,
         "expected": "24",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2940.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "60",
         "reason": ""
       },
       "重量KG": {
@@ -1815,6 +2585,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1101.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00909",
@@ -1833,6 +2613,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0009",
         "reason": ""
       },
       "批次号": {
@@ -1870,6 +2665,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -1885,6 +2690,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0010",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0010",
         "reason": ""
       },
       "批次号": {
@@ -1914,6 +2724,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1099.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00910",
@@ -1932,6 +2752,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0010",
         "reason": ""
       },
       "批次号": {
@@ -1969,6 +2804,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -1996,6 +2841,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1094.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00910",
@@ -2014,6 +2869,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0010",
         "reason": ""
       },
       "批次号": {
@@ -2051,6 +2921,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1193.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -2078,6 +2958,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "59.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00910",
@@ -2098,6 +2988,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0010",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0010",
@@ -2105,7 +3010,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -2133,6 +3038,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "145.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -2148,6 +3063,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0011",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0011",
         "reason": ""
       },
       "批次号": {
@@ -2177,6 +3097,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1074.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00911",
@@ -2195,6 +3125,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "汕头",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0011",
         "reason": ""
       },
       "批次号": {
@@ -2232,6 +3177,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "11.00",
@@ -2247,6 +3202,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0012",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0012",
         "reason": ""
       },
       "批次号": {
@@ -2276,6 +3236,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1066.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00912",
@@ -2294,6 +3264,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0012",
         "reason": ""
       },
       "批次号": {
@@ -2329,6 +3314,16 @@
       "箱数": {
         "decidable": true,
         "expected": "10",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
         "reason": ""
       },
       "重量KG": {
@@ -2358,6 +3353,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1054.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00912",
@@ -2376,6 +3381,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0012",
         "reason": ""
       },
       "批次号": {
@@ -2413,6 +3433,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "5.04",
@@ -2428,6 +3458,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0013",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0013",
         "reason": ""
       },
       "批次号": {
@@ -2457,6 +3492,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2628.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00913",
@@ -2477,6 +3522,21 @@
         "expected": "义乌",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0013",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0013",
@@ -2484,7 +3544,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "3.45",
+        "expected": "3.445",
         "reason": ""
       },
       "报关单位": {
@@ -2510,6 +3570,16 @@
       "箱数": {
         "decidable": true,
         "expected": "20",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2988.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
         "reason": ""
       },
       "重量KG": {
@@ -2539,6 +3609,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1034.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00913",
@@ -2557,6 +3637,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0013",
         "reason": ""
       },
       "批次号": {
@@ -2592,6 +3687,16 @@
       "箱数": {
         "decidable": true,
         "expected": "50",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
         "reason": ""
       },
       "重量KG": {
@@ -2621,6 +3726,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2484.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00913",
@@ -2641,6 +3756,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0013",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0013",
@@ -2648,17 +3778,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -2676,6 +3806,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2844.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "5.04",
@@ -2691,6 +3831,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0014",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0014",
         "reason": ""
       },
       "批次号": {
@@ -2720,6 +3865,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1029.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00914",
@@ -2738,6 +3893,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0014",
         "reason": ""
       },
       "批次号": {
@@ -2775,6 +3945,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -2802,6 +3982,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1024.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00914",
@@ -2820,6 +4010,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0014",
         "reason": ""
       },
       "批次号": {
@@ -2857,6 +4062,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1190.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -2884,6 +4099,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2424.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00914",
@@ -2904,6 +4129,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0014",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0014",
@@ -2911,17 +4151,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "5",
+        "expected": "60",
         "reason": "bundle_split"
       },
       "材质": {
@@ -2937,6 +4177,16 @@
       "箱数": {
         "decidable": true,
         "expected": "54",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2940.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "60",
         "reason": ""
       },
       "重量KG": {
@@ -2966,6 +4216,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1022.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00914",
@@ -2984,6 +4244,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0014",
         "reason": ""
       },
       "批次号": {
@@ -3021,6 +4296,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -3036,6 +4321,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0015",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0015",
         "reason": ""
       },
       "批次号": {
@@ -3065,6 +4355,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1019.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00915",
@@ -3083,6 +4383,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0015",
         "reason": ""
       },
       "批次号": {
@@ -3120,6 +4435,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1197.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.93",
@@ -3135,6 +4460,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0016",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0016",
         "reason": ""
       },
       "批次号": {
@@ -3164,6 +4494,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1011.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00916",
@@ -3182,6 +4522,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0016",
         "reason": ""
       },
       "批次号": {
@@ -3219,6 +4574,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -3246,6 +4611,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "39.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00916",
@@ -3266,6 +4641,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0016",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0016",
@@ -3273,7 +4663,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -3301,6 +4691,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "130.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.20",
@@ -3316,6 +4716,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0017",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0017",
         "reason": ""
       },
       "批次号": {
@@ -3345,6 +4750,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1003.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00917",
@@ -3363,6 +4778,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0017",
         "reason": ""
       },
       "批次号": {
@@ -3400,6 +4830,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.36",
@@ -3415,6 +4855,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0018",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0018",
         "reason": ""
       },
       "批次号": {
@@ -3444,6 +4889,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2400.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00918",
@@ -3464,6 +4919,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0018",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0018",
@@ -3471,17 +4941,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "2",
+        "expected": "24",
         "reason": ""
       },
       "材质": {
@@ -3497,6 +4967,16 @@
       "箱数": {
         "decidable": true,
         "expected": "10",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2976.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "24",
         "reason": ""
       },
       "重量KG": {
@@ -3526,6 +5006,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "983.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00918",
@@ -3544,6 +5034,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0018",
         "reason": ""
       },
       "批次号": {
@@ -3581,6 +5086,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.20",
@@ -3608,6 +5123,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2364.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00918",
@@ -3628,6 +5153,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0018",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0018",
@@ -3635,17 +5175,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": ""
       },
       "材质": {
@@ -3663,6 +5203,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2940.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.93",
@@ -3678,6 +5228,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0019",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0019",
         "reason": ""
       },
       "批次号": {
@@ -3707,6 +5262,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "978.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00919",
@@ -3725,6 +5290,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0019",
         "reason": ""
       },
       "批次号": {
@@ -3762,6 +5342,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.55",
@@ -3777,6 +5367,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0020",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0020",
         "reason": ""
       },
       "批次号": {
@@ -3806,6 +5401,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2328.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00920",
@@ -3826,6 +5431,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0020",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0020",
@@ -3833,17 +5453,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": ""
       },
       "材质": {
@@ -3859,6 +5479,16 @@
       "箱数": {
         "decidable": true,
         "expected": "34",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2964.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
         "reason": ""
       },
       "重量KG": {
@@ -3888,6 +5518,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "2088.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00920",
@@ -3908,6 +5548,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0020",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0020",
@@ -3915,17 +5570,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "20",
+        "expected": "240",
         "reason": ""
       },
       "材质": {
@@ -3943,6 +5598,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2724.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "240",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "8.40",
@@ -3958,6 +5623,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0021",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0021",
         "reason": ""
       },
       "批次号": {
@@ -3987,6 +5657,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "974.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00921",
@@ -4005,6 +5685,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0021",
         "reason": ""
       },
       "批次号": {
@@ -4042,6 +5737,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1196.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "4",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -4069,6 +5774,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "972.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00921",
@@ -4087,6 +5802,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0021",
         "reason": ""
       },
       "批次号": {
@@ -4124,6 +5854,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1194.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -4139,6 +5879,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0022",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0022",
         "reason": ""
       },
       "批次号": {
@@ -4168,6 +5913,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "970.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00922",
@@ -4186,6 +5941,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "汕头",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0022",
         "reason": ""
       },
       "批次号": {
@@ -4223,6 +5993,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.10",
@@ -4238,6 +6018,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0023",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0023",
         "reason": ""
       },
       "批次号": {
@@ -4267,6 +6052,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "968.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00923",
@@ -4285,6 +6080,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0023",
         "reason": ""
       },
       "批次号": {
@@ -4322,6 +6132,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.10",
@@ -4337,6 +6157,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0024",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0024",
         "reason": ""
       },
       "批次号": {
@@ -4366,6 +6191,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1944.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00924",
@@ -4386,6 +6221,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0024",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0024",
@@ -4393,17 +6243,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -4421,6 +6271,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "5.04",
@@ -4436,6 +6296,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0025",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0025",
         "reason": ""
       },
       "批次号": {
@@ -4465,6 +6330,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1908.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00925",
@@ -4485,6 +6360,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0025",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0025",
@@ -4492,17 +6382,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": ""
       },
       "材质": {
@@ -4518,6 +6408,16 @@
       "箱数": {
         "decidable": true,
         "expected": "30",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2964.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
         "reason": ""
       },
       "重量KG": {
@@ -4547,6 +6447,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "956.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00925",
@@ -4565,6 +6475,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0025",
         "reason": ""
       },
       "批次号": {
@@ -4602,6 +6527,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -4617,6 +6552,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0026",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0026",
         "reason": ""
       },
       "批次号": {
@@ -4646,6 +6586,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1888.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00926",
@@ -4666,6 +6616,21 @@
         "expected": "义乌",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0026",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0026",
@@ -4673,7 +6638,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "3.45",
+        "expected": "3.445",
         "reason": ""
       },
       "报关单位": {
@@ -4697,6 +6662,16 @@
         "reason": ""
       },
       "箱数": {
+        "decidable": true,
+        "expected": "20",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2980.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
         "decidable": true,
         "expected": "20",
         "reason": ""
@@ -4728,6 +6703,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "944.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00926",
@@ -4746,6 +6731,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0026",
         "reason": ""
       },
       "批次号": {
@@ -4781,6 +6781,16 @@
       "箱数": {
         "decidable": true,
         "expected": "34",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
         "reason": ""
       },
       "重量KG": {
@@ -4810,6 +6820,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "942.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00926",
@@ -4828,6 +6848,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0026",
         "reason": ""
       },
       "批次号": {
@@ -4865,6 +6900,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1186.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -4880,6 +6925,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0027",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0027",
         "reason": ""
       },
       "批次号": {
@@ -4909,6 +6959,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "940.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00927",
@@ -4927,6 +6987,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0027",
         "reason": ""
       },
       "批次号": {
@@ -4964,6 +7039,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -4979,6 +7064,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0028",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0028",
         "reason": ""
       },
       "批次号": {
@@ -5008,6 +7098,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1852.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00928",
@@ -5028,6 +7128,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0028",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0028",
@@ -5035,17 +7150,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": "bundle_split"
       },
       "材质": {
@@ -5061,6 +7176,16 @@
       "箱数": {
         "decidable": true,
         "expected": "24",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2964.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
         "reason": ""
       },
       "重量KG": {
@@ -5090,6 +7215,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1816.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00928",
@@ -5110,6 +7245,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0028",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0028",
@@ -5117,17 +7267,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "2.67",
+        "expected": "0.22208",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": "bundle_split"
       },
       "材质": {
@@ -5145,6 +7295,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2928.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.93",
@@ -5160,6 +7320,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0029",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0029",
         "reason": ""
       },
       "批次号": {
@@ -5189,6 +7354,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1672.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00929",
@@ -5209,6 +7384,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0029",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0029",
@@ -5216,17 +7406,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -5242,6 +7432,16 @@
       "箱数": {
         "decidable": true,
         "expected": "30",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
         "reason": ""
       },
       "重量KG": {
@@ -5271,6 +7471,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "928.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00929",
@@ -5289,6 +7499,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0029",
         "reason": ""
       },
       "批次号": {
@@ -5326,6 +7551,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "5.04",
@@ -5341,6 +7576,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0030",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0030",
         "reason": ""
       },
       "批次号": {
@@ -5370,6 +7610,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "925.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00930",
@@ -5388,6 +7638,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0030",
         "reason": ""
       },
       "批次号": {
@@ -5423,6 +7688,16 @@
       "箱数": {
         "decidable": true,
         "expected": "24",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "1197.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
         "reason": ""
       },
       "重量KG": {
@@ -5452,6 +7727,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1432.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00930",
@@ -5472,6 +7757,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0030",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0030",
@@ -5479,17 +7779,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "20",
+        "expected": "240",
         "reason": ""
       },
       "材质": {
@@ -5505,6 +7805,16 @@
       "箱数": {
         "decidable": true,
         "expected": "10",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2760.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "240",
         "reason": ""
       },
       "重量KG": {
@@ -5534,6 +7844,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "923.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00930",
@@ -5552,6 +7872,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0030",
         "reason": ""
       },
       "批次号": {
@@ -5589,6 +7924,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.10",
@@ -5604,6 +7949,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0031",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0031",
         "reason": ""
       },
       "批次号": {
@@ -5633,6 +7983,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "911.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00931",
@@ -5651,6 +8011,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0031",
         "reason": ""
       },
       "批次号": {
@@ -5688,6 +8063,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -5715,6 +8100,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "903.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00931",
@@ -5733,6 +8128,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0031",
         "reason": ""
       },
       "批次号": {
@@ -5770,6 +8180,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.48",
@@ -5785,6 +8205,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0032",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0032",
         "reason": ""
       },
       "批次号": {
@@ -5814,6 +8239,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1288.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00932",
@@ -5834,6 +8269,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0032",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0032",
@@ -5841,17 +8291,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -5867,6 +8317,16 @@
       "箱数": {
         "decidable": true,
         "expected": "14",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
         "reason": ""
       },
       "重量KG": {
@@ -5896,6 +8356,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "895.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00932",
@@ -5914,6 +8384,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0032",
         "reason": ""
       },
       "批次号": {
@@ -5951,6 +8436,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.36",
@@ -5966,6 +8461,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0033",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0033",
         "reason": ""
       },
       "批次号": {
@@ -5995,6 +8495,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "883.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00933",
@@ -6013,6 +8523,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "汕头",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0033",
         "reason": ""
       },
       "批次号": {
@@ -6050,6 +8575,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.72",
@@ -6077,6 +8612,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "878.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00933",
@@ -6095,6 +8640,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0033",
         "reason": ""
       },
       "批次号": {
@@ -6132,6 +8692,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1183.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.10",
@@ -6147,6 +8717,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0034",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0034",
         "reason": ""
       },
       "批次号": {
@@ -6176,6 +8751,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "873.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00934",
@@ -6194,6 +8779,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0034",
         "reason": ""
       },
       "批次号": {
@@ -6231,6 +8831,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -6246,6 +8856,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0035",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0035",
         "reason": ""
       },
       "批次号": {
@@ -6275,6 +8890,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "870.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00935",
@@ -6293,6 +8918,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0035",
         "reason": ""
       },
       "批次号": {
@@ -6330,6 +8970,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1197.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.65",
@@ -6357,6 +9007,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "867.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00935",
@@ -6375,6 +9035,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0035",
         "reason": ""
       },
       "批次号": {
@@ -6412,6 +9087,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1194.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.65",
@@ -6439,6 +9124,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1252.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00935",
@@ -6459,6 +9154,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0035",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0035",
@@ -6466,17 +9176,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "3",
+        "expected": "36",
         "reason": "bundle_split"
       },
       "材质": {
@@ -6494,6 +9204,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2964.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "36",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.65",
@@ -6509,6 +9229,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0036",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0036",
         "reason": ""
       },
       "批次号": {
@@ -6538,6 +9263,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "855.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00936",
@@ -6556,6 +9291,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0036",
         "reason": ""
       },
       "批次号": {
@@ -6593,6 +9343,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.72",
@@ -6620,6 +9380,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "852.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00936",
@@ -6638,6 +9408,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0036",
         "reason": ""
       },
       "批次号": {
@@ -6675,6 +9460,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1185.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.93",
@@ -6690,6 +9485,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0037",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0037",
         "reason": ""
       },
       "批次号": {
@@ -6719,6 +9519,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "844.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00937",
@@ -6737,6 +9547,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0037",
         "reason": ""
       },
       "批次号": {
@@ -6774,6 +9599,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1192.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "3.36",
@@ -6801,6 +9636,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "832.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00937",
@@ -6819,6 +9664,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0037",
         "reason": ""
       },
       "批次号": {
@@ -6856,6 +9716,16 @@
         "expected": "24",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1180.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -6871,6 +9741,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0038",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0038",
         "reason": ""
       },
       "批次号": {
@@ -6900,6 +9775,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "820.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00938",
@@ -6918,6 +9803,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0038",
         "reason": ""
       },
       "批次号": {
@@ -6955,6 +9855,16 @@
         "expected": "54",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1188.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "12",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -6970,6 +9880,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0039",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0039",
         "reason": ""
       },
       "批次号": {
@@ -6999,6 +9914,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "1232.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00939",
@@ -7019,6 +9944,21 @@
         "expected": "义乌",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0039",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0039",
@@ -7026,7 +9966,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "3.45",
+        "expected": "3.445",
         "reason": ""
       },
       "报关单位": {
@@ -7052,6 +9992,16 @@
       "箱数": {
         "decidable": true,
         "expected": "50",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2980.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "20",
         "reason": ""
       },
       "重量KG": {
@@ -7081,6 +10031,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "992.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00939",
@@ -7101,6 +10061,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0039",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0039",
@@ -7108,17 +10083,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "20",
+        "expected": "240",
         "reason": ""
       },
       "材质": {
@@ -7136,6 +10111,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2740.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "240",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "11.00",
@@ -7151,6 +10136,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0040",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0040",
         "reason": ""
       },
       "批次号": {
@@ -7180,6 +10170,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "818.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00940",
@@ -7198,6 +10198,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0040",
         "reason": ""
       },
       "批次号": {
@@ -7235,6 +10250,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -7262,6 +10287,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "848.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00940",
@@ -7282,6 +10317,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0040",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0040",
@@ -7289,17 +10339,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -7317,6 +10367,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "6.60",
@@ -7332,6 +10392,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0041",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0041",
         "reason": ""
       },
       "批次号": {
@@ -7361,6 +10426,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "816.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00941",
@@ -7379,6 +10454,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0041",
         "reason": ""
       },
       "批次号": {
@@ -7416,6 +10506,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1198.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.10",
@@ -7431,6 +10531,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0042",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0042",
         "reason": ""
       },
       "批次号": {
@@ -7460,6 +10565,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "806.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00942",
@@ -7478,6 +10593,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0042",
         "reason": ""
       },
       "批次号": {
@@ -7515,6 +10645,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1190.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "10",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.55",
@@ -7542,6 +10682,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "801.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00942",
@@ -7560,6 +10710,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0042",
         "reason": ""
       },
       "批次号": {
@@ -7597,6 +10762,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1185.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.55",
@@ -7612,6 +10787,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0043",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0043",
         "reason": ""
       },
       "批次号": {
@@ -7641,6 +10821,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "36.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00943",
@@ -7661,6 +10851,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0043",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0043",
@@ -7668,7 +10873,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -7696,6 +10901,16 @@
         "expected": "50",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "147.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.65",
@@ -7711,6 +10926,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0044",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0044",
         "reason": ""
       },
       "批次号": {
@@ -7740,6 +10960,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "796.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00944",
@@ -7758,6 +10988,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "汕头",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0044",
         "reason": ""
       },
       "批次号": {
@@ -7795,6 +11040,16 @@
         "expected": "10",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1195.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.10",
@@ -7810,6 +11065,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0045",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0045",
         "reason": ""
       },
       "批次号": {
@@ -7839,6 +11099,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "704.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00945",
@@ -7859,6 +11129,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0045",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0045",
@@ -7866,17 +11151,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -7892,6 +11177,16 @@
       "箱数": {
         "decidable": true,
         "expected": "34",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
         "reason": ""
       },
       "重量KG": {
@@ -7921,6 +11216,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "31.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00945",
@@ -7941,6 +11246,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0045",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0045",
@@ -7948,7 +11268,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -7976,6 +11296,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "145.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "5",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.75",
@@ -7991,6 +11321,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0046",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0046",
         "reason": ""
       },
       "批次号": {
@@ -8020,6 +11355,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "23.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00946",
@@ -8040,6 +11385,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0046",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0046",
@@ -8047,7 +11407,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -8075,6 +11435,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "142.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -8090,6 +11460,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0047",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0047",
         "reason": ""
       },
       "批次号": {
@@ -8119,6 +11494,16 @@
         "expected": "义乌礼品包装厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "608.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00947",
@@ -8139,6 +11524,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0047",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0047",
@@ -8146,17 +11546,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "8",
+        "expected": "96",
         "reason": ""
       },
       "材质": {
@@ -8174,6 +11574,16 @@
         "expected": "34",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "2904.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "96",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "2.48",
@@ -8189,6 +11599,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0048",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0048",
         "reason": ""
       },
       "批次号": {
@@ -8218,6 +11633,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "464.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-STAT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00948",
@@ -8238,6 +11663,21 @@
         "expected": "宁波",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳南山文具有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-03",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0048",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0048",
@@ -8245,17 +11685,17 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "6.44",
+        "expected": "0.53625",
         "reason": ""
       },
       "报关单位": {
         "decidable": true,
-        "expected": "套",
-        "reason": ""
+        "expected": "个",
+        "reason": "unit_converted"
       },
       "数量": {
         "decidable": true,
-        "expected": "12",
+        "expected": "144",
         "reason": ""
       },
       "材质": {
@@ -8271,6 +11711,16 @@
       "箱数": {
         "decidable": true,
         "expected": "34",
+        "reason": ""
+      },
+      "结余": {
+        "decidable": true,
+        "expected": "2856.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "144",
         "reason": ""
       },
       "重量KG": {
@@ -8300,6 +11750,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "21.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-GIFT-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00948",
@@ -8320,6 +11780,21 @@
         "expected": "广州",
         "reason": ""
       },
+      "开票公司": {
+        "decidable": true,
+        "expected": "广州礼品进出口有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-04",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0048",
+        "reason": ""
+      },
       "批次号": {
         "decidable": true,
         "expected": "B2026-0048",
@@ -8327,7 +11802,7 @@
       },
       "报关单价": {
         "decidable": true,
-        "expected": "1.86",
+        "expected": "1.856",
         "reason": ""
       },
       "报关单位": {
@@ -8355,6 +11830,16 @@
         "expected": "30",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "148.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "2",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "0.84",
@@ -8370,6 +11855,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0049",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0049",
         "reason": ""
       },
       "批次号": {
@@ -8399,6 +11889,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "780.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00949",
@@ -8417,6 +11917,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0049",
         "reason": ""
       },
       "批次号": {
@@ -8454,6 +11969,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1184.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "16",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -8481,6 +12006,16 @@
         "expected": "深圳宝安收纳制品厂",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "772.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00949",
@@ -8499,6 +12034,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0049",
         "reason": ""
       },
       "批次号": {
@@ -8536,6 +12086,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1176.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -8551,6 +12111,11 @@
       "合同号": {
         "decidable": true,
         "expected": "HT-2026-0050",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0050",
         "reason": ""
       },
       "批次号": {
@@ -8580,6 +12145,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "769.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00950",
@@ -8598,6 +12173,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "深圳",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0050",
         "reason": ""
       },
       "批次号": {
@@ -8635,6 +12225,16 @@
         "expected": "14",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1197.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "3",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "1.26",
@@ -8662,6 +12262,16 @@
         "expected": "东莞文具制造有限公司",
         "reason": ""
       },
+      "发票剩余可用数量": {
+        "decidable": true,
+        "expected": "761.00",
+        "reason": ""
+      },
+      "发票号": {
+        "decidable": true,
+        "expected": "INV-2026-HOME-01",
+        "reason": ""
+      },
       "发货单号": {
         "decidable": true,
         "expected": "FBA-SF-00950",
@@ -8680,6 +12290,21 @@
       "境内货源地": {
         "decidable": true,
         "expected": "东莞",
+        "reason": ""
+      },
+      "开票公司": {
+        "decidable": true,
+        "expected": "深圳前海家居供应链有限公司",
+        "reason": ""
+      },
+      "开票日期": {
+        "decidable": true,
+        "expected": "2026-11-02",
+        "reason": ""
+      },
+      "归档共享链接": {
+        "decidable": true,
+        "expected": "https://alidocs.dingtalk.com/i/nodes/B2026-0050",
         "reason": ""
       },
       "批次号": {
@@ -8717,6 +12342,16 @@
         "expected": "20",
         "reason": ""
       },
+      "结余": {
+        "decidable": true,
+        "expected": "1189.00",
+        "reason": ""
+      },
+      "耗用发票数量": {
+        "decidable": true,
+        "expected": "8",
+        "reason": ""
+      },
       "重量KG": {
         "decidable": true,
         "expected": "4.40",
@@ -8728,11 +12363,11 @@
   "rule_versions": {
     "brand_words": "2026-11-01",
     "bundle": "2026-11-01",
-    "declare_price": "2026-11-01",
+    "declare_price": "2026-11-02",
     "invoice_companies": "2026-11-01",
     "ledger_columns": "2026-11-01",
-    "required_fields": "2026-11-01",
-    "unit": "2026-11-01"
+    "required_fields": "2026-11-02",
+    "unit": "2026-11-02"
   },
   "source_errors": [
     {

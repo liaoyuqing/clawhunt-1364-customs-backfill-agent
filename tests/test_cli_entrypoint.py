@@ -38,7 +38,8 @@ def test_cli_prints_json_summary_for_batch():
     assert summary["module2_fill"]["sheet_rows"] == summary["module2_fill"]["rows"]
     assert summary["module2_fill"]["issues"] == 0
     assert summary["module2_fill"]["pending"] == 0
-    assert summary["module2_fill"]["sources"] == {"api": 48, "config": 3}
+    """73 格 = 模块二 16 列 × 4 行（含表头）+ 模块四 7 列 × 4 行 - 未写的空格。"""
+    assert summary["module2_fill"]["sources"] == {"api": 67, "config": 6}
     assert summary["module1_contract"]["contract_no"] == "HT-2026-0001"
     assert summary["module1_contract"]["lines"] == 3
     assert set(summary["module1_contract"]["requirement_gaps"]) <= {
@@ -46,6 +47,24 @@ def test_cli_prints_json_summary_for_batch():
     }
     assert summary["human_gate"]["approved"] is False
     assert "无人工确认" in summary["human_gate"]["reason"]
+
+
+def test_cli_fills_module4_seven_columns():
+    """模块四在同一入口里跑：7 列有值，归档链接是 https，发票按品类扣减。"""
+    proc = run_cli("--batch", "B2026-0001")
+    assert proc.returncode == 0, proc.stderr
+    summary = json.loads(proc.stdout)
+    module4 = summary["module4_invoice_ledger"]
+    assert module4["rows"] == 3
+    assert module4["categories"] == ["礼品", "家居"]
+    assert module4["archive_link"].startswith("https://")
+    assert len(module4["columns"]) == 7
+    assert module4["columns"] == ["开票公司", "发票号", "开票日期", "耗用发票数量", "发票剩余可用数量", "结余", "归档共享链接"]
+    usage = {item["category"]: item for item in module4["usage"]}
+    assert usage["礼品"]["used"] == "23"
+    assert usage["礼品"]["remaining"] == "127.00"
+    assert usage["家居"]["remaining"] == "1192.00"
+    assert summary["module1_name_book"]["new"] >= 1
 
 
 def test_cli_module3_reports_invoice_differences():

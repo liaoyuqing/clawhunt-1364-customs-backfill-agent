@@ -1,7 +1,8 @@
 """离线命令行入口：python -m core.cli --batch B2026-0001 --fixtures fixtures/lingxing --rules rules
 
-一次跑完模块一（采购合同与要件检查）、模块二（批次回填并写入台账）、模块三（发票预览件与合同核对）
-的主流程，stdout 只输出一份 JSON 摘要，便于脚本消费；错误一律走 stderr 并以非 0 退出。
+一次跑完模块一（采购合同与要件检查）、模块二（批次回填并写入台账）、模块三（发票预览件与合同核对）、
+模块四（发票号/耗用/剩余/结余与归档链接回填）的主流程，stdout 只输出一份 JSON 摘要，便于脚本消费；
+错误一律走 stderr 并以非 0 退出。
 
 数据来源是仓库自带的合成夹具：LingxingClient + FixtureTransport 回放 fixtures/lingxing/*.json，
 不连领星、不连钉钉、不联网。接入真实开放平台时，只需给 LingxingClient 换一个 transport，
@@ -21,13 +22,15 @@ import yaml
 
 from .config import ConfigError, Rules
 from .contract import Contract, ContractLine, build_contract, requirement_issues
-from .declare import BatchContext, BatchFiller
+from .declare import BatchContext, BatchFiller, contract_no_issues
 from .dingtalk import DingTalkSheet
 from .gates import HumanApprovalRequired, HumanGate
 from .invoice import compare_many
+from .knowledge import DeclareNameBook
 from .ledger import Ledger
 from .lingxing import FixtureTransport, LingxingClient, product_declare_fields
-from .units import quantity_text
+from .module4 import InvoiceLedger, Module4Filler
+from .units import base_unit, quantity_text
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -191,6 +194,15 @@ def check_invoices(
     }
 
 
+def load_invoice_ledger(invoices_dir: str) -> InvoiceLedger:
+    """发票台账（票面数量/开票日期），模块四按品类取票。"""
+    path = os.path.join(invoices_dir, "ledger.json")
+    records = _read_json(path)
+    if not isinstance(records, list):
+        raise FixtureError("发票台账必须是数组：%s" % path)
+    return InvoiceLedger(records=records)
+
+
 def run(
     batch_no: str,
     fixtures_dir: str,
@@ -205,8 +217,22 @@ def run(
     batch = select_batch(batches, batch_no)
     contract, lines = build_batch_contract(batch, products, suppliers)
 
+    """模块一知识库沉淀：报关名首次出现记新条目，再次出现直接复用同一编码。"""
+    book = DeclareNameBook(rules.brand_words)
+    for sku in sorted(products):
+        book.observe(str(products[sku].get("declare_name", "")), sku)
+
     ledger = Ledger(rules.columns)
     filled = BatchFiller(rules).fill(ledger, BatchContext(batch=batch, products=products, suppliers=suppliers))
+
+    """模块四：本批次明细行按品类扣发票额度，写后 7 列（含归档共享链接）。"""
+    invoice_ledger = load_invoice_ledger(invoices_dir)
+    module4 = Module4Filler(rules, invoice_ledger)
+    rows = []
+    for row_key in filled.detail_keys():
+        sku = ledger.row(row_key).value("SKU")
+        rows.append({"row_key": row_key, "category": str(products[sku].get("category", ""))})
+    module4_result = module4.fill_batch(ledger, filled.batch_no, rows)
 
     sheet = DingTalkSheet(rules.columns)
     for row in ledger.rows():
@@ -240,6 +266,8 @@ def run(
         reason = "无人工确认，外部提交被阻断（载荷摘要 %s）" % exc.digest
 
     gaps = [issue.code for issue in requirement_issues(contract)]
+    cross = contract_no_issues([ledger])
+    issues = list(filled.issues) + list(module4_result.issues) + cross
     return {
         "batch_no": str(batch.get("batch_no")),
         "offline": True,
@@ -258,12 +286,22 @@ def run(
             "columns": len(rules.columns),
             "cells": cells,
             "sheet_rows": len(sheet.rows()),
-            "issues": len(filled.issues),
+            "issues": len(issues),
             "pending": len(filled.pending()),
             "pending_list": filled.pending(),
             "sources": sources,
+            "base_unit": base_unit(rules.unit_doc),
+            "conversions": filled.conversions,
         },
         "module3_invoice": invoice,
+        "module4_invoice_ledger": {
+            "rows": len(module4_result.rows),
+            "categories": module4_result.categories,
+            "archive_link": module4_result.link,
+            "columns": ["开票公司", "发票号", "开票日期", "耗用发票数量", "发票剩余可用数量", "结余", "归档共享链接"],
+            "usage": invoice_ledger.snapshot(),
+        },
+        "module1_name_book": book.status_counts(),
         "human_gate": {
             "action": GATE_ACTION,
             "approved": approved,
@@ -289,12 +327,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     _force_utf8_stdout()
     parser = argparse.ArgumentParser(
         prog="python -m core.cli",
-        description="离线跑模块一~三主流程，打印一份 JSON 摘要（不连领星/钉钉，不联网）",
+        description="离线跑模块一~四主流程，打印一份 JSON 摘要（不连领星/钉钉，不联网）",
     )
     parser.add_argument("--batch", required=True, help="批次号，例如 B2026-0001")
     parser.add_argument("--fixtures", default=None, help="回放夹具目录，默认 fixtures/lingxing")
     parser.add_argument("--rules", default=None, help="规则包目录，默认仓库内 rules/")
-    parser.add_argument("--invoices", default=None, help="发票预览件夹具目录，默认 fixtures/invoices")
+    parser.add_argument("--invoices", default=None, help="发票夹具目录，默认 fixtures/invoices")
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     fixtures_dir = args.fixtures or os.path.join(ROOT, "fixtures", "lingxing")

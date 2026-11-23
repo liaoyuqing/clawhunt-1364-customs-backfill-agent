@@ -2,6 +2,18 @@
 
 模块四处理发票原件与对公支付凭证，要求数据不出内网、模型本地。全部命令都在买家自己的虚拟机上跑，不依赖交付方服务器。
 
+## 镜像与启动
+
+镜像由本目录的 `Dockerfile` 现场构建（`python:3.11-slim` + `pip install -r requirements.txt`，运行期只依赖标准库与 PyYAML）：
+
+```bash
+docker compose build
+docker compose up -d
+docker compose ps          # 等 STATUS 出现 (healthy)
+```
+
+compose 里 `build:` 指向本仓库源码，`command` 与 `healthcheck` 执行的都是同一条 `prepublish.check`：自检不过 → 容器退出或不健康 → 编排层不会放流量进来。
+
 ## 启动前自检
 
 ```bash

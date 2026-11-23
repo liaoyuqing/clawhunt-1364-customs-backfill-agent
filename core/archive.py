@@ -108,3 +108,26 @@ class ArchiveStore:
         if missing:
             raise ArchiveIncomplete("batch %s missing %s" % (batch_no, ",".join(missing)))
         return "%s/%s" % (self.link_base, batch_no)
+
+class ArchiveIndex:
+    """只登记四类原件是否到位并生成共享链接，不落盘（原件由归档目录持有）。"""
+
+    def __init__(self, link_base: str = "https://alidocs.dingtalk.com/i/nodes") -> None:
+        self.link_base = link_base
+        self.entries: Dict[str, Dict[str, str]] = {}
+
+    def put(self, batch_no: str, kind: str, filename: str) -> str:
+        if kind not in ARCHIVE_KINDS:
+            raise ValueError("unknown archive kind %r" % (kind,))
+        self.entries.setdefault(batch_no, {})[kind] = filename
+        return filename
+
+    def missing(self, batch_no: str) -> List[str]:
+        have = self.entries.get(batch_no, {})
+        return [kind for kind in ARCHIVE_KINDS if kind not in have]
+
+    def link(self, batch_no: str) -> str:
+        missing = self.missing(batch_no)
+        if missing:
+            raise ArchiveIncomplete("batch %s missing %s" % (batch_no, ",".join(missing)))
+        return "%s/%s" % (self.link_base, batch_no)
