@@ -45,8 +45,8 @@
     "fixtures/lingxing/products.json",
     "fixtures/lingxing/suppliers.json"
   ],
-  "source_fetched_at": "2026-11-24T00:51:17+08:00",
-  "source_label": "source=fixture(synthetic) 取数时间 2026-11-24T00:51:17+08:00",
+  "source_fetched_at": "2026-11-24T03:02:20+08:00",
+  "source_label": "source=fixture(synthetic) 取数时间 2026-11-24T03:02:20+08:00",
   "source_synthetic": true,
   "source_errors": [
     {

@@ -46,6 +46,8 @@ python -m venv .venv
 ## 目录
 
 ```text
+AC1_CONSISTENCY_REPORT.md  AC1 证据入口：50 批次口径、逐条源错误、复现命令、结余与待补清单
+EVIDENCE.md      验收证据总表：AC1–AC6 六条 + 附加断言的复现命令/预期结果/证据路径/断言行号
 rules/            七张规则表（业务规则唯一来源）
 core/             引擎：models/config/ledger/naming/price/units/bundle/checks/gates/
                   lingxing/dingtalk/vision/declare/contract/invoice/archive/preflight
@@ -100,7 +102,9 @@ docs/             部署文档与操作手册
 .venv/Scripts/python.exe scripts/sample50.py
 ```
 
-分母是台账**全部 23 列**（模块二 16 列 + 模块四 7 列），不是只看模块二的 16 列：50 批次 146 行共 2408 格，其中 2401 格可判定（7 格因源数据 HSCODE 缺失记为不可判定），一致数 2401、差异 0、来源缺失 0，一致率 100%。报告写在 `reports/sample50_report.json`。
+分母是台账**全部 23 列**（模块二 16 列 + 模块四 7 列），不是只看模块二的 16 列：50 批次 146 行共 2408 格，其中 2401 格可判定（7 格因源数据 HSCODE 缺失记为不可判定），一致数 2401、差异 0、来源缺失 0，一致率 100%，源数据自身错误 4 条不计入分母。报告写在 `reports/sample50_report.json`。
+
+**完整口径、逐条源错误、结余与待补清单的实测数字见根目录 `AC1_CONSISTENCY_REPORT.md`；六条验收的复现命令与断言行号见根目录 `EVIDENCE.md`。**
 
 单位换算的原始单位与系数留痕在 `core.cli` 摘要的 `module2_fill.conversions` 与 `reports/unit_conversions.json`（50 批次共 23 条「套→个」换算），台账列序按 `rules/ledger_columns.yaml` 保持不变，因此不额外增设备注列 —— 换算前后都在留痕文件里可查。
 
