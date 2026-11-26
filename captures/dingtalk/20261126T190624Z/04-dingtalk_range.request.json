@@ -1,0 +1,30 @@
+{
+  "seq": 4,
+  "endpoint": "/v1.0/doc/workbooks/eonavxLprD13aqXx/sheets/kgqie6hm/ranges/A20%3AA20",
+  "method": "PUT",
+  "url": "https://api.dingtalk.com/v1.0/doc/workbooks/eonavxLprD13aqXx/sheets/kgqie6hm/ranges/A20%3AA20",
+  "query": [
+    {
+      "name": "operatorId",
+      "value": "***"
+    }
+  ],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "values"
+  ],
+  "body_sha256": "f960996978f242f3a5001a9e77fbaa8a7fa408c050e8956f67abf6dd58023352",
+  "body_bytes": 28,
+  "body": {
+    "values": [
+      [
+        "0902100000"
+      ]
+    ]
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

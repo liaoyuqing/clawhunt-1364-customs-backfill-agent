@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Sequence, Tuple
@@ -94,6 +95,26 @@ def _first_env(source: Dict[str, str], names: Sequence[str]) -> str:
         if value:
             return value
     return ""
+
+
+# 形如 "0902100000" / "0012345" 的数字串：平台会把它当数字写进去，前导零直接丢。
+_LEADING_ZERO = re.compile(r"^0[0-9]+$")
+
+
+def keep_text(value: Any) -> Any:
+    """把会被平台吃掉前导零的纯数字串转成「文本单元格」写法。
+
+    实测（2026-11-27，真实钉钉开放平台，见 captures/dingtalk/20261127T.../）：
+    写 `0902100000` 回读得到 `902100000`（displayValues 也是 `902100000`），
+    body 里加 `numberFormat: [["@"]]` 平台直接忽略；只有两种写法能保住零：
+      · 值前面加一个英文单引号 `'0902100000` → 读回 `0902100000`
+      · 写成公式文本 `="0902100000"` → 读回 `0902100000`
+    这里选单引号：它就是表格里「按文本输入」的等价写法，回读拿到的仍是纯值，不带引号。
+    """
+    text = str(value)
+    if _LEADING_ZERO.match(text):
+        return "'%s" % text
+    return value
 
 
 def column_letter(index: int) -> str:
@@ -383,8 +404,13 @@ class DingTalkClient:
         workbook_id: str = "",
         sheet_id: str = "",
         operator_id: str = "",
+        as_text: bool = True,
     ) -> Dict[str, Any]:
-        """写一个区域（官方 PUT，query 必带 operatorId）。"""
+        """写一个区域（官方 PUT，query 必带 operatorId）。
+
+        `as_text=True`（默认）时会把会被平台当成数字的 0 开头串转成文本写法；
+        只有「想如实复现平台的默认行为」的探测才应该传 `as_text=False`。
+        """
         operator = operator_id or self.config.operator_id
         if not operator:
             raise DingTalkConfigError(
@@ -393,7 +419,10 @@ class DingTalkClient:
         token = self.access_token()
         url = self._range_url(address, workbook_id=workbook_id, sheet_id=sheet_id)
         url = self._append_query(url, self._operator_query(operator))
-        return self._send("PUT", url, payload={"values": values}, headers={"x-acs-dingtalk-access-token": token})
+        # 前导零的纯数字串（HSCODE 常见 0 开头）必须按文本写，否则平台会存成数字、吃掉前导零。
+        rows = [[keep_text(cell) for cell in row] for row in values] if as_text else [list(row) for row in values]
+        payload = {"values": rows}
+        return self._send("PUT", url, payload=payload, headers={"x-acs-dingtalk-access-token": token})
 
     # ---- 台账语义（供 core.sources.SheetSink 复用） ----
     def read_rows(self, sheet_id: str = "", workbook_id: str = "") -> List[Dict[str, Any]]:

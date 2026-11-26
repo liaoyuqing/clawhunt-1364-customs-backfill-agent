@@ -342,6 +342,75 @@ def test_dingtalk_write_row_appends_when_row_key_is_new():
     assert answer["range"] == "A3:B3"
 
 
+def test_dingtalk_leading_zero_codes_are_written_as_text():
+    """HSCODE 这类 0 开头的报关编码，绝不能被平台存成数字（前导零一丢就是另一个税号）。
+
+    实测（真实平台，2026-11-27）：写 `0902100000` 回读得到 `902100000`；
+    body 里加 `numberFormat: [["@"]]` 平台直接忽略；只有「值前加单引号」或「=文本公式」能保住零。
+    这里钉住的是：客户端在写出去之前就把它转成文本写法，不依赖调用方记得。
+    """
+    from core.dingtalk_client import keep_text
+
+    assert keep_text("0902100000") == "'0902100000"
+    assert keep_text("0012345") == "'0012345"
+    # 不该动的：普通数字串、已经带引号的、中文、空值、真数字类型
+    assert keep_text("902100000") == "902100000"
+    assert keep_text("3924900000") == "3924900000"
+    assert keep_text("'0902100000") == "'0902100000"
+    assert keep_text("BND-2S") == "BND-2S"
+    assert keep_text("") == ""
+    assert keep_text(0) == 0
+
+
+def test_dingtalk_write_range_keeps_leading_zeros_in_body():
+    """write_range 的 body 必须是文本写法，否则「写进去的」和「表里的」不是一个值。"""
+    transport = RecordingTransport([_json_response({"a1Notation": "A2:D2"})])
+    client = DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            sheet_id="SHEET-SYNTHETIC-NOT-REAL",
+            operator_id="OPERATOR-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    )
+    _authorize(client)
+    client.write_range("A2:D2", [["B2026-0001", "BND-2S", "桌面组合套装A", "0902100000"]])
+    assert transport.requests[-1].body_json() == {
+        "values": [["B2026-0001", "BND-2S", "桌面组合套装A", "'0902100000"]]
+    }
+
+
+def test_dingtalk_write_range_can_bypass_text_coercion_for_probes():
+    """探测平台真实行为时必须能关掉前导零保护，否则测出来的是「我们已经修好了」。"""
+    transport = RecordingTransport(
+        [
+            _json_response({"a1Notation": "A20:A20"}),
+            _json_response({"a1Notation": "A21:A21"}),
+        ]
+    )
+    client = DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            sheet_id="SHEET-SYNTHETIC-NOT-REAL",
+            operator_id="OPERATOR-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    )
+    _authorize(client)
+    client.write_range("A20:A20", [["0902100000"]], as_text=False)
+    assert transport.requests[-1].body_json() == {"values": [["0902100000"]]}
+    client.write_range("A21:A21", [["0902100000"]])
+    assert transport.requests[-1].body_json() == {"values": [["'0902100000"]]}
+
+
 def test_dingtalk_write_row_appends_after_last_used_row_not_after_padding():
     """空表读 A1:Z300 会返回 300 行空串；追加行要落在最后一条有内容的行之后。
 

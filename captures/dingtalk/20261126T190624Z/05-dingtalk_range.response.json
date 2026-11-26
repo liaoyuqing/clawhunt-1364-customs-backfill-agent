@@ -1,0 +1,57 @@
+{
+  "displayValues": [
+    [
+      "902100000"
+    ]
+  ],
+  "horizontalAlignments": [
+    [
+      "general"
+    ]
+  ],
+  "values": [
+    [
+      902100000
+    ]
+  ],
+  "formulas": [
+    [
+      ""
+    ]
+  ],
+  "backgroundColors": [
+    [
+      {
+        "red": 0,
+        "green": 0,
+        "blue": 0,
+        "hexString": "#000000"
+      }
+    ]
+  ],
+  "fontSizes": [
+    [
+      10
+    ]
+  ],
+  "fontWeights": [
+    [
+      "normal"
+    ]
+  ],
+  "complexValues": [
+    [
+      902100000
+    ]
+  ],
+  "verticalAlignments": [
+    [
+      "middle"
+    ]
+  ],
+  "hyperlinks": [
+    [
+      null
+    ]
+  ]
+}

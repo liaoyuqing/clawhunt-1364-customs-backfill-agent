@@ -824,6 +824,47 @@ def _write_ledger_row(
     }
 
 
+def _probe_leading_zero(
+    client: Any,
+    workbook_id: str,
+    sheet_id: str,
+    value: str,
+    start_row: int = 20,
+) -> Dict[str, Any]:
+    """实测「0 开头的编码会不会被平台吃掉前导零」，并把三种写法的结果读回来对照。
+
+    背景（本轮真踩到的）：HSCODE 存成 `0902100000`，直接写进去回读是 `902100000`——
+    报关编码前导零一丢就是另一个税号，而接口照样返回 200。这条探测把三种写法的**真实结果**
+    落成证据，也是 `core.dingtalk_client.keep_text()` 存在的理由。
+    """
+    # 第一组必须绕开客户端的前导零保护（as_text=False），否则测的是「我们已经修好了」而不是平台真实行为。
+    variants = [
+        ("platform_default", value, False),
+        ("apostrophe_text", "'%s" % value, True),
+        ("formula_text", '="%s"' % value, True),
+    ]
+    results: Dict[str, Any] = {"value": value, "variants": []}
+    for offset, (label, written, as_text) in enumerate(variants):
+        row = start_row + offset
+        address = "A%d:A%d" % (row, row)
+        client.write_range(
+            address, [[written]], workbook_id=workbook_id, sheet_id=sheet_id, as_text=as_text
+        )
+        readback = client.read_range(address, workbook_id=workbook_id, sheet_id=sheet_id)
+        got = str((readback[0] or [""])[0]) if readback else ""
+        results["variants"].append(
+            {
+                "label": label,
+                "range": address,
+                "sent": written,
+                "readback": got,
+                "preserved": got == value,
+            }
+        )
+    results["any_preserved"] = any(item["preserved"] for item in results["variants"])
+    return results
+
+
 def _dingtalk_derived(
     placeholder: bool,
     probing: bool,
@@ -832,6 +873,7 @@ def _dingtalk_derived(
     write_evidence: Optional[Dict[str, Any]] = None,
     required_scopes: Optional[List[str]] = None,
     target: Optional[Dict[str, Any]] = None,
+    leading_zero_probe: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """manifest.derived 的构造：把「这批证据到底算不算客户证据」写成字段，不靠正文里的口头声明。"""
     if required_scopes is None:
@@ -856,6 +898,8 @@ def _dingtalk_derived(
         derived["target"] = dict(target)
     if write_evidence:
         derived["write_evidence"] = dict(write_evidence)
+    if leading_zero_probe:
+        derived["leading_zero_probe"] = dict(leading_zero_probe)
     return derived
 
 
@@ -975,9 +1019,20 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         steps = []
         results.append("list_sheets/read_range 跳过：本目录是创建入口探测，workbookId 尚未拿到")
     write_evidence: Dict[str, Any] = {}
+    zero_evidence: Dict[str, Any] = {}
     if args.write_sample:
         sample = [["capture-probe", args.write_sample]]
         steps.append(("write_range", lambda: _write_and_read_back(client, workbook_id, sheet_id, sample)))
+    if getattr(args, "probe_leading_zero", ""):
+        # 前导零探测：三种写法各写一次、各读回一次，结果进 manifest.derived
+        steps.append(
+            (
+                "probe_leading_zero",
+                lambda: _probe_leading_zero(
+                    client, workbook_id, sheet_id, args.probe_leading_zero
+                ),
+            )
+        )
     if getattr(args, "write_ledger_row", ""):
         # 台账真路径：表头 → 定位行号 → PUT 整行 → 读回比对，走的是交付里的 write_row。
         ledger_values = {
@@ -998,6 +1053,8 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
     for name, call in steps:
         try:
             answer = call()
+            if name == "probe_leading_zero" and isinstance(answer, dict):
+                zero_evidence = dict(answer)
             if name in ("write_range", "write_ledger_row") and isinstance(answer, dict):
                 # 写入证据必须包含「写进去什么 / 读回来什么 / 是否一致」，只写不读不算跑通。
                 write_evidence = dict(answer)
@@ -1025,6 +1082,7 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         self_built=self_built,
         operator_configured=bool(config.operator_id),
         write_evidence=write_evidence,
+        leading_zero_probe=zero_evidence,
         target={
             "workbookId": workbook_id,
             "sheetId": sheet_id,
@@ -1074,6 +1132,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         default="",
         dest="write_ledger_row",
         help="按台账真路径写一行（表头->定位行->PUT 整行->读回校验），参数是批次号",
+    )
+    parser.add_argument(
+        "--probe-leading-zero",
+        default="",
+        dest="probe_leading_zero",
+        help="探测 0 开头的编码会不会被平台吃掉前导零：三种写法各写一次读一次，结果进 manifest",
     )
     parser.add_argument("--ledger-sku", default="", dest="ledger_sku", help="--write-ledger-row 的 SKU")
     parser.add_argument("--ledger-name", default="", dest="ledger_name", help="--write-ledger-row 的产品中文报关名")

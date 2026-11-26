@@ -337,7 +337,7 @@ python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.loca
 | 列工作表 | **200**，`[{"name":"Sheet1","id":"kgqie6hm"}]` |
 | 写表头 | **200**，`A1:D1` ← `["批次号","SKU","产品中文报关名","HSCODE"]` |
 | 写台账行 | **200**，`A2:Z2`（`A2:D2` 四列有值，其余空） |
-| 回读校验 | `["B2026-0001","BND-2S","桌面组合套装A","3924900000"]` == 写入值，`match=true` |
+| 回读校验 | `["B2026-0001","BND-2S","桌面组合套装A","3924900000"]` == 写入值，`match=true`（这一行的 HSCODE 不以 0 开头；0 开头的情况见 5.2.4） |
 
 落盘目录：`captures/dingtalk/20261126T185615Z/`（9 个请求 / 18 个文件 + manifest，`origin=live`、`complete=true`、
 `failure_count=0`、`denial_count=0`、`environment=self_built_test_table`、`counts_as_customer_evidence=false`）。
@@ -359,6 +359,49 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 - 这一格与买方说的「缺真的写过台账」**只差环境**：同一条代码路径、同一套报文、同样的回读校验，
   换成客户自己的 workbookId / sheetId 就是客户台账；现在缺的是客户那张表的两个 id，不是能力。
 
+### 5.2.4 HSCODE 前导零：平台会静默吃掉，必须按文本写（实测 + 已修）
+
+写完第一行台账、独立进程回读时发现表里存的是 `3924900000`（数字），这才意识到一个真问题：
+**`0` 开头的 HSCODE 会被钉钉表格当成数字存，前导零消失，而接口照样返回 200**。
+报关单里 `0902100000`（绿茶）这类编码极常见，丢了前导零在关务上是错数据。
+
+在自建表上逐种写法实测（每一次都是真实 `PUT` + 立即 `GET` 回读）：
+
+| 写法 | 发出 | 回读 `values` | 前导零 |
+| --- | --- | --- | --- |
+| 平台默认（裸值 `0902100000`） | `0902100000` | `902100000`（数值） | **丢失** |
+| body 里加 `numberFormat: [["@",...]]` | `0902100000` | `902100000` | **丢失**（平台直接忽略这个字段） |
+| 值前加英文单引号 `'0902100000` | `'0902100000` | `0902100000` | 保住 |
+| 写成公式文本 `="0902100000"` | `="0902100000"` | `0902100000` | 保住 |
+
+**采单引号方案**：它等价于在表格里「按文本输入」，回读拿到的是纯值、不带引号，落进表格后是文本单元格；
+公式方案会把单元格变成公式，客户在表里点开看到的是 `="..."`，不适合交给人看的台账。
+
+修法在 `core/dingtalk_client.py`：新增模块级 `_LEADING_ZERO = re.compile(r"^0[0-9]+$")` 与 `keep_text(value)`——
+只有「0 开头且全是数字」的串才是 `'%s`，其余（`BND-2S`、空串、`0`、普通数字）原样不动；
+`write_range(..., as_text=True)` 默认应用，整条 `write_row()` / `write_ledger_row()` 路径自动受益。
+
+落盘证据：
+
+- `captures/dingtalk/20261126T190335Z/`：写一行**前导零台账**（`B2026-0002` / `0902100000`），8 个请求全 200，
+  `write_evidence.written == readback == ["B2026-0002","BND-2S","桌面组合套装A","0902100000"]`、`match=true`、`range=A3:Z3`。
+- `captures/dingtalk/20261126T190624Z/`：三种写法的对照探测，9 个请求全 200，结论进 `manifest.derived.leading_zero_probe`——
+  `platform_default.preserved=false`（`readback=902100000`）、`apostrophe_text.preserved=true`、`formula_text.preserved=true`。
+
+复现命令：
+
+```powershell
+python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
+    --env-file <项目下 .env.local 的绝对路径> `
+    --workbook-id <docKey> --sheet-id <sheetId> --self-built-table `
+    --probe-leading-zero 0902100000
+```
+
+**这里我自己先踩了一个坑，写出来免得下一个人重犯**：第一版探测把「平台默认」那一档也走了 `write_range()`，
+而它当时已经默认套了 `keep_text()`，于是三档全都「保住」——测出来的是「我们已经修好了」，不是「平台怎么着」，
+差点把这个 bug 写成「平台没问题」。现在 `write_range()` 加了 `as_text` 参数，
+探测档必须显式 `as_text=False`，并且有单测 `test_dingtalk_write_range_can_bypass_text_coercion_for_probes` 钉住；
+那版自相矛盾的探测目录已删除，只留修正后的 `20261126T190624Z`。
 ### 5.3 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
 
 这一节是 5.2.3 那张表的取证过程。**环境标注：`environment=self_built_test_table`、`counts_as_customer_evidence=false`**——
@@ -498,6 +541,7 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 钉钉写台账（客户表） | **未取得**：我方已能自取三个 id 并跑通写入，但客户未提供其真实台账的 workbookId / sheetId，所以写的仍是我方自建表 | 5.2.3 节 |
 | 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测。权限授予前 4 条 403 缺 scope、1 条 404 接口不存在；**知识库权限补齐后重跑，3 条 403 全部变 `400 MissingoperatorId`（scope 校验已通过）**，剩余硬阻塞只有真实 unionId | 5.3、5.3.1 节 + `captures/dingtalk/20261126T174944Z/`（权限前）、`captures/dingtalk/20261126T180011Z/`（权限后） |
 | 自建表格写入 | **真实跑通**：建表 → 列工作表 → 写表头 → 写台账行 → 回读逐格比对一致，9 个请求全 200。`environment=self_built_test_table`、`counts_as_customer_evidence=false`——只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3、5.4 节 + `captures/dingtalk/20261126T185615Z/` |
+| 前导零 HSCODE | **平台会静默吃掉前导零**（写 `0902100000` 读回 `902100000`，接口仍 200），已改为按文本写并实测读回一致 | 5.2.4 节 + `captures/dingtalk/20261126T190335Z/`、`20261126T190624Z/` |
 | 钉钉权限授予状态 | **已核准**：`Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write`、`Document.Workbook.Read/Write`、`qyapi_get_member`、`qyapi_get_department_list` 均已到位；`Contact.User.Read`、`Drive.*` 未授予（不影响任何一条已跑通的路径） | 5.3.1 节 403→400 对照 + 5.2.2 节取 id 实录 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
