@@ -89,9 +89,12 @@ def test_fixture_source_is_explicitly_marked_synthetic():
 
 
 def test_lingxing_source_requires_environment_variables():
-    """真实源缺环境变量必须报错退出，不得静默回退到合成数据。"""
+    """真实源缺环境变量必须报错退出，不得静默回退到合成数据。
+
+    官方 v2 用 appId（不是上一轮的 app_key），所以这里清的就是 LINGXING_APP_ID。
+    """
     env = _child_env()
-    for key in ("LINGXING_BASE_URL", "LINGXING_APP_KEY", "LINGXING_APP_SECRET"):
+    for key in ("LINGXING_BASE_URL", "LINGXING_APP_ID", "LINGXING_APP_KEY", "LINGXING_APP_SECRET"):
         env.pop(key, None)
     proc = subprocess.run(
         [sys.executable, os.path.join("scripts", "sample50.py"), "--source", "lingxing"],
@@ -125,3 +128,150 @@ def test_unknown_source_is_rejected():
         assert "未知数据来源" in str(exc)
     else:
         raise AssertionError("未知来源必须报错")
+
+def test_recorded_source_is_never_counted_as_ac1_evidence():
+    """买方第 2 次驳回的正题：合成源自比不能当成 AC#1 的达标证据。
+
+    报告里必须同时出现三件事：origin=recorded、counts_as_ac1_evidence=false、
+    ac1_evidence_status=unverified_on_live_account，并且给出理由与客户侧复现步骤。
+    """
+    proc = _run_sample50("--source", "recorded")
+    assert proc.returncode == 0, proc.stderr
+    with open(os.path.join(ROOT, "reports", "sample50_report.json"), encoding="utf-8") as handle:
+        report = json.load(handle)
+    assert report["source_origin"] == "recorded"
+    assert report["counts_as_ac1_evidence"] is False
+    assert report["ac1_evidence_status"] == "unverified_on_live_account"
+    assert "未在真实账号上取得" in report["reason"]
+    assert report["reproduce_steps"] and any("live_capture.py" in step for step in report["reproduce_steps"])
+    # 一致率照样算出来（引擎自洽性），但不会被说成验收结论
+    assert report["consistency_rate"] >= 0.995
+
+
+def test_fixture_source_origin_is_fixture_not_live():
+    """夹具源的 origin 必须是 fixture，不能让任何非 live 口径混进 live。"""
+    proc = _run_sample50("--source", "fixture")
+    assert proc.returncode == 0, proc.stderr
+    with open(os.path.join(ROOT, "reports", "sample50_report.json"), encoding="utf-8") as handle:
+        report = json.load(handle)
+    assert report["source_origin"] == "fixture"
+    assert report["counts_as_ac1_evidence"] is False
+
+
+def test_capture_source_rejects_a_directory_whose_manifest_is_not_live():
+    """抓取目录的 manifest 若不是 origin=live，回放入口必须拒绝（合成数据不许冒充）。"""
+    import tempfile
+
+    from core.sources import SourceError, capture_payloads
+
+    with tempfile.TemporaryDirectory() as folder:
+        manifest = {
+            "origin": "recorded",
+            "endpoints": [{"name": "products", "response_file": "01-products.response.json"}],
+        }
+        with open(os.path.join(folder, "manifest.json"), "w", encoding="utf-8") as handle:
+            json.dump(manifest, handle)
+        with open(os.path.join(folder, "01-products.response.json"), "w", encoding="utf-8") as handle:
+            json.dump({"code": 0, "data": []}, handle)
+        try:
+            capture_payloads(folder)
+        except SourceError as exc:
+            assert "不是 live" in str(exc)
+        else:
+            raise AssertionError("非 live 的抓取目录必须被拒绝")
+
+
+def test_capture_source_replays_a_live_manifest():
+    """origin=live 的抓取目录能回放，并且 provenance 如实写 live + 主机 + 取数时间。"""
+    import tempfile
+
+    from core.sources import load_capture
+
+    products = {
+        "code": 0,
+        "message": "success",
+        "total": 1,
+        "data": [{"id": 1, "sku": "SKU-1001", "product_name": "产品甲", "cg_price": "10.00", "category_name": "家居"}],
+    }
+    suppliers = {
+        "code": 0,
+        "message": "success",
+        "total": 1,
+        "data": [{"supplier_id": "S1", "supplier_name": "供应商甲", "contact_person": "张三", "credit_code": "91440300MA5F0001XA"}],
+    }
+    with tempfile.TemporaryDirectory() as folder:
+        for name, payload in (("products", products), ("suppliers", suppliers)):
+            with open(os.path.join(folder, "01-%s.response.json" % name), "w", encoding="utf-8") as handle:
+                json.dump(payload, handle, ensure_ascii=False)
+        manifest = {
+            "origin": "live",
+            "host": "https://openapi.lingxing.com",
+            "created_at": "2026-11-27T00:00:00+08:00",
+            "endpoints": [
+                {"name": "products", "response_file": "01-products.response.json"},
+                {"name": "suppliers", "response_file": "01-suppliers.response.json"},
+            ],
+        }
+        with open(os.path.join(folder, "manifest.json"), "w", encoding="utf-8") as handle:
+            json.dump(manifest, handle)
+        batches, mapped_products, mapped_suppliers, provenance = load_capture(folder)
+    assert provenance["origin"] == "live"
+    assert provenance["host"] == "https://openapi.lingxing.com"
+    assert provenance["fetched_at"] == "2026-11-27T00:00:00+08:00"
+    assert "SKU-1001" in mapped_products
+    assert mapped_products["SKU-1001"]["declare_name"] == "产品甲"
+    assert mapped_suppliers["S1"]["tax_no"] == "91440300MA5F0001XA"
+    # 只有产品/供应商、没有货件：批次为空，这是如实结果而不是报错
+    assert batches == []
+
+def test_capture_source_rejects_a_dingtalk_capture_directory():
+    """钉钉侧的抓取目录（manifest.source=dingtalk）不能拿来算 AC#1 一致率。"""
+    import tempfile
+
+    from core.sources import SourceError, capture_payloads
+
+    with tempfile.TemporaryDirectory() as folder:
+        manifest = {
+            "origin": "live",
+            "source": "dingtalk",
+            "complete": True,
+            "replayable": False,
+            "endpoints": [{"name": "dingtalk_token", "response_file": "01.token.json"}],
+        }
+        with open(os.path.join(folder, "manifest.json"), "w", encoding="utf-8") as handle:
+            json.dump(manifest, handle)
+        with open(os.path.join(folder, "01.token.json"), "w", encoding="utf-8") as handle:
+            json.dump({"_keys": ["accessToken"]}, handle)
+        try:
+            capture_payloads(folder)
+        except SourceError as exc:
+            assert "不是领星业务接口" in str(exc)
+        else:
+            raise AssertionError("钉钉抓取目录必须被拒绝")
+
+
+def test_capture_source_rejects_an_incomplete_capture():
+    """complete=false 的抓取目录（有端点失败）不能当作一致率证据源。"""
+    import tempfile
+
+    from core.sources import SourceError, capture_payloads
+
+    with tempfile.TemporaryDirectory() as folder:
+        manifest = {
+            "origin": "live",
+            "source": "lingxing",
+            "complete": False,
+            "replayable": True,
+            "failure_count": 2,
+            "endpoints": [{"name": "products", "response_file": "01.json"}],
+        }
+        with open(os.path.join(folder, "manifest.json"), "w", encoding="utf-8") as handle:
+            json.dump(manifest, handle)
+        with open(os.path.join(folder, "01.json"), "w", encoding="utf-8") as handle:
+            json.dump({"code": 0, "data": []}, handle)
+        try:
+            capture_payloads(folder)
+        except SourceError as exc:
+            assert "不完整" in str(exc)
+        else:
+            raise AssertionError("不完整的抓取必须被拒绝")
