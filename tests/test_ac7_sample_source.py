@@ -7,13 +7,36 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
 import sys
+
+import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 from source_data import SourceDataError, load_source_data  # noqa: E402
+
+REPORT_PATH = os.path.join(ROOT, "reports", "sample50_report.json")
+
+
+@pytest.fixture(autouse=True)
+def _restore_committed_report():
+    """这些用例会重写 reports/sample50_report.json。
+
+    仓库里那份报告是**默认来源（recorded）**的产物；跑测试不该把它改成 fixture 口径，
+    否则任何人跑完 pytest 都会看到一个被测试改脏的工作区。这里先备份、跑完还原。
+    """
+    backup = REPORT_PATH + ".pytest-backup"
+    existed = os.path.exists(REPORT_PATH)
+    if existed:
+        shutil.copy2(REPORT_PATH, backup)
+    try:
+        yield
+    finally:
+        if existed and os.path.exists(backup):
+            shutil.move(backup, REPORT_PATH)
 
 
 def _child_env():
@@ -40,7 +63,7 @@ def test_sample50_defaults_to_recorded_source():
     """默认来源是 recorded（本地合成录制回放），报告里必须写明来源与取数时间。"""
     proc = _run_sample50()
     assert proc.returncode == 0, proc.stderr
-    with open(os.path.join(ROOT, "reports", "sample50_report.json"), encoding="utf-8") as handle:
+    with open(REPORT_PATH, encoding="utf-8") as handle:
         report = json.load(handle)
     assert report["source"] == "recorded"
     assert report["source_synthetic"] is True
