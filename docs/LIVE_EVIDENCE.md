@@ -393,7 +393,7 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 两处需要说清的细节：
 
 1. **第 05 条为什么是 500 而不是 400**：我用非 ID 形态的 `PROBE-WORKSPACE-ID` 去建文档，平台没有先做参数校验，
-   直接抛内部错误。连打 3 次、换成 32 位十六进制 ID（大小写两组）、以及换成 base64 风格 operator，**全部稳定 500**，
+   直接抛内部错误。同一请求连打 3 次、再换 32 位大小写两种十六进制 ID 与 base64 风格 operator 各打 2 次，**累计 5 次全部稳定 500**，
    requestid 各异（`01A21904-BDE4-747A-A452-330345C885F2` / `-BEAB-700D-B9AA-A634640B354D` / `-BF8E-7E19-8FA2-1511DEDD55F9`），
    所以不是偶发网络抖动，是「假 workspaceId」触发的服务端异常。反过来，同一入口**不传** operatorId 时稳定 400 `MissingoperatorId`、
    传空 body 时稳定 400 `Missingbody`，说明这条路由本身是活的、参数校验顺序也正常。
