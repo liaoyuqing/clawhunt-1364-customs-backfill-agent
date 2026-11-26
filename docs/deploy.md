@@ -27,7 +27,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pytest -q
 ```
 
-最后一条预期退出码 `0`、末行 `216 passed`。
+最后一条预期退出码 `0`、末行 `217 passed`。
 
 ### 2.1 配置项
 

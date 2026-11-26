@@ -1,0 +1,9 @@
+{
+  "_transport_error": "http 500 from https://api.dingtalk.com/v1.0/doc/workspaces/PROBE-WORKSPACE-ID/docs",
+  "status": 500,
+  "body": {
+    "requestid": "01A21903-D668-73B5-9163-70ABF813EFD2",
+    "code": "internalError",
+    "message": "系统内部错误"
+  }
+}

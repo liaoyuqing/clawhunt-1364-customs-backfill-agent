@@ -149,3 +149,31 @@ def test_write_sample_requires_readback_match():
         assert "回读不一致" in str(exc)
     else:
         raise AssertionError("读回不一致时必须报错，不能静默返回成功")
+
+
+def test_probe_mode_keeps_server_errors_as_failures(tmp_path):
+    """探测模式只把「平台明确拒绝（4xx）」当答案，5xx 仍算抓取失败。
+
+    背景：知识库权限开通后，`POST /v1.0/doc/workspaces/{假id}/docs` 稳定返回 500 internalError。
+    把它记成 denial 会让 manifest 看起来「探测全部完成」，掩盖了一个真实的平台内部错误；
+    记成 failure（complete=false）才是如实。这条断言守住这个边界。
+    """
+    from core.http_client import HttpRequest
+
+    request = HttpRequest(
+        method="POST",
+        url="https://api.dingtalk.com/v1.0/doc/workspaces/PROBE-WORKSPACE-ID/docs",
+        headers={"x-acs-dingtalk-access-token": "TOKEN-SYNTHETIC-NOT-REAL"},
+    )
+    body = json.dumps({"code": "internalError", "message": "系统内部错误"})
+
+    run = live_capture.CaptureRun(str(tmp_path), 'dingtalk', 'https://api.dingtalk.com', [], replayable=False)
+    transport = live_capture.CaptureTransport(run)
+    transport.denial_mode = True
+    transport._record_rejection(request, "2026-11-27T02:00:00+08:00", "2026-11-26T18:00:00Z", 500, body, "http 500")
+    manifest = run.manifest()
+    assert manifest["denial_count"] == 0
+    assert manifest["failure_count"] == 1
+    assert manifest["complete"] is False
+    assert manifest["failures"][0]["status"] == 500
+    assert manifest["failures"][0]["business_code"] == "internalError"

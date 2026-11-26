@@ -1,0 +1,14 @@
+{
+  "_transport_error": "http 403 from https://api.dingtalk.com/v1.0/contact/users/me",
+  "status": 403,
+  "body": {
+    "code": "Forbidden.AccessDenied.AccessTokenPermissionDenied",
+    "requestid": "01A21903-D96D-7DF5-B402-AAD78B8EAD91",
+    "message": "应用尚未开通所需的权限：[Contact.User.Read]，点击链接申请并开通即可：https://open-dev.dingtalk.com/appscope/apply?content=ding***az%23Contact.User.Read",
+    "accessdenieddetail": {
+      "requiredScopes": [
+        "Contact.User.Read"
+      ]
+    }
+  }
+}

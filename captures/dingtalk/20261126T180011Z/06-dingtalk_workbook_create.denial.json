@@ -1,0 +1,9 @@
+{
+  "_transport_error": "http 404 from https://api.dingtalk.com/v1.0/doc/workbooks",
+  "status": 404,
+  "body": {
+    "code": "InvalidAction.NotFound",
+    "requestid": "01A21903-D73B-7D59-8A95-8F10729AF722",
+    "message": "Specified api is not found, please check your url and method."
+  }
+}

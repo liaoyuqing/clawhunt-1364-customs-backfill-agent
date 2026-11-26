@@ -311,19 +311,22 @@ python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.loca
 
 另外实测确认：`GET /v1.0/contact/users/me` 与 `GET /v1.0/contact/users/{userId}` 仍 403 缺 `Contact.User.Read`，所以**本工具不会替客户自动换 unionId**，必须人工提供。老版 `oapi` 通道同理（`getbymobile` / `user/listid` / `department/listsub` 分别缺 `qyapi_get_member_by_mobile` / `qyapi_get_member` / `qyapi_get_department_list`）。
 
-### 5.2.3 自建表格写入的前置条件（实测完了，缺两样）
+### 5.2.3 自建表格写入的前置条件（权限已全部到位，只缺三个 id）
 
 需求方给的思路是：**我方自己建一张表，跑通一次写入，只为证明链路通，不当客户环境证据**。
-这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.3 节），结论是**当前账号还建不出表**，
-缺的是「两样权限 + 三个 id」。下面这张表可以直接转给钉钉管理员照做。
+这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.3 节），结论是**当前账号还建不出表**。
 
-| 缺什么 | 在哪开 / 在哪取 | 大概耗时 |
-| --- | --- | --- |
-| `Wiki.Workspace.Write`（建知识库）+ `Document.WorkspaceDocument.Write`（知识库里建表格文档） | 钉钉开发者后台 → 企业内部开发 → 本应用 → 权限管理 → 搜「知识库」「文档」→ 勾选申请；管理员在管理后台通过 | 申请 1 分钟，审批看管理员，通常当天 |
-| `Contact.User.Read`（读当前用户拿 unionId）或 `qyapi_get_member`（老版 oapi 由 userId 换 unionId） | 同上页面「通讯录管理」分类，二选一即可 | 同上 |
-| `DINGTALK_WORKBOOK_ID` | 建好表格后：打开表格 → 右上角「…」→「文档信息」→ 表格 ID | 1 分钟 |
-| `DINGTALK_SHEET_ID` | 配好 workbookId 与 operatorId 后，`GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id`；也可直接传工作表名 | 1 分钟 |
-| `DINGTALK_OPERATOR_ID` | 操作人 unionId：管理后台成员详情，或「联系人 → 获取用户」接口。**必须是 unionId，手机号 / userId 都会被判 paramError-operatorId** | 1 分钟 |
+权限这一层**已经全部到位了**：两轮补充授权之后，原本 403 缺 scope 的入口现在都不再报缺权限（对照见 5.3 节）。
+剩下卡住的只有一件事——**三个 id**。下面这张表可以直接转给管理员照做。
+
+| 缺什么 | 现状（实测） | 在哪取 | 大概耗时 |
+| --- | --- | --- | --- |
+| `Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write` | **已到位**：`GET /v2.0/wiki/workspaces` 由 403 变 `400 MissingoperatorId`，`POST /v2.0/wiki/workspaces` 与 `POST /v1.0/doc/workspaces/{id}/docs` 也都不再报缺 scope | 无需再申请 | — |
+| `Document.Workbook.Read/Write` | **已到位**：`GET /v1.0/doc/workbooks/{id}/sheets` 由 403 变 `400 MissingoperatorId` | 无需再申请 | — |
+| `Contact.User.Read`（自动取 unionId 用）或 `qyapi_get_member`（老版 oapi 换 unionId） | **仍未授予**：`GET /v1.0/contact/users/me` 仍 403；不影响写入，只影响「工具替客户自动查 unionId」，所以仍需人工给 | 开发者后台「通讯录管理」分类；或直接由管理员抄一个 unionId 给我 | 1 分钟 |
+| `DINGTALK_OPERATOR_ID` | **唯一硬阻塞**：所有 wiki / doc 接口都要真实 unionId，缺了就 400 `MissingoperatorId`，填假值就 400 `paramError-operatorId` | 管理后台成员详情里的 unionId（不是手机号、不是 userId） | 1 分钟 |
+| `DINGTALK_WORKBOOK_ID` | 未提供 | 打开钉钉表格 → 右上角「…」→「文档信息」→ 表格 ID | 1 分钟 |
+| `DINGTALK_SHEET_ID` | 未提供 | 配好 workbookId 与 operatorId 后，`GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id`；也可直接传工作表名 | 1 分钟 |
 
 如果觉得开权限麻烦，还有一条更省事的路：**直接把现成表格的三个 id 给我**（哪怕是客户自己的测试表），
 `Document.Workbook.Read/Write` 已经到位，配齐 id 就能直接写。
@@ -353,8 +356,8 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
     --env-file <项目下 .env.local 的绝对路径> --probe-create
 ```
 
-落盘目录：`captures/dingtalk/20261126T174944Z/`，`origin=live`、`complete=true`、`failure_count=0`、
-`denial_count=8`。**为什么拒绝记在 `denials[]` 而不是 `failures[]`**：探测的目的就是「问平台能不能建」，
+落盘目录：`captures/dingtalk/20261126T174944Z/`（**第一次探测，权限授予前**），`origin=live`、`complete=true`、
+`failure_count=0`、`denial_count=8`。**为什么拒绝记在 `denials[]` 而不是 `failures[]`**：探测的目的就是「问平台能不能建」，
 「不能」是答案不是故障；记成 failure 会让 `complete` 变 false，反而盖住探测结论。
 
 | # | 入口（官方文档里的写法） | 结果 | 原文要点 |
@@ -368,13 +371,46 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 | 08 | `POST /v1.0/drive/spaces/{id}/files` 云盘里建文件 | 403 | `requiredScopes=["Drive.File.Write"]` |
 | 09 | `GET /v1.0/contact/users/me` 读当前用户（想顺手拿 unionId） | 403 | `requiredScopes=["Contact.User.Read"]` |
 
-**建表的四条路全堵死了，而且堵的位置各不相同**：
+#### 5.3.1 知识库权限开通后重跑：403 全部变 400，权限这一层已经过了
 
-1. 知识库 → 建表格文档：两个 scope 都缺（`Wiki.Workspace.Write`、`Document.WorkspaceDocument.Write`）。
-2. 云盘 → 建文件：两个 scope 都缺（`Drive.Space.Write`、`Drive.File.Write`）。
-3. 直接 POST 工作簿：**接口不存在**（404，与权限无关）。
-4. 已有表格下建工作表 `POST /v1.0/doc/workbooks/{workbookId}/sheets`：**scope 是有的**（不再返回 403），
-   卡在 `operatorId`——这条最接近成功，只差一个真实 unionId 加一个 workbookId。
+客户把知识库相关权限补齐后，同一个命令重跑一遍，落盘在 `captures/dingtalk/20261126T180011Z/`
+（`origin=live`、`environment=self_built_test_table`、`replayable=false`）。同一批入口的应答变了：
+
+| # | 入口 | 权限前 | 权限后 | 说明 |
+| --- | --- | --- | --- | --- |
+| 02 | `GET /v2.0/wiki/workspaces` | 403 `Wiki.Workspace.Read` | **400 `MissingoperatorId`**「operatorId is mandatory for this action.」 | scope 已授予，改卡参数 |
+| 03 | `GET /v2.0/wiki/mineWorkspaces` | 403 `Wiki.Workspace.Read` | **400 `MissingoperatorId`** | 同上 |
+| 04 | `POST /v2.0/wiki/workspaces` | 403 `Wiki.Workspace.Write` | **400 `MissingoperatorId`** | 同上 |
+| 05 | `POST /v1.0/doc/workspaces/{id}/docs` | 403 `Document.WorkspaceDocument.Write` | **500 `internalError`**「系统内部错误」 | scope 已过；假 workspaceId 打到内部异常 |
+| 06 | `POST /v1.0/doc/workbooks` | 404 接口不存在 | 404 接口不存在 | 与权限无关，这个接口本来就没有 |
+| 07/08 | `POST /v1.0/drive/spaces` 及建文件 | 403 `Drive.Space.Write` / `Drive.File.Write` | 仍 403 | 云盘系权限**没有**申请，也没必要——建表走知识库更直接 |
+| 09 | `GET /v1.0/contact/users/me` | 403 `Contact.User.Read` | 仍 403 | 通讯录权限**没有**授予，所以 unionId 仍只能人工给 |
+
+**怎么读这组对照**：「403 变 400」是权限到位的**判据**——平台先校验 scope，scope 不过直接 403 并回
+`requiredScopes`；能走到参数校验（`MissingoperatorId` / `paramError-operatorId`）说明 scope 校验已经通过。
+所以现在**缺的不再是权限，而是三个 id**。
+
+两处需要说清的细节：
+
+1. **第 05 条为什么是 500 而不是 400**：我用非 ID 形态的 `PROBE-WORKSPACE-ID` 去建文档，平台没有先做参数校验，
+   直接抛内部错误。连打 3 次、换成 32 位十六进制 ID（大小写两组）、以及换成 base64 风格 operator，**全部稳定 500**，
+   requestid 各异（`01A21904-BDE4-747A-A452-330345C885F2` / `-BEAB-700D-B9AA-A634640B354D` / `-BF8E-7E19-8FA2-1511DEDD55F9`），
+   所以不是偶发网络抖动，是「假 workspaceId」触发的服务端异常。反过来，同一入口**不传** operatorId 时稳定 400 `MissingoperatorId`、
+   传空 body 时稳定 400 `Missingbody`，说明这条路由本身是活的、参数校验顺序也正常。
+2. **这一组的 `complete=false` 是如实记录，不是抓取失败**：500 不属于「平台明确拒绝（4xx）」，
+   所以按口径记进 `failures[]` 而不是 `denials[]`，`failure_count=1` 把 `complete` 拉成 false。
+   这组目录**只用于权限状态对照，不会被任何一致率计算使用**（`replayable=false`、`source=dingtalk`，`capture_payloads()` 两道都会拒）。
+
+**建表的四条路，权限这一层已经全过了，最后都堵在同一个地方**：
+
+| 路 | 权限前的堵点 | 权限到位后 | 结论 |
+| --- | --- | --- | --- |
+| 知识库 → 建表格文档 | 缺 `Wiki.Workspace.Write` + `Document.WorkspaceDocument.Write`（403） | 两条 scope 均已过：列库/建库返回 `400 MissingoperatorId`，建文档返回 500（假 workspaceId） | **只差真实 unionId + 一个真实 workspaceId** |
+| 云盘 → 建文件 | 缺 `Drive.Space.Write` + `Drive.File.Write`（403） | 仍 403（这两个权限没申请，也不需要） | 不用这条路 |
+| 直接 POST 工作簿 | **接口不存在**（404 `InvalidAction.NotFound`） | 仍 404 | 与权限无关，官方就没这个接口 |
+| 已有表格下建工作表 | scope 已有，卡 `operatorId` | 仍卡 `operatorId` | **最接近成功**：只差真实 unionId + workbookId |
+
+一句话：**权限已经买齐了，剩下的是三个 id**（operatorId / workbookId / sheetId）。
 
 **为什么不能自己造 unionId**：平台对 `operatorId` 做**值校验**，不是随便填个字符串就能过。实测（全部只读）：
 
@@ -424,8 +460,9 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 钉钉令牌换发 | **真实成功**（HTTP 200，token 长度 32） | 5.1 节 |
 | 钉钉读表 / 读区域 | **真实打到平台**；权限开通前 403（缺 Document.Workbook.Read），开通后变 400（缺 operatorId），证明 scope 已到位 | 5.2、5.2.1 节原文 |
 | 钉钉写台账（客户表） | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read） | 5.2.1、5.2.2、5.4 节 |
-| 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测，4 条 403 缺 scope、1 条 404 接口不存在、其余卡 operatorId；`complete=true`、`failure_count=0` | 5.3 节 + `captures/dingtalk/20261126T174944Z/`
+| 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测。权限授予前 4 条 403 缺 scope、1 条 404 接口不存在；**知识库权限补齐后重跑，3 条 403 全部变 `400 MissingoperatorId`（scope 校验已通过）**，剩余硬阻塞只有真实 unionId | 5.3、5.3.1 节 + `captures/dingtalk/20261126T174944Z/`（权限前）、`captures/dingtalk/20261126T180011Z/`（权限后） |
 | 自建表格写入（若三个 id 到位） | **未取得**；`environment=self_built_test_table`、`counts_as_customer_evidence=false`——即便跑通也只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3 节 |
+| 钉钉权限授予状态 | **已核准**：`Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write`、`Document.Workbook.Read/Write` 均已到位；`Contact.User.Read`、`Drive.*` 未授予（不影响写入路径） | 5.3.1 节 403→400 对照 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
 一句话总结：**协议层与流水线是真的，钉钉的鉴权是真的，但「真实业务数据的一致率」这一格还空着**——它需要客户侧的账号与网络，第 1 节给出了拿到之后一条命令就能填上的路径，而不是一句「请相信我们」。

@@ -1,0 +1,21 @@
+{
+  "seq": 6,
+  "endpoint": "/v1.0/doc/workbooks",
+  "method": "POST",
+  "url": "https://api.dingtalk.com/v1.0/doc/workbooks",
+  "query": [],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "name"
+  ],
+  "body_sha256": "bed8235bb84ac25371a2077a364f92f6bd10216ebbe25524de5d96527f0abc0e",
+  "body_bytes": 32,
+  "body": {
+    "name": "clawhunt-probe-sheet"
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

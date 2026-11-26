@@ -1,0 +1,14 @@
+{
+  "_transport_error": "http 403 from https://api.dingtalk.com/v1.0/drive/spaces",
+  "status": 403,
+  "body": {
+    "code": "Forbidden.AccessDenied.AccessTokenPermissionDenied",
+    "requestid": "01A21903-D7F6-7A5A-94D1-15B04F807029",
+    "message": "应用尚未开通所需的权限：[Drive.Space.Write]，点击链接申请并开通即可：https://open-dev.dingtalk.com/appscope/apply?content=ding***az%23Drive.Space.Write",
+    "accessdenieddetail": {
+      "requiredScopes": [
+        "Drive.Space.Write"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "seq": 4,
+  "endpoint": "/v2.0/wiki/workspaces",
+  "method": "POST",
+  "url": "https://api.dingtalk.com/v2.0/wiki/workspaces",
+  "query": [],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "name"
+  ],
+  "body_sha256": "cbde324b41b3d200851c3759bc4dde772a7f6ae99c5ab9ce6b439ccc2ff280e6",
+  "body_bytes": 32,
+  "body": {
+    "name": "clawhunt-probe-space"
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

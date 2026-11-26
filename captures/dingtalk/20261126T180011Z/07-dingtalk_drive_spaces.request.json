@@ -1,0 +1,23 @@
+{
+  "seq": 7,
+  "endpoint": "/v1.0/drive/spaces",
+  "method": "POST",
+  "url": "https://api.dingtalk.com/v1.0/drive/spaces",
+  "query": [],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "name",
+    "unionId"
+  ],
+  "body_sha256": "afd933bdcfe4cda8d9a46c37aba6bb46bf37e11ac3bc8c574f1bb5fe3627a517",
+  "body_bytes": 71,
+  "body": {
+    "name": "clawhunt-probe-space",
+    "unionId": "PROBE-NOT-A-REAL-UNIONID"
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

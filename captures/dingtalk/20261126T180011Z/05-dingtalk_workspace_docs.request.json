@@ -1,0 +1,25 @@
+{
+  "seq": 5,
+  "endpoint": "/v1.0/doc/workspaces/PROBE-WORKSPACE-ID/docs",
+  "method": "POST",
+  "url": "https://api.dingtalk.com/v1.0/doc/workspaces/PROBE-WORKSPACE-ID/docs",
+  "query": [],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "docType",
+    "name",
+    "operatorId"
+  ],
+  "body_sha256": "a419304b12ae71de7406c203f1ac4ae31e1dc560a29490b6b27d071e79263af2",
+  "body_bytes": 97,
+  "body": {
+    "name": "clawhunt-probe-sheet",
+    "docType": "WORKBOOK",
+    "operatorId": "***"
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

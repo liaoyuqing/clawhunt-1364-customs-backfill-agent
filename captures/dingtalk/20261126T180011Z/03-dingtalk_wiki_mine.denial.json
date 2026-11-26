@@ -1,0 +1,9 @@
+{
+  "_transport_error": "http 400 from https://api.dingtalk.com/v2.0/wiki/mineWorkspaces",
+  "status": 400,
+  "body": {
+    "code": "MissingoperatorId",
+    "requestid": "01A21903-D4E4-7EE9-ABF8-EABF0C7DBFC8",
+    "message": "operatorId is mandatory for this action."
+  }
+}
