@@ -35,6 +35,10 @@
 | `NN-<endpoint>.denial.json` | **探测型**请求被平台明确拒绝（403 缺权限 / 400 参数错 / 404 接口不存在）。这是预期结果，记入 `denials[]`，**不影响 `complete`** |
 | `manifest.json` | `origin=live`、`complete`、`replayable`、逐端点状态码 / sha256 / 记录条数、`failures[]`、`denials[]`、`derived`（含 `environment`、`counts_as_customer_evidence`、`target`、`write_evidence`） |
 
+响应体是**平台原文照存**，不做裁剪：`20261126T185615Z/07-dingtalk_range.response.json` 有 1.8 MB，
+因为读 `A1:Z300` 时平台连每个单元格的对齐、字体、颜色都一并回传（300 行 × 26 列 × 多个样式字段）。
+这正是「原始响应」该有的样子——真要裁剪就会变成我们加工过的数据，别人没法核对。
+
 `origin` 只会是 `live`：`core/sources.py` 的 `capture_payloads()` 会拒绝任何非 `live` 的目录，
 合成数据无法从这条路径冒充真实抓取（见 `tests/test_ac7_sample_source.py`）。
 
