@@ -1,0 +1,9 @@
+{
+  "_transport_error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3?operatorId=***",
+  "status": 400,
+  "body": {
+    "requestid": "01A218EA-0576-7B11-A2F3-BE866905C902",
+    "code": "invalidRequest.inputArgs.invalid",
+    "message": "paramError-operatorId"
+  }
+}

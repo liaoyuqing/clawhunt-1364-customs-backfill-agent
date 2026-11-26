@@ -28,7 +28,7 @@ python -m venv .venv
 预期输出（干净 clone 实测）：
 
 ```text
-209 passed
+212 passed
 ```
 
 只依赖标准库 + `PyYAML`（规则包解析）+ `pytest`（自测），没有其它运行期依赖。
@@ -60,7 +60,7 @@ core/cli.py       命令行入口：python -m core.cli --batch <批次号>（模
 prepublish/       模块四启动自检：python -m prepublish.check --config <yaml>（复用 core/preflight.py）
 scripts/          make_fixtures / reference_impl / sample50 / live_capture（真实取数落盘）/ 
                   recorded_smoke / collect_metrics / secret_scan / invoice_diff_report（AC3 差异清单与期望自证）
-tests/            27 个测试文件，209 个用例（含协议一致性测试）
+tests/            27 个测试文件，212 个用例（含协议一致性测试）
 fixtures/         合成源数据（batches/products/suppliers）、发票预览件（invoices/）与 expected.json
 reports/          sample50_report.json / metrics.json / secret_scan_report.json /
                   invoice_diff_report.md / invoice_diff_report.json
@@ -91,7 +91,7 @@ docs/             部署文档与操作手册
 在买家自己的机器上，从干净 clone 起逐条执行，全部离线、无外网调用：
 
 1. 装依赖：`.venv/Scripts/python.exe -m pip install -r requirements.txt` —— 预期退出码 `0`（只有 PyYAML 与 pytest 两个包）。
-2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `209 passed`。
+2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `212 passed`。
 3. 跑差异清单：`.venv/Scripts/python.exe scripts/invoice_diff_report.py` —— 预期退出码 `0`，打印 `invoices 6 clean 3 dirty 3 diffs 3 ... verified yes`，并生成 `reports/invoice_diff_report.md` 与 `reports/invoice_diff_report.json`。
 4. 跑主流程：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001` —— 预期退出码 `0`，stdout 是一份 JSON 摘要（`batch_no` / 行数 / 列数 / `module4_invoice_ledger` 的耗用与剩余 / 差异条数 / 闸门状态）；换个不存在的批次号则退出码 `1`、stderr 有中文原因。
 5. 跑模块四自检：`.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` —— 预期退出码 `0`、末行 `ok`；把配置里的白名单换成公网 IP、模型地址换成公网域名、原件目录放进 OneDrive，再跑一次预期退出码 `2` 并逐条列出 3 条 `problems`。

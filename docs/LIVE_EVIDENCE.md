@@ -267,6 +267,22 @@ False            # <- 失败不会留下空目录或占位文件
 
 读区域（`.../sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3`）同样返回 400 `MissingoperatorId`，`requestid 01A218E4-876B-7230-98CB-B7F2FF99E4FB`。证据目录 `captures/dingtalk/20261126T172559Z/`（7 个文件 + manifest，`origin live`）。
 
+再带一个故意非法的 `operatorId` 重跑一遍，用来证明「query 真的拼上去了、平台真的在校验值」：
+
+```json
+{
+  "_transport_error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets?operatorId=***",
+  "status": 400,
+  "body": {
+    "requestid": "01A218EA-04AB-7187-BA1E-869BE17558FD",
+    "code": "invalidRequest.inputArgs.invalid",
+    "message": "paramError-operatorId"
+  }
+}
+```
+
+证据目录 `captures/dingtalk/20261126T173159Z/`。注意 `_transport_error` 里的 `operatorId` 值已打码为 `***`（unionId 属个人信息，不进证据目录）——请求文件里的 `query` 数组同样只保留参数名。
+
 **这条对照本身就是「权限已到位」的证据**：权限没开通时平台在 scope 校验这一步就 403 拒绝了，根本走不到参数校验；现在能走到 `operatorId` 校验，说明 `Document.Workbook.Read` 已授予。
 
 接下来只剩参数，官方要求 `operatorId` 是**操作人的 unionId**（不是手机号、不是 userId）：

@@ -7,10 +7,10 @@
 
 用法（PowerShell）：
     # 领星：拉 产品 / 供应商 / 货件 / 报关资料，落盘到 captures/live/<UTC 时间戳>/
-    python scripts/live_capture.py --source lingxing --out captures/live --env-file ..\work\1364\.env.local
+    python scripts/live_capture.py --source lingxing --out captures/live --env-file ../work/1364/.env.local
 
     # 钉钉：探令牌、列工作表、读区域、（可选）写一行，验证台账写回这条路真的通
-    python scripts/live_capture.py --source dingtalk --out captures/live/dingtalk --env-file ..\work\1364\.env.local
+    python scripts/live_capture.py --source dingtalk --out captures/live/dingtalk --env-file ../work/1364/.env.local
 
     # 拿真实响应重算一致率（这一步才是 AC#1 的证据）
     python scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>
@@ -39,6 +39,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -170,6 +171,18 @@ def _redact_query(url: str) -> List[Dict[str, str]]:
         else:
             out.append({"name": name, "value": value})
     return out
+
+
+# 文本里出现的 "operatorId=xxx" / "access_token=xxx" 这类片段也要打码：
+# 平台的报错原文会把整条 URL（含 query）回显出来，那是个人身份信息。
+_QUERY_IN_TEXT = re.compile(
+    r"(%s)=([^&\s\"'<>)]{1,200})" % "|".join(sorted((re.escape(k) for k in SECRET_QUERY_KEYS), key=len, reverse=True)),
+    re.IGNORECASE,
+)
+
+
+def _redact_url_query_in_text(text: str) -> str:
+    return _QUERY_IN_TEXT.sub(lambda match: "%s=***" % match.group(1), text)
 
 
 def _redact_headers(headers: Dict[str, str]) -> Dict[str, str]:
@@ -321,8 +334,9 @@ class CaptureRun:
 
     def _write(self, name: str, document: Any) -> str:
         text = json.dumps(document, ensure_ascii=False, indent=2)
+        text = self._redact_text(_redact_url_query_in_text(text))
         with open(os.path.join(self.folder, name), "w", encoding="utf-8") as handle:
-            handle.write(self._redact_text(text))
+            handle.write(text)
         return name
 
     def _request_file(self, seq: int, name: str, request: HttpRequest) -> str:
