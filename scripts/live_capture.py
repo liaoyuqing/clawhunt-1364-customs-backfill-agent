@@ -9,8 +9,12 @@
     # 领星：拉 产品 / 供应商 / 货件 / 报关资料，落盘到 captures/live/<UTC 时间戳>/
     python scripts/live_capture.py --source lingxing --out captures/live --env-file ../work/1364/.env.local
 
-    # 钉钉：探令牌、列工作表、读区域、（可选）写一行，验证台账写回这条路真的通
+    # 钉钉：探令牌、列工作表、读区域、（可选）写一行并回读校验，验证台账写回这条路真的通
     python scripts/live_capture.py --source dingtalk --out captures/live/dingtalk --env-file ../work/1364/.env.local
+
+    # 钉钉：探测「能不能建出自建表格」——把官方文档里的建表/建库入口逐条打一遍，
+    # 平台拒绝记 denials[]（预期结果），不影响 complete；不写任何业务数据
+    python scripts/live_capture.py --source dingtalk --out captures/dingtalk --env-file ../work/1364/.env.local --probe-create
 
     # 拿真实响应重算一致率（这一步才是 AC#1 的证据）
     python scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>
@@ -55,6 +59,7 @@ from core.http_client import (  # noqa: E402
     RateLimitError,
     UrllibTransport,
     _is_secret_header,
+    json_request,
 )
 from core.lingxing_client import (  # noqa: E402
     DEFAULT_REFRESH_PATH,
@@ -83,6 +88,14 @@ ENDPOINT_ROUTES: Tuple[Tuple[str, str], ...] = (
     # 钉钉侧（同一套落盘机制，端点名用于人工核对）
     ("/v1.0/oauth2/accessToken", "dingtalk_token"),
     ("/v1.0/doc/workbooks", "dingtalk_sheets"),
+)
+
+# 创建入口探测用到的路径：名字只用于人工核对，不参与回放（回放只认上面那六个资源）。
+DINGTALK_PROBE_ROUTES: Tuple[Tuple[str, str], ...] = (
+    ("/v2.0/wiki/workspaces", "dingtalk_wiki_workspaces"),
+    ("/v2.0/wiki/mineWorkspaces", "dingtalk_wiki_mine"),
+    ("/v1.0/contact/users/me", "dingtalk_contact_me"),
+    ("/v1.0/drive/spaces", "dingtalk_drive_spaces"),
 )
 
 # 钉钉的 ranges 路径带变量段，按后缀规则单独判。
@@ -149,9 +162,23 @@ def _path_of(url: str) -> str:
     return urlsplit(url).path or "/"
 
 
-def _endpoint_name(url: str) -> str:
-    """按平台路径判定端点名；判不出来就叫 unknown（不猜）。"""
+def _endpoint_name(url: str, method: str = "") -> str:
+    """按平台路径判定端点名；判不出来就叫 unknown（不猜）。
+
+    method 参与判定：POST /v1.0/doc/workbooks 是「建工作簿」（该接口不存在，实测 404），
+    与 GET /v1.0/doc/workbooks/{id}/sheets「列工作表」是两件事，不能用同一个名字。
+    """
     path = _path_of(url)
+    verb = str(method or "").upper()
+    if verb == "POST" and path == "/v1.0/doc/workbooks":
+        return "dingtalk_workbook_create"
+    if path.startswith("/v1.0/doc/workspaces/"):
+        return "dingtalk_workspace_docs"
+    for route, name in DINGTALK_PROBE_ROUTES:
+        if path == route:
+            return name
+    if path.startswith("/v1.0/drive/spaces/") and path.endswith("/files"):
+        return "dingtalk_drive_files"
     for route, name in ENDPOINT_ROUTES:
         if path == route or path.endswith(route):
             return name
@@ -309,6 +336,10 @@ class CaptureRun:
         self.created_at, self.created_at_utc = _now_pair()
         self.endpoints: List[Dict[str, Any]] = []
         self.failures: List[Dict[str, Any]] = []
+        # 探测型抓取（--probe-create）：平台拒绝是「预期结果」，不是抓取失败。
+        # 这类响应必须与成功响应一样逐字落盘，但不能让 manifest.complete 变 false，
+        # 否则「探测做完了」和「抓取没做完」两件事会被混成一件。
+        self.denials: List[Dict[str, Any]] = []
         self._secrets: List[str] = []
         self._seq = 0
 
@@ -358,7 +389,7 @@ class CaptureRun:
         return self._write("%02d-%s.request.json" % (seq, name), document)
 
     def record_success(self, request: HttpRequest, response: HttpResponse, at_local: str, at_utc: str) -> None:
-        name = _endpoint_name(request.url)
+        name = _endpoint_name(request.url, request.method)
         seq = self._next_seq()
         request_file = self._request_file(seq, name, request)
         document, size = _response_document(response)
@@ -398,7 +429,24 @@ class CaptureRun:
 
     def record_failure(self, request: HttpRequest, at_local: str, at_utc: str, status: int, body: str, error: str) -> None:
         """网络层失败（TCP 不可达 / 超时 / 403）也如实记录：这是证据，不是噪音。"""
-        name = _endpoint_name(request.url)
+        self._record_rejection(request, at_local, at_utc, status, body, error, bucket=self.failures, kind="failure")
+
+    def record_denial(self, request: HttpRequest, at_local: str, at_utc: str, status: int, body: str, error: str) -> None:
+        """探测请求被平台明确拒绝：原文照落盘，但不算抓取失败（--probe-create 用）。"""
+        self._record_rejection(request, at_local, at_utc, status, body, error, bucket=self.denials, kind="denial")
+
+    def _record_rejection(
+        self,
+        request: HttpRequest,
+        at_local: str,
+        at_utc: str,
+        status: int,
+        body: str,
+        error: str,
+        bucket: List[Dict[str, Any]],
+        kind: str,
+    ) -> None:
+        name = _endpoint_name(request.url, request.method)
         seq = self._next_seq()
         request_file = self._request_file(seq, name, request)
         document: Dict[str, Any] = {"_transport_error": error, "status": status}
@@ -407,9 +455,9 @@ class CaptureRun:
                 document["body"] = json.loads(body)
             except (TypeError, ValueError):
                 document["raw"] = str(body)[:4000]
-        response_file = self._write("%02d-%s.failure.json" % (seq, name), document)
+        response_file = self._write("%02d-%s.%s.json" % (seq, name, kind), document)
         raw = str(body or "").encode("utf-8")
-        self.failures.append({
+        bucket.append({
             "seq": seq,
             "name": name,
             "endpoint": _path_of(request.url),
@@ -443,11 +491,14 @@ class CaptureRun:
             "created_at_utc": self.created_at_utc,
             "complete": complete,
             "replayable": bool(self.replayable and complete),
-            "request_count": len(self.endpoints) + len(self.failures),
+            "request_count": len(self.endpoints) + len(self.failures) + len(self.denials),
             "endpoint_count": len(self.endpoints),
             "failure_count": len(self.failures),
+            "denial_count": len(self.denials),
             "endpoints": self.endpoints,
             "failures": self.failures,
+            # 探测型抓取里「平台明确拒绝」是预期结果，原文照留但不影响 complete。
+            "denials": self.denials,
             "record_counts": counts,
             "derived": derived or {},
             "warnings": list(warnings or []),
@@ -464,19 +515,37 @@ class CaptureTransport:
     def __init__(self, run: CaptureRun, inner: Optional[Any] = None) -> None:
         self.run = run
         self.inner = inner or UrllibTransport()
+        # 只有探测那一段把 4xx 记成 denials；其余步骤的 4xx 仍然是 failures。
+        # 不给整个 run 开这个开关：读/写路径的失败不能因为「同时在探测」就被洗白。
+        self.denial_mode = False
+
+    def _record_rejection(
+        self,
+        request: HttpRequest,
+        at_local: str,
+        at_utc: str,
+        status: int,
+        body: str,
+        error: str,
+    ) -> None:
+        """探测模式下 4xx 是「预期的拒绝」，只做留痕，不算抓取失败。"""
+        if self.denial_mode and 400 <= int(status or 0) < 500:
+            self.run.record_denial(request, at_local, at_utc, status, body, error)
+        else:
+            self.run.record_failure(request, at_local, at_utc, status, body, error)
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         at_local, at_utc = _now_pair()
         try:
             response = self.inner(request)
         except RateLimitError as exc:
-            self.run.record_failure(
+            self._record_rejection(
                 request, at_local, at_utc, int(getattr(exc, "status", 429) or 429),
                 str(getattr(exc, "body", "") or ""), str(exc),
             )
             raise
         except HttpError as exc:
-            self.run.record_failure(
+            self._record_rejection(
                 request, at_local, at_utc, int(getattr(exc, "status", 0) or 0),
                 str(getattr(exc, "body", "") or ""), str(exc),
             )
@@ -604,6 +673,101 @@ def capture_lingxing(args: argparse.Namespace, out_root: str) -> int:
     return EXIT_OK if manifest["complete"] else EXIT_NETWORK
 
 
+# 自建表格能不能建出来：官方文档里所有「创建」入口逐条打一遍。
+# 每条都真的发出去，成功/拒绝都按原文落盘；这里不接受任何「大概是 403」的猜测。
+CREATE_PROBES: Tuple[Tuple[str, str, str, Optional[Dict[str, Any]]], ...] = (
+    ("列出知识库（工作簿只能建在知识库里）", "GET", "/v2.0/wiki/workspaces?maxResults=5", None),
+    ("我的文档（同上，另一入口）", "GET", "/v2.0/wiki/mineWorkspaces", None),
+    ("建知识库", "POST", "/v2.0/wiki/workspaces", {"name": "clawhunt-probe-space"}),
+    (
+        "知识库根目录建表格文档",
+        "POST",
+        "/v1.0/doc/workspaces/PROBE-WORKSPACE-ID/docs",
+        {"name": "clawhunt-probe-sheet", "docType": "WORKBOOK", "operatorId": "PROBE-NOT-A-REAL-UNIONID"},
+    ),
+    ("直接建工作簿（文档里没有这个接口）", "POST", "/v1.0/doc/workbooks", {"name": "clawhunt-probe-sheet"}),
+    ("建云盘空间", "POST", "/v1.0/drive/spaces", {"name": "clawhunt-probe-space", "unionId": "PROBE-NOT-A-REAL-UNIONID"}),
+    ("云盘空间里建文件", "POST", "/v1.0/drive/spaces/PROBE-SPACE-ID/files", {"name": "clawhunt-probe-sheet", "fileType": "file"}),
+    ("读当前用户（想拿 unionId 走这条）", "GET", "/v1.0/contact/users/me", None),
+)
+
+
+def _probe_create(config: Any, transport: Any, token: str) -> List[str]:
+    """逐条打「创建」入口，返回人读结论行；每次请求/响应的原文由 CaptureTransport 落盘。"""
+    lines: List[str] = []
+    transport.denial_mode = True
+    try:
+        return _probe_loop(config, transport, token, lines)
+    finally:
+        transport.denial_mode = False
+
+
+def _probe_loop(config: Any, transport: Any, token: str, lines: List[str]) -> List[str]:
+    for label, method, path, payload in CREATE_PROBES:
+        url = config.base_url + path
+        headers = {"x-acs-dingtalk-access-token": token}
+        try:
+            response = json_request(transport, method, url, headers=headers, payload=payload, timeout=config.timeout)
+        except HttpError as exc:
+            body = _safe_payload(getattr(exc, "body", "") or "")
+            detail = _denial_detail(body)
+            lines.append(
+                "%s → HTTP %s %s（%s）" % (label, getattr(exc, "status", 0), _code_of(body), detail)
+            )
+            continue
+        lines.append("%s → HTTP %s 成功 %s" % (label, response.status, _code_of(_safe_payload(response.text()))))
+    return lines
+
+
+def _safe_payload(text: str) -> Dict[str, Any]:
+    try:
+        parsed = json.loads(text)
+    except (TypeError, ValueError):
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def _code_of(body: Dict[str, Any]) -> str:
+    code = body.get("code") or body.get("message") or ""
+    return str(code)[:60]
+
+
+def _denial_detail(body: Dict[str, Any]) -> str:
+    """把 403 的 requiredScopes / 400 的 message 压成一句人读的话。"""
+    detail = body.get("accessdenieddetail") or body.get("accessDeniedDetail") or {}
+    scopes = detail.get("requiredScopes") if isinstance(detail, dict) else None
+    if scopes:
+        return "缺权限 %s" % ",".join(str(item) for item in scopes)
+    message = str(body.get("message") or "").strip()
+    return message[:120]
+
+
+def _write_and_read_back(client: Any, workbook_id: str, sheet_id: str, sample: List[List[Any]]) -> Dict[str, Any]:
+    """写 A1:B1，再把同一区域读回来比对：只有读回的值与写入一致才算这条链路通。
+
+    只写不读不算跑通——写入接口返回 200 不代表表里真的有这几个字。
+    """
+    address = "A1:B1"
+    client.write_range(address, sample, workbook_id=workbook_id, sheet_id=sheet_id)
+    readback = client.read_range(address, workbook_id=workbook_id, sheet_id=sheet_id)
+    first = list(readback[0]) if readback else []
+    expected = list(sample[0])
+    same = [str(cell) for cell in first] == [str(cell) for cell in expected]
+    if not same:
+        # 写成功但读回来不一样，就是没写进去；这种情况必须报错，不能只说 ok。
+        raise RuntimeError(
+            "写入后回读不一致：写入 %r，读回 %r（区域 %s）"
+            % ([str(cell) for cell in expected], [str(cell) for cell in first], address)
+        )
+    return {
+        "written": expected,
+        "readback": [str(cell) for cell in first],
+        "match": same,
+        "range": address,
+        "sheetId": sheet_id,
+    }
+
+
 def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
     """台账侧真实证据：换令牌、列工作表、读区域、（可选）写一行。"""
     from core.dingtalk_client import (
@@ -648,11 +812,34 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
             "400 MissingoperatorId 拒绝——写证据必须配齐 DINGTALK_OPERATOR_ID"
         )
 
-    run = CaptureRun(_make_folder(out_root), "dingtalk", config.base_url, notes, replayable=False)
+    probing = bool(getattr(args, "probe_create", False))
+    if probing:
+        notes.append(
+            "本目录是「创建入口探测」：逐条打官方文档里的建表/建库入口，"
+            "平台拒绝属于预期结果，记在 denials[] 而不是 failures[]；不写任何业务数据"
+        )
+    if args.write_sample and placeholder:
+        # 占位 id 写不了：真去写只会拿到 operatorId / 表不存在一类的错误，看起来像「写不了」，
+        # 其实是「没给 id」。直接在开目录之前拒掉，不留空目录。
+        print(
+            "无法开始写入：--write-sample 需要真实的 workbookId / sheetId"
+            "（占位 id 只用于探测权限，不能写）",
+            file=sys.stderr,
+        )
+        return EXIT_CONFIG
+
+    run = CaptureRun(
+        _make_folder(out_root),
+        "dingtalk",
+        config.base_url,
+        notes,
+        replayable=False,
+    )
     # appKey / appSecret 出现在任何字符串里都替换掉（钉钉的 403 原文会回显 appKey）。
     run.add_secret(config.app_key)
     run.add_secret(config.app_secret)
-    client = DingTalkClient(config, http=CaptureTransport(run))
+    transport = CaptureTransport(run)
+    client = DingTalkClient(config, http=transport)
 
     results: List[str] = []
     try:
@@ -667,13 +854,23 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         print("令牌没有换到，后续步骤全部跳过（complete=false）", file=sys.stderr)
         return EXIT_CONFIG
 
+    probe_lines: List[str] = []
+    if probing:
+        probe_lines = _probe_create(config, transport, token)
+        results.extend(probe_lines)
+
     steps: List[Tuple[str, Any]] = [
         ("list_sheets", lambda: client.list_sheets(workbook_id=workbook_id)),
         ("read_range", lambda: client.read_range("A1:Z3", workbook_id=workbook_id, sheet_id=sheet_id)),
     ]
+    if probing and placeholder:
+        # 探测的目的是「能不能建出表」，用占位 id 去读只会必然拿到 operatorId 参数错误，
+        # 那种失败会把 complete 拉成 false，反而盖住探测本身的结论。
+        steps = []
+        results.append("list_sheets/read_range 跳过：本目录是创建入口探测，workbookId 尚未拿到")
     if args.write_sample:
         sample = [["capture-probe", args.write_sample]]
-        steps.append(("write_range", lambda: client.write_range("A1:B1", sample, workbook_id=workbook_id, sheet_id=sheet_id)))
+        steps.append(("write_range", lambda: _write_and_read_back(client, workbook_id, sheet_id, sample)))
 
     for name, call in steps:
         try:
@@ -699,6 +896,9 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
             "workbook_id_configured": not placeholder,
             "placeholder_ids_used": placeholder,
             "required_scopes": [SCOPE_READ, SCOPE_WRITE],
+            "probe_create": probing,
+            "create_endpoints_probed": len(CREATE_PROBES) if probing else 0,
+            "environment": "self_built_test_table" if probing else "",
         },
         warnings=[text for text in results if "failed" in text or "denied" in text],
     )
@@ -734,6 +934,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--sheet-id", default="", dest="sheet_id", help="钉钉工作表 id（缺省取 DINGTALK_SHEET_ID）")
     parser.add_argument("--operator-id", default="", dest="operator_id", help="钉钉操作人 unionId（缺省取 DINGTALK_OPERATOR_ID），读写区域接口必填")
     parser.add_argument("--write-sample", default="", dest="write_sample", help="给定时真的写一行探测值，验证写权限（写进 A1:B1）")
+    parser.add_argument(
+        "--probe-create",
+        action="store_true",
+        dest="probe_create",
+        help="逐条探测建表/建库入口（只发创建请求，不写业务数据）；平台拒绝记 denials[] 不影响 complete",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     if args.env_file:

@@ -55,3 +55,97 @@ def test_registered_secret_is_redacted_anywhere_in_manifest(tmp_path):
     name = run._write("t.json", document)
     text = (tmp_path / name).read_text(encoding="utf-8")
     assert "APPKEY0123456789abcdef" not in text
+def test_endpoint_name_separates_workbook_create_from_sheet_listing():
+    """POST /v1.0/doc/workbooks 是「建工作簿」（接口不存在，实测 404），与 GET .../sheets 不是一件事。
+
+    两者都被判成 dingtalk_sheets 会让 manifest 读起来像「列工作表失败」，掩盖真实结论。
+    """
+    assert live_capture._endpoint_name("https://api.dingtalk.com/v1.0/doc/workbooks", "POST") == (
+        "dingtalk_workbook_create"
+    )
+    assert live_capture._endpoint_name("https://api.dingtalk.com/v1.0/doc/workbooks/B/sheets", "GET") == (
+        "dingtalk_sheets"
+    )
+    assert live_capture._endpoint_name("https://api.dingtalk.com/v1.0/doc/workspaces/W/docs", "POST") == (
+        "dingtalk_workspace_docs"
+    )
+    assert live_capture._endpoint_name("https://api.dingtalk.com/v2.0/wiki/workspaces", "GET") == (
+        "dingtalk_wiki_workspaces"
+    )
+
+
+def test_denials_do_not_make_a_probe_capture_incomplete(tmp_path, monkeypatch):
+    """探测型抓取：平台拒绝是答案不是故障，必须进 denials[] 且 complete 仍为 true。
+
+    反过来，非探测模式下同样的 4xx 必须进 failures[] 并把 complete 拉成 false——
+    这条断言守住「探测结论」和「抓取失败」不被混成一件事。
+    """
+    from core.http_client import HttpRequest
+
+    request = HttpRequest(
+        method="POST",
+        url="https://api.dingtalk.com/v1.0/doc/workbooks",
+        headers={"x-acs-dingtalk-access-token": "TOKEN-SYNTHETIC-NOT-REAL"},
+    )
+    body = json.dumps({"code": "InvalidAction.NotFound", "message": "Specified api is not found"})
+
+    probing = live_capture.CaptureRun(str(tmp_path / 'a'), 'dingtalk', 'https://api.dingtalk.com', [], replayable=False)
+    os.makedirs(str(tmp_path / 'a'), exist_ok=True)
+    transport = live_capture.CaptureTransport(probing)
+    transport.denial_mode = True
+    transport._record_rejection(request, "2026-11-27T01:00:00+08:00", "2026-11-26T17:00:00Z", 404, body, "http 404")
+    manifest = probing.manifest()
+    assert manifest["failure_count"] == 0
+    assert manifest["denial_count"] == 1
+    assert manifest["complete"] is True
+    assert manifest["denials"][0]["endpoint"] == "/v1.0/doc/workbooks"
+    assert manifest["denials"][0]["response_file"].endswith(".denial.json")
+
+    strict = live_capture.CaptureRun(str(tmp_path / 'b'), 'dingtalk', 'https://api.dingtalk.com', [], replayable=False)
+    os.makedirs(str(tmp_path / 'b'), exist_ok=True)
+    strict_transport = live_capture.CaptureTransport(strict)
+    strict_transport._record_rejection(request, "2026-11-27T01:00:00+08:00", "2026-11-26T17:00:00Z", 404, body, "http 404")
+    strict_manifest = strict.manifest()
+    assert strict_manifest["failure_count"] == 1
+    assert strict_manifest["denial_count"] == 0
+    assert strict_manifest["complete"] is False
+
+
+def test_probe_capture_never_claims_customer_evidence(tmp_path):
+    """自建表探测必须自带 environment 标注，且不能把 complete 当成「写过客户台账」。"""
+    run = live_capture.CaptureRun(str(tmp_path), 'dingtalk', 'https://api.dingtalk.com', [], replayable=False)
+    manifest = run.manifest(derived={'probe_create': True, 'environment': 'self_built_test_table'})
+    assert manifest["derived"]["environment"] == "self_built_test_table"
+    assert manifest["origin"] == "live"
+    assert "denials" in manifest
+
+def test_write_sample_requires_readback_match():
+    """写入必须跟着一次回读：接口返回成功不等于表里真有这几个字。"""
+
+    class _Client:
+        def __init__(self, echo):
+            self.echo = echo
+            self.calls = []
+
+        def write_range(self, address, values, workbook_id='', sheet_id=''):
+            self.calls.append(('write', address))
+            return {'range': address}
+
+        def read_range(self, address, workbook_id='', sheet_id=''):
+            self.calls.append(('read', address))
+            return self.echo
+
+    sample = [['capture-probe', 'PROBE']]
+    ok_client = _Client([['capture-probe', 'PROBE']])
+    answer = live_capture._write_and_read_back(ok_client, 'B', 'S', sample)
+    assert answer["match"] is True
+    assert [call[0] for call in ok_client.calls] == ["write", "read"]
+    assert answer["range"] == "A1:B1"
+
+    broken = _Client([['', '']])
+    try:
+        live_capture._write_and_read_back(broken, 'B', 'S', sample)
+    except RuntimeError as exc:
+        assert "回读不一致" in str(exc)
+    else:
+        raise AssertionError("读回不一致时必须报错，不能静默返回成功")

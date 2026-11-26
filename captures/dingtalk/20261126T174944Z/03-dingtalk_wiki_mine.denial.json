@@ -1,0 +1,14 @@
+{
+  "_transport_error": "http 403 from https://api.dingtalk.com/v2.0/wiki/mineWorkspaces",
+  "status": 403,
+  "body": {
+    "code": "Forbidden.AccessDenied.AccessTokenPermissionDenied",
+    "requestid": "01A218FA-4378-7EAE-9C71-8C7AFCEA9805",
+    "message": "应用尚未开通所需的权限：[Wiki.Workspace.Read]，点击链接申请并开通即可：https://open-dev.dingtalk.com/appscope/apply?content=ding***az%23Wiki.Workspace.Read",
+    "accessdenieddetail": {
+      "requiredScopes": [
+        "Wiki.Workspace.Read"
+      ]
+    }
+  }
+}

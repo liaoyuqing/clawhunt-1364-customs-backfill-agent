@@ -1,0 +1,22 @@
+{
+  "seq": 1,
+  "endpoint": "/v1.0/oauth2/accessToken",
+  "method": "POST",
+  "url": "https://api.dingtalk.com/v1.0/oauth2/accessToken",
+  "query": [],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+  },
+  "body_keys": [
+    "appKey",
+    "appSecret"
+  ],
+  "body_sha256": "5bf2a214e5a45b94c9b68840dff5edb7daed32e3b9031056c29e5ff897ac0f61",
+  "body_bytes": 115,
+  "body": {
+    "appKey": "***",
+    "appSecret": "***"
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

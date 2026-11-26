@@ -311,6 +311,90 @@ python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.loca
 
 另外实测确认：`GET /v1.0/contact/users/me` 与 `GET /v1.0/contact/users/{userId}` 仍 403 缺 `Contact.User.Read`，所以**本工具不会替客户自动换 unionId**，必须人工提供。老版 `oapi` 通道同理（`getbymobile` / `user/listid` / `department/listsub` 分别缺 `qyapi_get_member_by_mobile` / `qyapi_get_member` / `qyapi_get_department_list`）。
 
+### 5.2.3 自建表格写入的前置条件（实测完了，缺两样）
+
+需求方给的思路是：**我方自己建一张表，跑通一次写入，只为证明链路通，不当客户环境证据**。
+这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.4 节），结论是**当前账号还建不出表**，
+缺的是「两样权限 + 三个 id」。下面这张表可以直接转给钉钉管理员照做。
+
+| 缺什么 | 在哪开 / 在哪取 | 大概耗时 |
+| --- | --- | --- |
+| `Wiki.Workspace.Write`（建知识库）+ `Document.WorkspaceDocument.Write`（知识库里建表格文档） | 钉钉开发者后台 → 企业内部开发 → 本应用 → 权限管理 → 搜「知识库」「文档」→ 勾选申请；管理员在管理后台通过 | 申请 1 分钟，审批看管理员，通常当天 |
+| `Contact.User.Read`（读当前用户拿 unionId）或 `qyapi_get_member`（老版 oapi 由 userId 换 unionId） | 同上页面「通讯录管理」分类，二选一即可 | 同上 |
+| `DINGTALK_WORKBOOK_ID` | 建好表格后：打开表格 → 右上角「…」→「文档信息」→ 表格 ID | 1 分钟 |
+| `DINGTALK_SHEET_ID` | 配好 workbookId 与 operatorId 后，`GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id`；也可直接传工作表名 | 1 分钟 |
+| `DINGTALK_OPERATOR_ID` | 操作人 unionId：管理后台成员详情，或「联系人 → 获取用户」接口。**必须是 unionId，手机号 / userId 都会被判 paramError-operatorId** | 1 分钟 |
+
+如果觉得开权限麻烦，还有一条更省事的路：**直接把现成表格的三个 id 给我**（哪怕是客户自己的测试表），
+`Document.Workbook.Read/Write` 已经到位，配齐 id 就能直接写。
+
+三样都到位后，一条命令产出真实写入 + 回读校验：
+
+```powershell
+python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.local 的绝对路径> `
+    --workbook-id <表格ID> --sheet-id <工作表ID或名称> --operator-id <操作人unionId> --write-sample PROBE
+```
+
+**这张自建表能证明什么、不能证明什么**（写在前面，免得被误读）：
+
+- 能证明：我方客户端对钉钉开放平台的真实鉴权、真实请求构造、真实 PUT 写入与回读校验，端到端跑得通。
+- 不能证明：任何与客户真实台账有关的事。它不是客户环境，`counts_as_customer_evidence` 恒为 `false`，
+  也**不构成 AC#1 的一致率证据**（AC#1 只能用领星业务接口的真实抓取目录）。
+
+### 5.4 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
+
+这一节是 5.2.3 那张表的取证过程。**环境标注：`environment=self_built_test_table`、`counts_as_customer_evidence=false`**——
+它是「我方能打通到钉钉开放平台」的链路证据，不是客户台账证据。
+
+复现命令（每条都真的发出去，成功和拒绝都按原文落盘）：
+
+```powershell
+python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
+    --env-file <项目下 .env.local 的绝对路径> --probe-create
+```
+
+落盘目录：`captures/dingtalk/20261126T174944Z/`，`origin=live`、`complete=true`、`failure_count=0`、
+`denial_count=8`。**为什么拒绝记在 `denials[]` 而不是 `failures[]`**：探测的目的就是「问平台能不能建」，
+「不能」是答案不是故障；记成 failure 会让 `complete` 变 false，反而盖住探测结论。
+
+| # | 入口（官方文档里的写法） | 结果 | 原文要点 |
+| --- | --- | --- | --- |
+| 02 | `GET /v2.0/wiki/workspaces` 列知识库 | 403 | `requiredScopes=["Wiki.Workspace.Read"]` |
+| 03 | `GET /v2.0/wiki/mineWorkspaces` 我的文档 | 403 | `requiredScopes=["Wiki.Workspace.Read"]` |
+| 04 | `POST /v2.0/wiki/workspaces` 建知识库 | 403 | `requiredScopes=["Wiki.Workspace.Write"]` |
+| 05 | `POST /v1.0/doc/workspaces/{workspaceId}/docs` body `docType=WORKBOOK` | 403 | `requiredScopes=["Document.WorkspaceDocument.Write"]`，requestid `01A218FA-45A7-77EC-9F7B-6EF2BDEEFED4` |
+| 06 | `POST /v1.0/doc/workbooks` 直接建工作簿 | **404** | `InvalidAction.NotFound`「Specified api is not found」——**这个接口根本不存在** |
+| 07 | `POST /v1.0/drive/spaces` 建云盘空间 | 403 | `requiredScopes=["Drive.Space.Write"]` |
+| 08 | `POST /v1.0/drive/spaces/{id}/files` 云盘里建文件 | 403 | `requiredScopes=["Drive.File.Write"]` |
+| 09 | `GET /v1.0/contact/users/me` 读当前用户（想顺手拿 unionId） | 403 | `requiredScopes=["Contact.User.Read"]` |
+
+**建表的四条路全堵死了，而且堵的位置各不相同**：
+
+1. 知识库 → 建表格文档：两个 scope 都缺（`Wiki.Workspace.Write`、`Document.WorkspaceDocument.Write`）。
+2. 云盘 → 建文件：两个 scope 都缺（`Drive.Space.Write`、`Drive.File.Write`）。
+3. 直接 POST 工作簿：**接口不存在**（404，与权限无关）。
+4. 已有表格下建工作表 `POST /v1.0/doc/workbooks/{workbookId}/sheets`：**scope 是有的**（不再返回 403），
+   卡在 `operatorId`——这条最接近成功，只差一个真实 unionId 加一个 workbookId。
+
+**为什么不能自己造 unionId**：平台对 `operatorId` 做**值校验**，不是随便填个字符串就能过。实测（全部只读）：
+
+| 传入的 operatorId | 平台返回 |
+| --- | --- |
+| 不传 | `400 MissingoperatorId`「operatorId is mandatory for this action.」 |
+| `PROBE` | `400 invalidRequest.inputArgs.invalid`「paramError-operatorId」 |
+| 32 位十六进制 / 32 位大写十六进制 / 32 位小写字母 / 20 字符 base64 风格 / 44 字符 base64 / 带连字符 UUID | 同上，全部 `paramError-operatorId` |
+| 放 header（`x-acs-dingtalk-operator-id` 或 `operatorId`） | 仍 `400 MissingoperatorId`——**header 不认，只认 query** |
+| 放 body（`PUT .../ranges/A1:A1` body 里带 `operatorId`） | `400 paramError-operatorId`——**body 不认** |
+| query + body 同时传 | `paramError-operatorId` |
+
+「自己去查 unionId」的路也确认堵死：`GET /v1.0/contact/users/me` 与 `/contact/users/{userId}` 都要
+`Contact.User.Read`；`contact/organizations/departments`、`empOrgInfo`、`unionId/cvt` 返回
+`404 InvalidAction.NotFound`（不存在）；老版 `oapi` 的 `topapi/v2/user/get`、`topapi/user/listid` 返回
+`errcode=88 subcode=60011` 缺 `qyapi_get_member`，`topapi/v2/department/listsub` 缺 `qyapi_get_department_list`。
+**结论：unionId 只能人工给，工具不去猜。**
+
+---
+
 ### 5.3 拿到 id 后的写回样例（本仓库已实现，等三个 id 即可跑）
 
 官方写单元格接口：`PUT /v1.0/doc/workbooks/{workbookId}/sheets/{sheetId}/ranges/{rangeAddress}?operatorId={unionId}`，body `{"values": [[...]]}`，头 `x-acs-dingtalk-access-token: <accessToken>`，需要 `Document.Workbook.Write`。
@@ -339,7 +423,9 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 领星抓取器（live_capture） | 已实现，无凭据退出码 2、不通退出码 3、不落半成品 | 第 4 节末尾两条实测 |
 | 钉钉令牌换发 | **真实成功**（HTTP 200，token 长度 32） | 5.1 节 |
 | 钉钉读表 / 读区域 | **真实打到平台**；权限开通前 403（缺 Document.Workbook.Read），开通后变 400（缺 operatorId），证明 scope 已到位 | 5.2、5.2.1 节原文 |
-| 钉钉写台账 | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read），无法代客户生成 | 5.2.1、5.2.2、5.3 节 |
+| 钉钉写台账（客户表） | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read） | 5.2.1、5.2.2、5.3 节 |
+| 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测，4 条 403 缺 scope、1 条 404 接口不存在、其余卡 operatorId；`complete=true`、`failure_count=0` | 5.4 节 + `captures/dingtalk/20261126T174944Z/` |
+| 自建表格写入（若三个 id 到位） | **未取得**；`environment=self_built_test_table`、`counts_as_customer_evidence=false`——即便跑通也只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3 节 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
 一句话总结：**协议层与流水线是真的，钉钉的鉴权是真的，但「真实业务数据的一致率」这一格还空着**——它需要客户侧的账号与网络，第 1 节给出了拿到之后一条命令就能填上的路径，而不是一句「请相信我们」。
