@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-26T19:14:17+00:00",
+  "collected_at": "2026-11-26T19:27:02+00:00",
   "column_fill_rates": {
     "columns": 23,
     "rates": {
@@ -37,7 +37,7 @@
   "fixture_suppliers": 3,
   "ledger_columns": 23,
   "pytest_exit_code": 0,
-  "pytest_tail": "224 passed in 5.55s",
+  "pytest_tail": "224 passed in 5.51s",
   "python_version": "3.11.9",
   "rule_tables": 7,
   "rule_versions": {
@@ -64,5 +64,5 @@
   "test_files": 28,
   "tests_loc": 3989,
   "tracked_files": 233,
-  "tree_sha256": "47f0c3faffbe75b486d63eac4e52640f93ae653193934edc619e2e4616970ad5"
+  "tree_sha256": "ffcbaf35dc7f26f1b44b61ca213b5ad10072dac57769f10cf07d8876533ed13f"
 }
