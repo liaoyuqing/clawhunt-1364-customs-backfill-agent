@@ -314,7 +314,7 @@ python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.loca
 ### 5.2.3 自建表格写入的前置条件（实测完了，缺两样）
 
 需求方给的思路是：**我方自己建一张表，跑通一次写入，只为证明链路通，不当客户环境证据**。
-这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.4 节），结论是**当前账号还建不出表**，
+这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.3 节），结论是**当前账号还建不出表**，
 缺的是「两样权限 + 三个 id」。下面这张表可以直接转给钉钉管理员照做。
 
 | 缺什么 | 在哪开 / 在哪取 | 大概耗时 |
@@ -341,7 +341,7 @@ python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.loca
 - 不能证明：任何与客户真实台账有关的事。它不是客户环境，`counts_as_customer_evidence` 恒为 `false`，
   也**不构成 AC#1 的一致率证据**（AC#1 只能用领星业务接口的真实抓取目录）。
 
-### 5.4 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
+### 5.3 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
 
 这一节是 5.2.3 那张表的取证过程。**环境标注：`environment=self_built_test_table`、`counts_as_customer_evidence=false`**——
 它是「我方能打通到钉钉开放平台」的链路证据，不是客户台账证据。
@@ -395,7 +395,7 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 
 ---
 
-### 5.3 拿到 id 后的写回样例（本仓库已实现，等三个 id 即可跑）
+### 5.4 拿到 id 后的写回样例（本仓库已实现，等三个 id 即可跑）
 
 官方写单元格接口：`PUT /v1.0/doc/workbooks/{workbookId}/sheets/{sheetId}/ranges/{rangeAddress}?operatorId={unionId}`，body `{"values": [[...]]}`，头 `x-acs-dingtalk-access-token: <accessToken>`，需要 `Document.Workbook.Write`。
 
@@ -423,8 +423,8 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 领星抓取器（live_capture） | 已实现，无凭据退出码 2、不通退出码 3、不落半成品 | 第 4 节末尾两条实测 |
 | 钉钉令牌换发 | **真实成功**（HTTP 200，token 长度 32） | 5.1 节 |
 | 钉钉读表 / 读区域 | **真实打到平台**；权限开通前 403（缺 Document.Workbook.Read），开通后变 400（缺 operatorId），证明 scope 已到位 | 5.2、5.2.1 节原文 |
-| 钉钉写台账（客户表） | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read） | 5.2.1、5.2.2、5.3 节 |
-| 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测，4 条 403 缺 scope、1 条 404 接口不存在、其余卡 operatorId；`complete=true`、`failure_count=0` | 5.4 节 + `captures/dingtalk/20261126T174944Z/` |
+| 钉钉写台账（客户表） | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read） | 5.2.1、5.2.2、5.4 节 |
+| 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测，4 条 403 缺 scope、1 条 404 接口不存在、其余卡 operatorId；`complete=true`、`failure_count=0` | 5.3 节 + `captures/dingtalk/20261126T174944Z/`
 | 自建表格写入（若三个 id 到位） | **未取得**；`environment=self_built_test_table`、`counts_as_customer_evidence=false`——即便跑通也只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3 节 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
