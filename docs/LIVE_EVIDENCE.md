@@ -402,6 +402,9 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 差点把这个 bug 写成「平台没问题」。现在 `write_range()` 加了 `as_text` 参数，
 探测档必须显式 `as_text=False`，并且有单测 `test_dingtalk_write_range_can_bypass_text_coercion_for_probes` 钉住；
 那版自相矛盾的探测目录已删除，只留修正后的 `20261126T190624Z`。
+
+探测写进去的 `A20:A22` 三格在取证完成后已清空，表里现在只剩表头 + 两条台账
+（`A1:D3`，HSCODE 均为 `0902100000`）。抓取目录保留的是**当时**的原始响应，清空动作本身没有再单独落一份证据。
 ### 5.3 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
 
 这一节是 5.2.3 那张表的取证过程。**环境标注：`environment=self_built_test_table`、`counts_as_customer_evidence=false`**——
