@@ -177,3 +177,38 @@ def test_probe_mode_keeps_server_errors_as_failures(tmp_path):
     assert manifest["complete"] is False
     assert manifest["failures"][0]["status"] == 500
     assert manifest["failures"][0]["business_code"] == "internalError"
+def test_self_built_table_is_never_customer_evidence():
+    """自建测试表的证据必须自带 counts_as_customer_evidence=False，不能靠正文口头声明。
+
+    背景：我方用自己的钉钉组织建了一张测试表格跑通真实写入。它能证明链路通，
+    但客户台账我们一次都没写过——把这两件事混成一件事，就是在拿合成证据冒充交付。
+    """
+    derived = live_capture._dingtalk_derived(
+        placeholder=False,
+        probing=False,
+        self_built=True,
+        operator_configured=True,
+        write_evidence={'written': ['a'], 'readback': ['a'], 'match': True},
+    )
+    assert derived['environment'] == 'self_built_test_table'
+    assert derived['counts_as_customer_evidence'] is False
+    assert derived['write_evidence']['match'] is True
+
+    # 换成客户自己给的表格时，才允许说这是客户证据。
+    customer = live_capture._dingtalk_derived(
+        placeholder=False, probing=False, self_built=False, operator_configured=True
+    )
+    assert customer['environment'] == ''
+    assert customer['counts_as_customer_evidence'] is True
+    assert 'write_evidence' not in customer
+
+
+def test_probe_capture_counts_as_customer_evidence_is_false():
+    """--probe-create 只发创建请求、不写数据，也必须自我标为「不是客户证据」。"""
+    derived = live_capture._dingtalk_derived(
+        placeholder=True, probing=True, self_built=False, operator_configured=False
+    )
+    assert derived['probe_create'] is True
+    assert derived['environment'] == 'self_built_test_table'
+    assert derived['counts_as_customer_evidence'] is False
+    assert derived['operator_id_configured'] is False

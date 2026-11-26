@@ -17,7 +17,7 @@
 | **AC3** 模块三发票与合同七字段逐项核对输出差异清单（含抬头公司名与税号），抽检无漏报 | `.venv/Scripts/python.exe scripts/invoice_diff_report.py` | stdout `invoices 6 clean 3 dirty 3 diffs 3 fields 抬头公司名,税号,规格 missed 0 extra 0 verified yes`，退出码 0 | `reports/invoice_diff_report.md`、`reports/invoice_diff_report.json` | `tests/test_ac3_invoice_diff.py:44`（七字段逐一）、`:51`（3 净 3 脏）；`tests/test_ac3_no_missed_diff.py:40`（单字段扰动恰好 1 条）、`:55`（差异序列恰为三条） |
 | **AC4** 模块四在单独虚拟机 + 本地模型运行，原件不出内网 | `.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` | 末行 `ok`，退出码 0；把白名单/模型地址/原件目录改坏后退出码 2 并逐条列出 `problems: 3` | `deploy/isolated/isolated.example.yaml`、`deploy/isolated/README.md`、`core/preflight.py` | `tests/test_ac4_isolation.py:31`（公网 CIDR 拒绝）、`:45`（模型地址必须本地）、`:55`（原件目录不得云同步）、`:62`（三条问题一次全列）；`tests/test_module4_local_model.py:65`（公网地址零请求） |
 | **AC5** 涉及税局的操作保留人工确认，且有操作日志 | `.venv/Scripts/python.exe -m pytest -o addopts= -q tests/test_ac5_human_gate.py tests/test_audit_log_persist.py tests/test_cli_real_paths.py` | 用例全绿；无确认时外部桩调用 0 次，确认后恰 1 次并写审计行 | `logs/audit.log`（运行后生成）、`scripts/audit_query.py` | `tests/test_ac5_human_gate.py:25`（无确认零提交）、`:42`（确认后一次 + 审计行）；`tests/test_audit_log_persist.py:18`（JSONL 落盘五字段）；`tests/test_cli_real_paths.py:123`（电子税务局未确认零请求）、`:133`（确认后一次） |
-| **AC6** 各模块源码 + 部署文档 + 操作手册，可独立运行，不依赖交付方服务器 | `.venv/Scripts/python.exe -m pytest -o addopts= -q` | 末行 `217 passed`，退出码 0；`python -m core.cli --batch B2026-0001` 退出码 0 且输出 JSON 摘要 | `README.md`、`docs/deploy.md`、`docs/operations.md`、`docs/modules_and_pricing.md` | `tests/test_packaging.py:38`（镜像用 slim 基础镜像）、`:50`（compose 有 build 与 healthcheck）；`tests/test_module1_knowledge_persist.py:65`（跨进程持久化） |
+| **AC6** 各模块源码 + 部署文档 + 操作手册，可独立运行，不依赖交付方服务器 | `.venv/Scripts/python.exe -m pytest -o addopts= -q` | 末行 `221 passed`，退出码 0；`python -m core.cli --batch B2026-0001` 退出码 0 且输出 JSON 摘要 | `README.md`、`docs/deploy.md`、`docs/operations.md`、`docs/modules_and_pricing.md` | `tests/test_packaging.py:38`（镜像用 slim 基础镜像）、`:50`（compose 有 build 与 healthcheck）；`tests/test_module1_knowledge_persist.py:65`（跨进程持久化） |
 
 ---
 
@@ -31,6 +31,7 @@
 | 数据来源必须标注，合成口径不能冒充真实源 | `.venv/Scripts/python.exe scripts/sample50.py --source fixture` | 报告 `source` 为 `fixture`、`source_origin` 为 `fixture`、`counts_as_ac1_evidence=false` | `reports/sample50_report.json` | `tests/test_ac7_sample_source.py`（origin 口径、recorded 不计证据、capture 拒绝非 live / 非领星 / 不完整目录） |
 | 真实接口缺凭据必须报错，不静默回退 | `.venv/Scripts/python.exe scripts/sample50.py --source lingxing` | 退出码 2，stderr 含 `LINGXING_BASE_URL`（缺 appId/appSecret 时含 `LINGXING_APP_ID`） | `scripts/source_data.py` | `tests/test_ac7_sample_source.py`（`test_lingxing_source_requires_environment_variables`） |
 | 抓取器本身的无凭据 / 断网行为 | `.venv/Scripts/python.exe scripts/live_capture.py --source lingxing --out captures/live` | 无凭据：退出码 2、stderr 含 `LINGXING_APP_ID`、**不创建** `captures/live`；断网：失败请求进 `failures[]`、`manifest.complete=false`、退出码 3 | `scripts/live_capture.py`、`docs/LIVE_EVIDENCE.md` | `tests/test_protocol_conformance.py`（报文形态 19 条） |
+| 自建表真写一行并回读：写入接口 200 不算数，读回逐格一致才算 | `.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/dingtalk --self-built-table --write-ledger-row B2026-0001` | `captures/dingtalk/20261126T185615Z/`：9 个请求全 200，`derived.write_evidence.match=true`、`written==readback`、`counts_as_customer_evidence=false` |
 | 建表入口探测：平台拒绝不算抓取失败，也不冒充成功 | `.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/dingtalk --probe-create` | 8 个创建入口逐条发送；403/400/404 进 `denials[]`，`complete=true`、`failure_count=0`、`denial_count=8`；**非探测模式**下同样的 4xx 进 `failures[]` 且 `complete=false` | `captures/dingtalk/20261126T174944Z/manifest.json`、`docs/LIVE_EVIDENCE.md` 5.3 节 | `tests/test_capture_redaction.py`（`test_denials_do_not_make_a_probe_capture_incomplete`、`test_endpoint_name_separates_workbook_create_from_sheet_listing`、`test_probe_capture_never_claims_customer_evidence`） |
 | 领星签名协议与官方文档逐步对齐 | `.venv/Scripts/python.exe -m pytest -o addopts= -q tests/test_protocol_conformance.py` | 19 条全绿：FIPS-197 AES 向量、MD5 大写、ASCII 升序、空值跳过 / null 参与、AES-ECB-PKCS5 + Base64、Query 仅 app_key/timestamp/sign、签名覆盖 body、sign 不缓存、3001008 退避 | `core/lingxing_crypto.py`、`core/lingxing_client.py` | `tests/test_protocol_conformance.py` |
 | 视觉低置信度不写台账 | `.venv/Scripts/python.exe -m pytest -o addopts= -q tests/test_vision_real_path.py` | 高置信度字段写入且来源为 `vision`，低置信度只进人工队列 | `fixtures/recorded/vision_response.json` | `tests/test_vision_real_path.py:64` |
@@ -45,7 +46,7 @@
 ```bash
 cd <仓库根目录>
 
-# 1) 全部单元测试（217 条）
+# 1) 全部单元测试（221 条）
 .venv/Scripts/python.exe -m pytest -q
 
 # 2) 50 批次逐字段抽检（一致率 / 结余 / 待补清单）
@@ -101,7 +102,7 @@ cd <仓库根目录>
 | `reports/metrics.json` | 全部实测数字（用例数、文件数、行数、树哈希） |
 | `reports/secret_scan_report.json` | 密钥扫描结果 |
 | `docs/LIVE_EVIDENCE.md` | 真实取数/写台账证据：客户侧三步复现、manifest 字段、领星开通条件、我方 TCP 不可达实测、钉钉 403 原文与写入样例、live/fixture 诚实对照 |
-| `captures/dingtalk/<时间戳>/` | 钉钉侧真实抓取目录（令牌请求/响应留证 + 权限前后的失败/拒绝原文 + manifest），凭据已打码；`20261126T172559Z` 是读写权限开通后重抓（403→400 `MissingoperatorId`），`20261126T180011Z` 是知识库权限补齐后重跑建表入口（wiki 三条由 403 变 `400 MissingoperatorId`，建文档那条稳定 500 `internalError`，如实记 `complete=false`） |
+| `captures/dingtalk/<时间戳>/` | 钉钉侧真实抓取目录（令牌请求/响应留证 + 权限前后的失败/拒绝原文 + manifest），凭据已打码；`20261126T172559Z` 是读写权限开通后重抓（403→400 `MissingoperatorId`），`20261126T180011Z` 是知识库权限补齐后重跑建表入口（wiki 三条由 403 变 `400 MissingoperatorId`，建文档那条稳定 500 `internalError`，如实记 `complete=false`），`20261126T185615Z` 是**自建测试表格跑通真实写入**（建表→写表头→写台账行→回读逐格一致，9 个请求全 200，`counts_as_customer_evidence=false`） |
 
 ---
 
@@ -123,8 +124,11 @@ cd <仓库根目录>
 .venv/Scripts/python.exe scripts/live_capture.py --source lingxing --out captures/live
 .venv/Scripts/python.exe scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>
 
-# 钉钉侧探令牌 / 读表 / 读区域（三个 id 齐了以后加 --write-sample 直接验证写入）
-.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/live/dingtalk --operator-id <操作人 unionId> --write-sample PROBE
+# 钉钉侧探令牌 / 读表 / 读区域
+.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/live/dingtalk --operator-id <操作人 unionId>
+
+# 钉钉侧按台账真路径写一行并回读（我方自建表就是这条命令跑通的）
+.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/dingtalk --self-built-table --write-ledger-row B2026-0001
 
 # 真实领星 / 钉钉接口取数与写回
 .venv/Scripts/python.exe scripts/recorded_smoke.py --source live

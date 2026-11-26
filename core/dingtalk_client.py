@@ -434,7 +434,14 @@ class DingTalkClient:
                 row_number = offset
                 break
         if row_number == 0:
-            row_number = max(len(existing) + 1, 2)
+            # 追加行要看「最后一行有内容的行」，不能看读回来的行数：
+            # 读 A1:Z300 时空表也会返回 300 行空串，直接 len(existing)+1 会写到第 301 行，
+            # 看起来写成功、实际把台账撑出一大片空白。
+            last_used = 1
+            for offset, raw in enumerate(existing, start=1):
+                if raw and any(str(cell).strip() for cell in raw):
+                    last_used = offset
+            row_number = max(last_used + 1, 2)
         address = range_address(row_number, row_number, len(header))
         answer = self.write_range(address, [columns], workbook_id=book, sheet_id=sheet)
         answer = dict(answer)

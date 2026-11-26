@@ -768,6 +768,97 @@ def _write_and_read_back(client: Any, workbook_id: str, sheet_id: str, sample: L
     }
 
 
+LEDGER_HEADER = ["批次号", "SKU", "产品中文报关名", "HSCODE"]
+
+
+def _write_ledger_row(
+    client: Any,
+    workbook_id: str,
+    sheet_id: str,
+    row_key: str,
+    values: Dict[str, Any],
+) -> Dict[str, Any]:
+    """用交付里的同一段 write_row 真写一行台账，再读回来逐格比对。
+
+    与 --write-sample 的区别：--write-sample 只证明「这个区域能写」，
+    这里走的是台账真正用的那条路径——先确认表头（没有就补表头），
+    再按第一列定位行号、PUT 整行、把写进去的那一行读回来比对。
+    只写不读不算跑通：PUT 返回 200 不代表表里真有这几个字。
+    """
+    from core.dingtalk_client import range_address
+
+    header = client.read_range("A1:D1", workbook_id=workbook_id, sheet_id=sheet_id)
+    current = [str(cell) for cell in (header[0] if header else [])]
+    previous = list(current)
+    header_written = False
+    if [cell.strip() for cell in current[: len(LEDGER_HEADER)]] != LEDGER_HEADER:
+        # 表头不是台账要的四列（新表通常是空的，也可能残留探测写入），先把表头写正。
+        client.write_range(
+            "A1:D1", [LEDGER_HEADER], workbook_id=workbook_id, sheet_id=sheet_id
+        )
+        header_written = True
+        current = list(LEDGER_HEADER)
+    answer = client.write_row(row_key, values, workbook_id=workbook_id, sheet_id=sheet_id)
+    address = str(answer.get("range") or "")
+    if not address:
+        raise RuntimeError("write_row 没有返回写入区域，无法回读校验")
+    readback = client.read_range(address, workbook_id=workbook_id, sheet_id=sheet_id)
+    first = [str(cell) for cell in (readback[0] if readback else [])]
+    expected = [str(values.get(name, "")) for name in current]
+    same = first[: len(expected)] == expected
+    if not same:
+        raise RuntimeError(
+            "台账写入后回读不一致：写入 %r，读回 %r（区域 %s）" % (expected, first, address)
+        )
+    return {
+        "mode": "ledger_row",
+        "rowKey": str(row_key),
+        "headerWritten": header_written,
+        "previousHeader": previous,
+        "header": list(current),
+        "written": expected,
+        "readback": first[: len(expected)],
+        "match": same,
+        "range": address,
+        "sheetId": sheet_id,
+    }
+
+
+def _dingtalk_derived(
+    placeholder: bool,
+    probing: bool,
+    self_built: bool,
+    operator_configured: bool,
+    write_evidence: Optional[Dict[str, Any]] = None,
+    required_scopes: Optional[List[str]] = None,
+    target: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """manifest.derived 的构造：把「这批证据到底算不算客户证据」写成字段，不靠正文里的口头声明。"""
+    if required_scopes is None:
+        from core.dingtalk_client import SCOPE_READ, SCOPE_WRITE
+
+        required_scopes = [SCOPE_READ, SCOPE_WRITE]
+    derived: Dict[str, Any] = {
+        "workbook_id_configured": not placeholder,
+        "placeholder_ids_used": placeholder,
+        "required_scopes": list(required_scopes),
+        "operator_id_configured": operator_configured,
+        "probe_create": probing,
+        "create_endpoints_probed": len(CREATE_PROBES) if probing else 0,
+        # 自建测试表 vs 客户台账：只有后者能当 AC 证据，前者只能证明链路通。
+        # 探测建表（--probe-create）必然是我方自建环境；占位 id 下连表都没摸到，
+        # 也谈不上「写没写过客户台账」，同样不能算客户证据。
+        "environment": "self_built_test_table" if (self_built or probing) else "",
+        "counts_as_customer_evidence": (not self_built) and (not placeholder),
+    }
+    if target:
+        # 记「写的是哪张表」：workbookId / sheetId 不是凭据，留着别人才能对上号。
+        derived["target"] = dict(target)
+    if write_evidence:
+        derived["write_evidence"] = dict(write_evidence)
+    return derived
+
+
 def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
     """台账侧真实证据：换令牌、列工作表、读区域、（可选）写一行。"""
     from core.dingtalk_client import (
@@ -818,12 +909,27 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
             "本目录是「创建入口探测」：逐条打官方文档里的建表/建库入口，"
             "平台拒绝属于预期结果，记在 denials[] 而不是 failures[]；不写任何业务数据"
         )
-    if args.write_sample and placeholder:
+    if getattr(args, "self_built_table", False):
+        notes.append(
+            "本目录写入的是我方自建测试表格（environment=self_built_test_table），"
+            "只证明「凭据有效 + 权限到位 + 写入并读回一致」这条链路通，"
+            "不是客户台账，也不作为 AC#1/AC#7 的验收证据"
+        )
+    if (args.write_sample or getattr(args, "write_ledger_row", "")) and placeholder:
         # 占位 id 写不了：真去写只会拿到 operatorId / 表不存在一类的错误，看起来像「写不了」，
         # 其实是「没给 id」。直接在开目录之前拒掉，不留空目录。
         print(
-            "无法开始写入：--write-sample 需要真实的 workbookId / sheetId"
-            "（占位 id 只用于探测权限，不能写）",
+            "无法开始写入：%s 需要真实的 workbookId / sheetId"
+            "（占位 id 只用于探测权限，不能写）"
+            % ("--write-ledger-row" if getattr(args, "write_ledger_row", "") else "--write-sample"),
+            file=sys.stderr,
+        )
+        return EXIT_CONFIG
+    if getattr(args, "write_ledger_row", "") and not config.operator_id:
+        # 写台账必须带 operatorId（操作人 unionId），没有就写不了；提前说清楚，别写一半。
+        print(
+            "无法开始写入台账：缺少 DINGTALK_OPERATOR_ID（操作人 unionId），"
+            "写入接口的 query 必须带它",
             file=sys.stderr,
         )
         return EXIT_CONFIG
@@ -868,13 +974,33 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         # 那种失败会把 complete 拉成 false，反而盖住探测本身的结论。
         steps = []
         results.append("list_sheets/read_range 跳过：本目录是创建入口探测，workbookId 尚未拿到")
+    write_evidence: Dict[str, Any] = {}
     if args.write_sample:
         sample = [["capture-probe", args.write_sample]]
         steps.append(("write_range", lambda: _write_and_read_back(client, workbook_id, sheet_id, sample)))
+    if getattr(args, "write_ledger_row", ""):
+        # 台账真路径：表头 → 定位行号 → PUT 整行 → 读回比对，走的是交付里的 write_row。
+        ledger_values = {
+            "批次号": args.write_ledger_row,
+            "SKU": str(getattr(args, "ledger_sku", "") or "BND-2S"),
+            "产品中文报关名": str(getattr(args, "ledger_name", "") or "桌面组合套装A"),
+            "HSCODE": str(getattr(args, "ledger_hscode", "") or "3924900000"),
+        }
+        steps.append(
+            (
+                "write_ledger_row",
+                lambda: _write_ledger_row(
+                    client, workbook_id, sheet_id, args.write_ledger_row, ledger_values
+                ),
+            )
+        )
 
     for name, call in steps:
         try:
             answer = call()
+            if name in ("write_range", "write_ledger_row") and isinstance(answer, dict):
+                # 写入证据必须包含「写进去什么 / 读回来什么 / 是否一致」，只写不读不算跑通。
+                write_evidence = dict(answer)
             if isinstance(answer, list):
                 results.append("%s ok items=%d" % (name, len(answer)))
             else:
@@ -891,15 +1017,24 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         except Exception as exc:
             results.append("%s failed: %s" % (name, exc))
 
+    # 探测建表 / 显式声明自建表 / 只用占位 id 探权限——这三种都不是客户台账。
+    self_built = bool(getattr(args, "self_built_table", False)) or probing
+    derived = _dingtalk_derived(
+        placeholder=placeholder,
+        probing=probing,
+        self_built=self_built,
+        operator_configured=bool(config.operator_id),
+        write_evidence=write_evidence,
+        target={
+            "workbookId": workbook_id,
+            "sheetId": sheet_id,
+            "redactedOperatorId": "***" if config.operator_id else "",
+        }
+        if not placeholder
+        else None,
+    )
     manifest = run.manifest(
-        derived={
-            "workbook_id_configured": not placeholder,
-            "placeholder_ids_used": placeholder,
-            "required_scopes": [SCOPE_READ, SCOPE_WRITE],
-            "probe_create": probing,
-            "create_endpoints_probed": len(CREATE_PROBES) if probing else 0,
-            "environment": "self_built_test_table" if probing else "",
-        },
+        derived=derived,
         warnings=[text for text in results if "failed" in text or "denied" in text],
     )
     for line in results:
@@ -934,6 +1069,21 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--sheet-id", default="", dest="sheet_id", help="钉钉工作表 id（缺省取 DINGTALK_SHEET_ID）")
     parser.add_argument("--operator-id", default="", dest="operator_id", help="钉钉操作人 unionId（缺省取 DINGTALK_OPERATOR_ID），读写区域接口必填")
     parser.add_argument("--write-sample", default="", dest="write_sample", help="给定时真的写一行探测值，验证写权限（写进 A1:B1）")
+    parser.add_argument(
+        "--write-ledger-row",
+        default="",
+        dest="write_ledger_row",
+        help="按台账真路径写一行（表头->定位行->PUT 整行->读回校验），参数是批次号",
+    )
+    parser.add_argument("--ledger-sku", default="", dest="ledger_sku", help="--write-ledger-row 的 SKU")
+    parser.add_argument("--ledger-name", default="", dest="ledger_name", help="--write-ledger-row 的产品中文报关名")
+    parser.add_argument("--ledger-hscode", default="", dest="ledger_hscode", help="--write-ledger-row 的 HSCODE")
+    parser.add_argument(
+        "--self-built-table",
+        action="store_true",
+        dest="self_built_table",
+        help="声明目标是我方自建测试表格：manifest 记 environment=self_built_test_table、counts_as_customer_evidence=false",
+    )
     parser.add_argument(
         "--probe-create",
         action="store_true",

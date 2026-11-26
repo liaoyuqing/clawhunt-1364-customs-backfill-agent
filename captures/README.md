@@ -22,6 +22,7 @@
 | `dingtalk/20261126T173159Z/` | 真实钉钉开放平台 | 带非法 `operatorId` 重抓：400 `paramError-operatorId`，值已打码 `***`，证明 query 真的拼上去了。 |
 | `dingtalk/20261126T174944Z/` | 真实钉钉开放平台 | **建表入口探测（权限授予前）**：8 条创建路径逐条实测，`complete=true`、`failure_count=0`、`denial_count=8`（4 条 403 缺 scope + 1 条 404 接口不存在 + 3 条卡 operatorId）。用途仅为证明我方链路通，`environment=self_built_test_table`、`counts_as_customer_evidence=false`。 |
 | `dingtalk/20261126T180011Z/` | 真实钉钉开放平台 | **建表入口探测（知识库权限补齐后重跑）**：`complete=false`、`failure_count=1`（`POST /v1.0/doc/workspaces/{假id}/docs` 稳定 500 `internalError`）、`denial_count=7`。用于**权限状态对照**：三条 wiki 入口由 403 变 `400 MissingoperatorId`，证明 `Wiki.Workspace.*` 与 `Document.WorkspaceDocument.Write` 已授予；`Contact.User.Read` 仍 403。`replayable=false`、`source=dingtalk`，不会被一致率计算使用。 |
+| `dingtalk/20261126T185615Z/` | 真实钉钉开放平台 | **自建测试表格跑通写入**（9 个请求全 200，`complete=true`、`failure_count=0`、`denial_count=0`）：建表 → 列工作表 → 写表头 `A1:D1` → 按台账真路径写一行 `A2:Z2` → **回读逐格比对一致**（`["B2026-0001","BND-2S","桌面组合套装A","3924900000"]`）。`environment=self_built_test_table`、`counts_as_customer_evidence=false`：只证明我方链路通，不是客户台账，也不构成 AC#1 证据。 |
 
 细节与复现方式见 `docs/LIVE_EVIDENCE.md`。
 ## 一个 `dingtalk/<时间戳>/` 目录里有什么
@@ -32,7 +33,7 @@
 | `NN-<endpoint>.response.json` | 平台原始响应体（令牌响应体整段不落盘，只留键名、长度、sha256） |
 | `NN-<endpoint>.failure.json` | 抓取步骤失败（网络不通 / 5xx / 非探测步骤的非预期 4xx），`complete` 会被拉成 `false`。**探测模式下 5xx 仍进这里**——平台内部错误不是「拒绝」，藏着不说才是问题 |
 | `NN-<endpoint>.denial.json` | **探测型**请求被平台明确拒绝（403 缺权限 / 400 参数错 / 404 接口不存在）。这是预期结果，记入 `denials[]`，**不影响 `complete`** |
-| `manifest.json` | `origin=live`、`complete`、`replayable`、逐端点状态码 / sha256 / 记录条数、`failures[]`、`denials[]`、`derived`（含 `environment` 标注） |
+| `manifest.json` | `origin=live`、`complete`、`replayable`、逐端点状态码 / sha256 / 记录条数、`failures[]`、`denials[]`、`derived`（含 `environment`、`counts_as_customer_evidence`、`target`、`write_evidence`） |
 
 `origin` 只会是 `live`：`core/sources.py` 的 `capture_payloads()` 会拒绝任何非 `live` 的目录，
 合成数据无法从这条路径冒充真实抓取（见 `tests/test_ac7_sample_source.py`）。

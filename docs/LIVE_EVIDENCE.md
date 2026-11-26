@@ -295,54 +295,69 @@ False            # <- 失败不会留下空目录或占位文件
 
 所以这一格**必须由客户提供真实 unionId**，猜不出来也造不出来。
 
-### 5.2.2 还缺的三个 id，怎么取
+### 5.2.2 三个 id：已全部取到（不靠客户提供）
 
-| 变量 | 取值位置 | 备注 |
+客户补开 `qyapi_get_department_list` + `qyapi_get_member` 之后，三个 id 由本仓库脚本自己查了出来，
+**没有让客户手工抄任何 id**。取法与结果（全部真实请求 200）：
+
+| 变量 | 怎么取到的 | 值 |
 | --- | --- | --- |
-| `DINGTALK_WORKBOOK_ID` | 打开钉钉表格 → 右上角「…」→「文档信息」→ 表格 ID | 文档里也写作 nodeId |
-| `DINGTALK_SHEET_ID` | 先 `GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id` 字段 | 配好 workbookId 与 operatorId 后一条命令就能列出来 |
-| `DINGTALK_OPERATOR_ID` | 操作人 unionId：钉钉管理后台成员详情，或用 userId 调开放平台接口换取 | 也支持命令行 `--operator-id` 临时传入 |
+| `DINGTALK_OPERATOR_ID` | 老版 oapi：`gettoken` → `topapi/v2/department/listsub` 递归部门 → `topapi/user/listid` → `topapi/v2/user/get` 读 `unionid` | `z4gl***iEiE`（操作人 unionId；完整值只在 `.env.local`，**不入库、文档不写全**） |
+| `DINGTALK_WORKBOOK_ID` | `POST /v1.0/doc/workspaces/{workspaceId}/docs` 建一张 `docType=WORKBOOK` 的表格，返回 `docKey` | `eonavxLprD13aqXx`（`dentryUuid` 也可用；`nodeId` **不行**，实测 404 `uuid not exist`） |
+| `DINGTALK_SHEET_ID` | `GET /v1.0/doc/workbooks/{docKey}/sheets` 返回的 `id` | `kgqie6hm`（表名 `Sheet1`） |
 
-配齐后一条命令就能产出真实写入证据：
+**knowledge 空间是怎么定位的**：`GET /v2.0/wiki/mineWorkspaces?operatorId=<unionId>` → 200，个人空间
+`workspaceId=Kw8lASMkmzyKLaE5`（`type=PERSONAL`，`permissionRole=OWNER`）；
+`GET /v2.0/wiki/workspaces` 也 200 但返回 `{}`（该企业没有别的知识库）。
 
-```powershell
-python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.local 的绝对路径> --write-sample PROBE
-```
+**踩到的两个坑，写下来免得后人重踩**：
 
-另外实测确认：`GET /v1.0/contact/users/me` 与 `GET /v1.0/contact/users/{userId}` 仍 403 缺 `Contact.User.Read`，所以**本工具不会替客户自动换 unionId**，必须人工提供。老版 `oapi` 通道同理（`getbymobile` / `user/listid` / `department/listsub` 分别缺 `qyapi_get_member_by_mobile` / `qyapi_get_member` / `qyapi_get_department_list`）。
+1. `nodeId`（`qWXwP76kALZZgm31`）看着最像 workbookId，但拿它列工作表是 **404 `invalidRequest.resource.notFound`「uuid not exist」**；
+   `docKey` 与 `dentryUuid` 都返回 200。所以「文档里有三种 id」这句话是对的，但只有两种能用。
+2. `Contact.User.Read` **依然 403**（`GET /v1.0/contact/users/me`），所以走新版接口自动取 unionId 的路仍然不通；
+   能取到是因为客户开了老版 oapi 的两个通讯录权限。这两条路取到的是同一个值，但要求的权限不同。
 
-### 5.2.3 自建表格写入的前置条件（权限已全部到位，只缺三个 id）
-
-需求方给的思路是：**我方自己建一张表，跑通一次写入，只为证明链路通，不当客户环境证据**。
-这条路我按官方文档把所有「创建」入口逐条打了一遍（原文见 5.3 节），结论是**当前账号还建不出表**。
-
-权限这一层**已经全部到位了**：两轮补充授权之后，原本 403 缺 scope 的入口现在都不再报缺权限（对照见 5.3 节）。
-剩下卡住的只有一件事——**三个 id**。下面这张表可以直接转给管理员照做。
-
-| 缺什么 | 现状（实测） | 在哪取 | 大概耗时 |
-| --- | --- | --- | --- |
-| `Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write` | **已到位**：`GET /v2.0/wiki/workspaces` 由 403 变 `400 MissingoperatorId`，`POST /v2.0/wiki/workspaces` 与 `POST /v1.0/doc/workspaces/{id}/docs` 也都不再报缺 scope | 无需再申请 | — |
-| `Document.Workbook.Read/Write` | **已到位**：`GET /v1.0/doc/workbooks/{id}/sheets` 由 403 变 `400 MissingoperatorId` | 无需再申请 | — |
-| `Contact.User.Read`（自动取 unionId 用）或 `qyapi_get_member`（老版 oapi 换 unionId） | **仍未授予**：`GET /v1.0/contact/users/me` 仍 403；不影响写入，只影响「工具替客户自动查 unionId」，所以仍需人工给 | 开发者后台「通讯录管理」分类；或直接由管理员抄一个 unionId 给我 | 1 分钟 |
-| `DINGTALK_OPERATOR_ID` | **唯一硬阻塞**：所有 wiki / doc 接口都要真实 unionId，缺了就 400 `MissingoperatorId`，填假值就 400 `paramError-operatorId` | 管理后台成员详情里的 unionId（不是手机号、不是 userId） | 1 分钟 |
-| `DINGTALK_WORKBOOK_ID` | 未提供 | 打开钉钉表格 → 右上角「…」→「文档信息」→ 表格 ID | 1 分钟 |
-| `DINGTALK_SHEET_ID` | 未提供 | 配好 workbookId 与 operatorId 后，`GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id`；也可直接传工作表名 | 1 分钟 |
-
-如果觉得开权限麻烦，还有一条更省事的路：**直接把现成表格的三个 id 给我**（哪怕是客户自己的测试表），
-`Document.Workbook.Read/Write` 已经到位，配齐 id 就能直接写。
-
-三样都到位后，一条命令产出真实写入 + 回读校验：
+配齐后一条命令就能产出真实写入证据（下面的 5.4 节就是这一次的真实落盘）：
 
 ```powershell
 python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.local 的绝对路径> `
-    --workbook-id <表格ID> --sheet-id <工作表ID或名称> --operator-id <操作人unionId> --write-sample PROBE
+    --workbook-id eonavxLprD13aqXx --sheet-id kgqie6hm --operator-id <unionId> `
+    --self-built-table --write-ledger-row B2026-0001
+```
+
+### 5.2.3 自建测试表格：已经建出来了，写进去并读回一致
+
+需求方给的思路是：**我方自己建一张表，跑通一次写入，只为证明链路通，不当客户环境证据**。
+这条已经跑完了：表格由本仓库脚本自己建（`POST /v1.0/doc/workspaces/{workspaceId}/docs`，`docType=WORKBOOK`），
+写入走的是交付里的同一条 `write_row()` 路径，写完立刻回读比对。
+
+| 环节 | 结果 |
+| --- | --- |
+| 建表格文档 | **200**，`docKey=eonavxLprD13aqXx`、`dentryUuid=QOG9lyrgJPvDGp12TPvN5DZxWzN67Mw4`、`nodeId=qWXwP76kALZZgm31` |
+| 列工作表 | **200**，`[{"name":"Sheet1","id":"kgqie6hm"}]` |
+| 写表头 | **200**，`A1:D1` ← `["批次号","SKU","产品中文报关名","HSCODE"]` |
+| 写台账行 | **200**，`A2:Z2`（`A2:D2` 四列有值，其余空） |
+| 回读校验 | `["B2026-0001","BND-2S","桌面组合套装A","3924900000"]` == 写入值，`match=true` |
+
+落盘目录：`captures/dingtalk/20261126T185615Z/`（9 个请求 / 18 个文件 + manifest，`origin=live`、`complete=true`、
+`failure_count=0`、`denial_count=0`、`environment=self_built_test_table`、`counts_as_customer_evidence=false`）。
+
+复现命令（把 unionId 从 `.env.local` 注入即可，不需要任何手工抄写）：
+
+```powershell
+python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
+    --env-file <项目下 .env.local 的绝对路径> `
+    --workbook-id eonavxLprD13aqXx --sheet-id kgqie6hm `
+    --self-built-table --write-ledger-row B2026-0001
 ```
 
 **这张自建表能证明什么、不能证明什么**（写在前面，免得被误读）：
 
-- 能证明：我方客户端对钉钉开放平台的真实鉴权、真实请求构造、真实 PUT 写入与回读校验，端到端跑得通。
+- 能证明：我方客户端对钉钉开放平台的真实鉴权、真实请求构造、真实建表、真实 PUT 写入与**写入后回读比对**，端到端跑得通。
 - 不能证明：任何与客户真实台账有关的事。它不是客户环境，`counts_as_customer_evidence` 恒为 `false`，
   也**不构成 AC#1 的一致率证据**（AC#1 只能用领星业务接口的真实抓取目录）。
+- 这一格与买方说的「缺真的写过台账」**只差环境**：同一条代码路径、同一套报文、同样的回读校验，
+  换成客户自己的 workbookId / sheetId 就是客户台账；现在缺的是客户那张表的两个 id，不是能力。
 
 ### 5.3 自建表格探测：官方文档里的创建入口逐条打了一遍（真实原文）
 
@@ -412,6 +427,9 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 
 一句话：**权限已经买齐了，剩下的是三个 id**（operatorId / workbookId / sheetId）。
 
+> 后续进展（同一天）：三个 id 已由本仓库脚本自查取得，并据此把表格建出来、写入并回读校验通过——
+> 见 5.2.2 节（怎么取）与 5.2.3 节（跑通结果）。本节保留的是「权限刚到位那一刻」的原始状态，作对照用。
+
 **为什么不能自己造 unionId**：平台对 `operatorId` 做**值校验**，不是随便填个字符串就能过。实测（全部只读）：
 
 | 传入的 operatorId | 平台返回 |
@@ -431,7 +449,7 @@ python scripts/live_capture.py --source dingtalk --out captures\dingtalk `
 
 ---
 
-### 5.4 拿到 id 后的写回样例（本仓库已实现，等三个 id 即可跑）
+### 5.4 写回样例：离线报文形态 + 真实跑通后的实际请求
 
 官方写单元格接口：`PUT /v1.0/doc/workbooks/{workbookId}/sheets/{sheetId}/ranges/{rangeAddress}?operatorId={unionId}`，body `{"values": [[...]]}`，头 `x-acs-dingtalk-access-token: <accessToken>`，需要 `Document.Workbook.Write`。
 
@@ -446,7 +464,25 @@ request PUT  https://dingtalk.example.invalid/v1.0/doc/workbooks/BOOK-SYNTHETIC-
 write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 ```
 
-权限到位后，把 `https://dingtalk.example.invalid` 换成 `https://api.dingtalk.com`、把 `*-SYNTHETIC-NOT-REAL` 换成真实 id，上面三条请求就是真实请求；用 `scripts/live_capture.py --source dingtalk` 会把它们连同响应原文一起落盘。
+上面这段是**离线回放**（`recorded_smoke.py --source recorded`），用来说明报文形态。
+
+真实跑通的那一次是 `captures/dingtalk/20261126T185615Z/`，9 个请求全部 200，顺序与上文一致：
+
+```text
+01 POST /v1.0/oauth2/accessToken                                                -> 200（响应体不落盘，只留 sha256）
+02 GET  /v1.0/doc/workbooks/eonavxLprD13aqXx/sheets                             -> 200  [{"name":"Sheet1","id":"kgqie6hm"}]
+03 GET  .../sheets/kgqie6hm/ranges/A1%3AZ3                                      -> 200  （写前巡检，全空）
+04 GET  .../sheets/kgqie6hm/ranges/A1%3AD1                                      -> 200  （读表头，此时是上一轮探测残留）
+05 PUT  .../sheets/kgqie6hm/ranges/A1%3AD1?operatorId=***                       -> 200  （把表头写正：批次号/SKU/产品中文报关名/HSCODE）
+06 GET  .../sheets/kgqie6hm/ranges/A1%3AZ1                                      -> 200  （读表头定位列序）
+07 GET  .../sheets/kgqie6hm/ranges/A1%3AZ300                                    -> 200  （读现有行定位行号；空表返回 300 行空串）
+08 PUT  .../sheets/kgqie6hm/ranges/A2%3AZ2?operatorId=***                       -> 200  （PUT 整行）
+09 GET  .../sheets/kgqie6hm/ranges/A2%3AZ2                                      -> 200  （回读：["B2026-0001","BND-2S","桌面组合套装A","3924900000"]）
+```
+
+第 07 步顺带修掉了一个真 bug：旧实现用 `len(读回行数)+1` 算追加行号，而读 `A1:Z300` 时空表也会回 300 行，
+于是台账被写到了第 **301** 行——接口 200、回读也「一致」（读到的是空串），但表里平白多出 298 行空白。
+现在改成按「最后一条有内容的行」+1，空表就落在第 2 行，并且有两条单测钉住（`test_dingtalk_write_row_appends_after_last_used_row_not_after_padding`、`..._on_empty_sheet_starts_at_row_two`）。
 
 ---
 
@@ -459,10 +495,12 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 领星抓取器（live_capture） | 已实现，无凭据退出码 2、不通退出码 3、不落半成品 | 第 4 节末尾两条实测 |
 | 钉钉令牌换发 | **真实成功**（HTTP 200，token 长度 32） | 5.1 节 |
 | 钉钉读表 / 读区域 | **真实打到平台**；权限开通前 403（缺 Document.Workbook.Read），开通后变 400（缺 operatorId），证明 scope 已到位 | 5.2、5.2.1 节原文 |
-| 钉钉写台账（客户表） | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read） | 5.2.1、5.2.2、5.4 节 |
+| 钉钉写台账（客户表） | **未取得**：我方已能自取三个 id 并跑通写入，但客户未提供其真实台账的 workbookId / sheetId，所以写的仍是我方自建表 | 5.2.3 节 |
 | 钉钉「能不能建出表」 | **真实打到平台**：8 个创建入口逐条实测。权限授予前 4 条 403 缺 scope、1 条 404 接口不存在；**知识库权限补齐后重跑，3 条 403 全部变 `400 MissingoperatorId`（scope 校验已通过）**，剩余硬阻塞只有真实 unionId | 5.3、5.3.1 节 + `captures/dingtalk/20261126T174944Z/`（权限前）、`captures/dingtalk/20261126T180011Z/`（权限后） |
-| 自建表格写入（若三个 id 到位） | **未取得**；`environment=self_built_test_table`、`counts_as_customer_evidence=false`——即便跑通也只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3 节 |
-| 钉钉权限授予状态 | **已核准**：`Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write`、`Document.Workbook.Read/Write` 均已到位；`Contact.User.Read`、`Drive.*` 未授予（不影响写入路径） | 5.3.1 节 403→400 对照 |
+| 自建表格写入 | **真实跑通**：建表 → 列工作表 → 写表头 → 写台账行 → 回读逐格比对一致，9 个请求全 200。`environment=self_built_test_table`、`counts_as_customer_evidence=false`——只证明我方链路通，**不构成客户环境证据，也不构成 AC#1 证据** | 5.2.3、5.4 节 + `captures/dingtalk/20261126T185615Z/` |
+| 钉钉权限授予状态 | **已核准**：`Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write`、`Document.Workbook.Read/Write`、`qyapi_get_member`、`qyapi_get_department_list` 均已到位；`Contact.User.Read`、`Drive.*` 未授予（不影响任何一条已跑通的路径） | 5.3.1 节 403→400 对照 + 5.2.2 节取 id 实录 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
-一句话总结：**协议层与流水线是真的，钉钉的鉴权是真的，但「真实业务数据的一致率」这一格还空着**——它需要客户侧的账号与网络，第 1 节给出了拿到之后一条命令就能填上的路径，而不是一句「请相信我们」。
+一句话总结：**协议层与流水线是真的，钉钉的鉴权、建表、写入与回读比对也都是真的（我方自建表已跑通）**；
+唯一还空着的是「客户真实台账 + 领星真实业务数据的一致率」这一格——它需要客户侧的账号、网络与一张表，
+第 1 节与 5.2.3 节分别给出了拿到之后一条命令就能填上的路径，而不是一句「请相信我们」。

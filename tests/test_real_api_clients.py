@@ -342,6 +342,59 @@ def test_dingtalk_write_row_appends_when_row_key_is_new():
     assert answer["range"] == "A3:B3"
 
 
+def test_dingtalk_write_row_appends_after_last_used_row_not_after_padding():
+    """空表读 A1:Z300 会返回 300 行空串；追加行要落在最后一条有内容的行之后。
+
+    实测踩过：旧代码用 len(existing)+1，于是在一张只有表头的表上把台账写进了第 301 行，
+    接口返回 200、回读也「一致」（读到的是空串），但表里平白多出 298 行空白。
+    """
+    header = _json_response({"values": [["批次号", "SKU"]]})
+    empty_rows = [[""] * 26 for _ in range(300)]
+    empty_rows[0] = ["批次号", "SKU"]
+    empty_rows[1] = ["B2026-0001", "SKU-1001"]
+    existing = _json_response({"values": empty_rows})
+    write_answer = _json_response({"values": [["B2026-0002", "SKU-1002"]]})
+    transport = RecordingTransport([header, existing, write_answer])
+    client = DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            sheet_id="SHEET-SYNTHETIC-NOT-REAL",
+            operator_id="OPERATOR-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    )
+    _authorize(client)
+    answer = client.write_row("B2026-0002", {"批次号": "B2026-0002", "SKU": "SKU-1002"})
+    assert answer["range"] == "A3:B3"
+
+
+def test_dingtalk_write_row_on_empty_sheet_starts_at_row_two():
+    """完全空白的表（只有 300 行空串）追加时落在第 2 行，不是第 301 行。"""
+    header = _json_response({"values": [[""]]})
+    existing = _json_response({"values": [[""] * 26 for _ in range(300)]})
+    write_answer = _json_response({"values": [["B2026-0003", "SKU-1003"]]})
+    transport = RecordingTransport([header, existing, write_answer])
+    client = DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            sheet_id="SHEET-SYNTHETIC-NOT-REAL",
+            operator_id="OPERATOR-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    )
+    _authorize(client)
+    answer = client.write_row("B2026-0003", {"批次号": "B2026-0003", "SKU": "SKU-1003"})
+    assert answer["range"] == "A2:A2"
+
+
 def test_dingtalk_missing_scope_is_reported_with_apply_link():
     """403 缺权限不是「重试能好」的错误：必须一次报错，并把 scope 与申请链接给出来。"""
     from core.dingtalk_client import DingTalkApiError

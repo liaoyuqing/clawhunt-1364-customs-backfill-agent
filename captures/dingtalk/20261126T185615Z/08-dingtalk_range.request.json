@@ -1,0 +1,55 @@
+{
+  "seq": 8,
+  "endpoint": "/v1.0/doc/workbooks/eonavxLprD13aqXx/sheets/kgqie6hm/ranges/A2%3AZ2",
+  "method": "PUT",
+  "url": "https://api.dingtalk.com/v1.0/doc/workbooks/eonavxLprD13aqXx/sheets/kgqie6hm/ranges/A2%3AZ2",
+  "query": [
+    {
+      "name": "operatorId",
+      "value": "***"
+    }
+  ],
+  "headers": {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "x-acs-dingtalk-access-token": "***"
+  },
+  "body_keys": [
+    "values"
+  ],
+  "body_sha256": "6c5122aa850aeb42160ba071b2badadea192714b554aba6380917160a1b84d41",
+  "body_bytes": 163,
+  "body": {
+    "values": [
+      [
+        "B2026-0001",
+        "BND-2S",
+        "桌面组合套装A",
+        "3924900000",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  "_note": "header / query / body 里的凭据类值一律打码（***）；其余为业务参数原文"
+}

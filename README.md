@@ -28,7 +28,7 @@ python -m venv .venv
 预期输出（干净 clone 实测）：
 
 ```text
-217 passed
+221 passed
 ```
 
 只依赖标准库 + `PyYAML`（规则包解析）+ `pytest`（自测），没有其它运行期依赖。
@@ -60,7 +60,7 @@ core/cli.py       命令行入口：python -m core.cli --batch <批次号>（模
 prepublish/       模块四启动自检：python -m prepublish.check --config <yaml>（复用 core/preflight.py）
 scripts/          make_fixtures / reference_impl / sample50 / live_capture（真实取数落盘）/ 
                   recorded_smoke / collect_metrics / secret_scan / invoice_diff_report（AC3 差异清单与期望自证）
-tests/            28 个测试文件（+ conftest.py），217 个用例（含协议一致性测试）
+tests/            28 个测试文件（+ conftest.py），221 个用例（含协议一致性测试）
 fixtures/         合成源数据（batches/products/suppliers）、发票预览件（invoices/）与 expected.json
 reports/          sample50_report.json / metrics.json / secret_scan_report.json /
                   invoice_diff_report.md / invoice_diff_report.json
@@ -91,7 +91,7 @@ docs/             部署文档与操作手册
 在买家自己的机器上，从干净 clone 起逐条执行，全部离线、无外网调用：
 
 1. 装依赖：`.venv/Scripts/python.exe -m pip install -r requirements.txt` —— 预期退出码 `0`（只有 PyYAML 与 pytest 两个包）。
-2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `217 passed`。
+2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `221 passed`。
 3. 跑差异清单：`.venv/Scripts/python.exe scripts/invoice_diff_report.py` —— 预期退出码 `0`，打印 `invoices 6 clean 3 dirty 3 diffs 3 ... verified yes`，并生成 `reports/invoice_diff_report.md` 与 `reports/invoice_diff_report.json`。
 4. 跑主流程：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001` —— 预期退出码 `0`，stdout 是一份 JSON 摘要（`batch_no` / 行数 / 列数 / `module4_invoice_ledger` 的耗用与剩余 / 差异条数 / 闸门状态）；换个不存在的批次号则退出码 `1`、stderr 有中文原因。
 5. 跑模块四自检：`.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` —— 预期退出码 `0`、末行 `ok`；把配置里的白名单换成公网 IP、模型地址换成公网域名、原件目录放进 OneDrive，再跑一次预期退出码 `2` 并逐条列出 3 条 `problems`。
@@ -135,11 +135,17 @@ docs/             部署文档与操作手册
 
 # 钉钉：探测「能不能建出自建表格」（只发创建请求，不写业务数据；平台拒绝记 denials[] 不影响 complete）
 .venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/dingtalk --probe-create
+
+# 钉钉：按台账真路径写一行并回读校验（表头 -> 定位行 -> PUT 整行 -> 读回比对）
+.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/dingtalk `
+    --workbook-id <表格ID> --sheet-id <工作表ID> --operator-id <操作人unionId> `
+    --self-built-table --write-ledger-row B2026-0001
 ```
 
 无凭据时退出码 2 且不创建目录；网络不通时把失败请求写进 `failures[]`、`manifest.complete=false`、退出码 3，不会留下半成品，也不会静默回退到合成数据。
 
-> **自建表证据的口径**：即便日后用我方自建表格跑通写入，那份证据也只证明「我方到钉钉开放平台的链路是通的」，
+> **自建表证据的口径**：`captures/dingtalk/20261126T185615Z/` 是我方自建测试表格跑通真实写入的那一次
+> （建表 → 写表头 → 写台账行 → 回读逐格一致，9 个请求全 200）。它只证明「我方到钉钉开放平台的链路是通的」，
 > manifest 里标 `environment=self_built_test_table`、`counts_as_customer_evidence=false`，**不是客户台账证据，也不构成 AC1 证据**。
 
 > **AC1 口径提醒**：仓库离线跑出的一致率 100% 来自**合成源**，证明的是「回填引擎与独立参考实现自洽」；报告里 `counts_as_ac1_evidence` 为 `false`、`ac1_evidence_status` 为 `unverified_on_live_account`。真实账号上的一致率需要客户侧上述两步，原因与我方网络实测见 `docs/LIVE_EVIDENCE.md`。
@@ -152,7 +158,7 @@ docs/             部署文档与操作手册
 | 退税链路 | 不做 | 工单明确列为后续另发（单一窗口导出、加密报关单、免退税配单） |
 | 真实凭据 | 仓库里一条都没有；`fixtures/recorded/` 是**本地合成**的可重放响应 | 交付环境无客户账号；换真实账号后跑 `scripts/live_capture.py --source lingxing` 与 `scripts/recorded_smoke.py --source live` 即可复验同一条调用路径 |
 | 领星真实响应 | 本轮未取得：出口网络 `openapi.lingxing.com:443` TCP 不可达（`TcpTestSucceeded: False`、`curl` 退出码 28）+ 开放接口需付费套餐 | 见 `docs/LIVE_EVIDENCE.md` 第 4 节的命令与原始输出 |
-| 钉钉真实写入 | 令牌换发已真实成功；**权限已全部到位**——`Document.Workbook.Read/Write` 与知识库侧 `Wiki.Workspace.Read/Write`、`Document.WorkspaceDocument.Write` 均已在 403→400 `MissingoperatorId` 的对照里得到验证；唯一硬阻塞是未提供 workbookId / sheetId / operatorId(unionId)，且 `Contact.User.Read` 未授予导致无法代客户换取 unionId | 见 `docs/LIVE_EVIDENCE.md` 5.2.1、5.2.2、5.3.1 节的原文与取值位置 |
+| 钉钉真实写入（客户台账） | **我方自建表已真实跑通**：自己建表、写表头、按 `write_row()` 真路径写一行并回读逐格比对一致（`captures/dingtalk/20261126T185615Z/`）。**客户自己的台账仍未写过**——缺的不是权限也不是能力，是客户那张表的 workbookId / sheetId | 见 `docs/LIVE_EVIDENCE.md` 5.2.2（三个 id 怎么自取）、5.2.3（跑通实录）、5.4（请求序列） |
 | 渠道列 | 台账 23 列里没有渠道列，合并判定时由调用方传 `channels` 映射 | 客户台账列序已锁定，新增列需客户确认 |
 | 视觉识别率 | 依赖客户现场的截图质量与模型能力；低置信度一律转人工 | 识别率由现场决定，代码只保证「低置信度不静默写错格」 |
 
