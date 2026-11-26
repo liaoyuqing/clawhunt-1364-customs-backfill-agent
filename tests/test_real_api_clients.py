@@ -24,6 +24,7 @@ from core.dingtalk_client import (
     ENV_APP_SECRET_ALIAS as DINGTALK_ENV_APP_SECRET_ALIAS,
     ENV_SHEET_ID,
     ENV_WORKBOOK_ID,
+    DingTalkApiError,
     DingTalkClient,
     DingTalkConfig,
     DingTalkConfigError,
@@ -379,6 +380,106 @@ def test_dingtalk_missing_scope_is_reported_with_apply_link():
     else:
         raise AssertionError("缺权限必须报错")
     # 只发了一次，没有无意义的退避重试
+    assert len(transport.requests) == 1
+
+
+def test_dingtalk_read_paths_carry_operator_id_when_configured():
+    """配了 operatorId 时，读的两条路径也要带上它。
+
+    实测（2026-11-26，真实调用）：权限授予后 /sheets 与 /ranges 会先校验 operatorId，
+    缺了返回 400 MissingoperatorId。上一轮只给 PUT 带，读路径是漏的。
+    """
+    transport = RecordingTransport([
+        _json_response({"sheets": [{"id": "SHEET-SYNTHETIC-NOT-REAL"}]}),
+        _json_response({"values": [["批次号"]]}),
+    ])
+    client = _authorize(DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            sheet_id="SHEET-SYNTHETIC-NOT-REAL",
+            operator_id="OPERATOR-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    ))
+    client.list_sheets()
+    client.read_range("A1:B1")
+    assert _query_of(transport.requests[0].url)["operatorId"] == "OPERATOR-SYNTHETIC-NOT-REAL"
+    assert _query_of(transport.requests[1].url)["operatorId"] == "OPERATOR-SYNTHETIC-NOT-REAL"
+    # 路径本身不因加了 query 而变形
+    assert urlsplit(transport.requests[0].url).path == "/v1.0/doc/workbooks/BOOK-SYNTHETIC-NOT-REAL/sheets"
+    assert urlsplit(transport.requests[1].url).path.endswith("/sheets/SHEET-SYNTHETIC-NOT-REAL/ranges/A1%3AB1")
+
+
+def test_dingtalk_missing_operator_id_is_not_retried():
+    """400 MissingoperatorId 是确定性错误：不重试，并把该配哪个变量写进错误信息。
+
+    实测原文：{"code":"MissingoperatorId","message":"operatorId is mandatory for this action."}
+    另一种：{"code":"invalidRequest.inputArgs.invalid","message":"paramError-operatorId"}
+    """
+    from core.dingtalk_client import ENV_OPERATOR_ID
+    from core.http_client import HttpError
+
+    for body, expect_word in (
+        ({"code": "MissingoperatorId", "message": "operatorId is mandatory for this action."}, "缺少 operatorId"),
+        ({"code": "invalidRequest.inputArgs.invalid", "message": "paramError-operatorId"}, "unionId"),
+    ):
+        denied = HttpError(
+            "http 400 from https://dingtalk.example.invalid/v1.0/doc/workbooks/BOOK-SYNTHETIC-NOT-REAL/sheets",
+            status=400,
+            body=json.dumps(body, ensure_ascii=False),
+        )
+        transport = RecordingTransport([denied])
+        client = _authorize(DingTalkClient(
+            DingTalkConfig(
+                base_url="https://dingtalk.example.invalid",
+                app_key="APP-SYNTHETIC-NOT-REAL",
+                app_secret="SECRET-SYNTHETIC-NOT-REAL",
+                workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+            ),
+            http=transport,
+            sleep=lambda seconds: None,
+        ))
+        try:
+            client.list_sheets()
+        except DingTalkApiError as exc:
+            assert ENV_OPERATOR_ID in str(exc)
+            assert expect_word in str(exc)
+            assert exc.status == 400
+        else:
+            raise AssertionError("400 必须报错")
+        assert len(transport.requests) == 1, body
+
+
+def test_dingtalk_unknown_4xx_is_not_retried():
+    """其余 4xx（路径写错等）也不该退避重试：重试只会把同一个错误再发三次。"""
+    from core.http_client import HttpError
+
+    denied = HttpError(
+        "http 404 from https://dingtalk.example.invalid/v1.0/doc/nope",
+        status=404,
+        body=json.dumps({"code": "InvalidAction.NotFound", "message": "Specified api is not found"}, ensure_ascii=False),
+    )
+    transport = RecordingTransport([denied])
+    client = _authorize(DingTalkClient(
+        DingTalkConfig(
+            base_url="https://dingtalk.example.invalid",
+            app_key="APP-SYNTHETIC-NOT-REAL",
+            app_secret="SECRET-SYNTHETIC-NOT-REAL",
+            workbook_id="BOOK-SYNTHETIC-NOT-REAL",
+        ),
+        http=transport,
+        sleep=lambda seconds: None,
+    ))
+    try:
+        client.list_sheets()
+    except DingTalkApiError as exc:
+        assert exc.status == 404
+    else:
+        raise AssertionError("404 必须报错")
     assert len(transport.requests) == 1
 
 

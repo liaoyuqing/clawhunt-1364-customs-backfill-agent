@@ -1,0 +1,9 @@
+{
+  "_redacted": "token response body is never persisted",
+  "_keys": [
+    "accessToken",
+    "expireIn"
+  ],
+  "_text_sha256": "da2d6af2629cd424b30d35dad6929efc6348fad52372cfe4643f18a1008de1de",
+  "_text_length": 66
+}

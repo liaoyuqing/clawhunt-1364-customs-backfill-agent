@@ -1,0 +1,9 @@
+{
+  "_transport_error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3",
+  "status": 400,
+  "body": {
+    "code": "MissingoperatorId",
+    "requestid": "01A218E4-876B-7230-98CB-B7F2FF99E4FB",
+    "message": "operatorId is mandatory for this action."
+  }
+}

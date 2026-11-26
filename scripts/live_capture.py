@@ -609,6 +609,9 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
         print("无法开始抓取：%s" % exc, file=sys.stderr)
         return EXIT_CONFIG
 
+    operator_id = str(getattr(args, "operator_id", "") or config.operator_id or "").strip()
+    if operator_id:
+        config.operator_id = operator_id
     workbook_id = str(args.workbook_id or config.workbook_id or "").strip()
     sheet_id = str(args.sheet_id or config.sheet_id or "").strip()
     placeholder = False
@@ -625,6 +628,11 @@ def capture_dingtalk(args: argparse.Namespace, out_root: str) -> int:
     ]
     if placeholder:
         notes.append("workbookId/sheetId 未配置，用占位值探测权限范围（占位 id 下的 403 不代表表不存在）")
+    if not config.operator_id:
+        notes.append(
+            "operatorId（操作人 unionId）未配置：读接口可通过，写接口会被平台以 "
+            "400 MissingoperatorId 拒绝——写证据必须配齐 DINGTALK_OPERATOR_ID"
+        )
 
     run = CaptureRun(_make_folder(out_root), "dingtalk", config.base_url, notes, replayable=False)
     # appKey / appSecret 出现在任何字符串里都替换掉（钉钉的 403 原文会回显 appKey）。
@@ -710,6 +718,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--skip-shipments", action="store_true", help="只抓产品/供应商，不抓货件（回放时 batches 为空）")
     parser.add_argument("--workbook-id", default="", dest="workbook_id", help="钉钉工作簿 id（缺省取 DINGTALK_WORKBOOK_ID）")
     parser.add_argument("--sheet-id", default="", dest="sheet_id", help="钉钉工作表 id（缺省取 DINGTALK_SHEET_ID）")
+    parser.add_argument("--operator-id", default="", dest="operator_id", help="钉钉操作人 unionId（缺省取 DINGTALK_OPERATOR_ID），读写区域接口必填")
     parser.add_argument("--write-sample", default="", dest="write_sample", help="给定时真的写一行探测值，验证写权限（写进 A1:B1）")
     args = parser.parse_args(list(argv) if argv is not None else None)
 

@@ -1,0 +1,94 @@
+{
+  "origin": "live",
+  "capture_version": 1,
+  "tool": "scripts/live_capture.py",
+  "source": "dingtalk",
+  "host": "https://api.dingtalk.com",
+  "created_at": "2026-11-27T01:25:59+08:00",
+  "created_at_utc": "2026-11-26T17:25:59Z",
+  "complete": false,
+  "replayable": false,
+  "request_count": 3,
+  "endpoint_count": 1,
+  "failure_count": 2,
+  "endpoints": [
+    {
+      "seq": 1,
+      "name": "dingtalk_token",
+      "endpoint": "/v1.0/oauth2/accessToken",
+      "method": "POST",
+      "requested_at": "2026-11-27T01:25:59+08:00",
+      "requested_at_utc": "2026-11-26T17:25:59Z",
+      "status": 200,
+      "business_code": null,
+      "ok": true,
+      "response_sha256": "da2d6af2629cd424b30d35dad6929efc6348fad52372cfe4643f18a1008de1de",
+      "response_bytes": 66,
+      "record_count": 0,
+      "total": null,
+      "request_file": "01-dingtalk_token.request.json",
+      "response_file": "01-dingtalk_token.response.json",
+      "origin": "live"
+    }
+  ],
+  "failures": [
+    {
+      "seq": 2,
+      "name": "dingtalk_sheets",
+      "endpoint": "/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets",
+      "method": "GET",
+      "requested_at": "2026-11-27T01:26:00+08:00",
+      "requested_at_utc": "2026-11-26T17:26:00Z",
+      "status": 400,
+      "business_code": "MissingoperatorId",
+      "ok": false,
+      "error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets",
+      "response_sha256": "8b12c586f80a2e8b87cab6c5ccb5ceef05823c7d65115937eda4218b9c19e57a",
+      "response_bytes": 132,
+      "record_count": 0,
+      "request_file": "02-dingtalk_sheets.request.json",
+      "response_file": "02-dingtalk_sheets.failure.json",
+      "origin": "live"
+    },
+    {
+      "seq": 3,
+      "name": "dingtalk_range",
+      "endpoint": "/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3",
+      "method": "GET",
+      "requested_at": "2026-11-27T01:26:00+08:00",
+      "requested_at_utc": "2026-11-26T17:26:00Z",
+      "status": 400,
+      "business_code": "MissingoperatorId",
+      "ok": false,
+      "error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3",
+      "response_sha256": "7c6cf0d775501a11232684c75ead79393f85440206702dcc0ffc76a3994b8137",
+      "response_bytes": 132,
+      "record_count": 0,
+      "request_file": "03-dingtalk_range.request.json",
+      "response_file": "03-dingtalk_range.failure.json",
+      "origin": "live"
+    }
+  ],
+  "record_counts": {
+    "dingtalk_token": 0
+  },
+  "derived": {
+    "workbook_id_configured": false,
+    "placeholder_ids_used": true,
+    "required_scopes": [
+      "Document.Workbook.Read",
+      "Document.Workbook.Write"
+    ]
+  },
+  "warnings": [
+    "list_sheets failed: 钉钉接口参数错误（https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets）：缺少 operatorId（操作人 unionId）。设置环境变量 DINGTALK_OPERATOR_ID，或给命令加 --operator-id；unionId 可在钉钉管理后台成员详情或开放平台 API Explorer 用 userId 换到",
+    "read_range failed: 钉钉接口参数错误（https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3）：缺少 operatorId（操作人 unionId）。设置环境变量 DINGTALK_OPERATOR_ID，或给命令加 --operator-id；unionId 可在钉钉管理后台成员详情或开放平台 API Explorer 用 userId 换到"
+  ],
+  "notes": [
+    "钉钉侧证据：令牌换发 + 工作表/区域读 +（可选）区域写，逐次落盘",
+    "缺权限时平台返回 403 Forbidden.AccessDenied.AccessTokenPermissionDenied，本脚本把原文与 requiredScopes 一起留下",
+    "workbookId/sheetId 未配置，用占位值探测权限范围（占位 id 下的 403 不代表表不存在）",
+    "operatorId（操作人 unionId）未配置：读接口可通过，写接口会被平台以 400 MissingoperatorId 拒绝——写证据必须配齐 DINGTALK_OPERATOR_ID"
+  ],
+  "credentials_note": "本目录不含 accessToken / appSecret / Client Secret；令牌响应体已脱敏不落盘"
+}

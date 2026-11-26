@@ -28,7 +28,7 @@ python -m venv .venv
 预期输出（干净 clone 实测）：
 
 ```text
-206 passed
+209 passed
 ```
 
 只依赖标准库 + `PyYAML`（规则包解析）+ `pytest`（自测），没有其它运行期依赖。
@@ -60,7 +60,7 @@ core/cli.py       命令行入口：python -m core.cli --batch <批次号>（模
 prepublish/       模块四启动自检：python -m prepublish.check --config <yaml>（复用 core/preflight.py）
 scripts/          make_fixtures / reference_impl / sample50 / live_capture（真实取数落盘）/ 
                   recorded_smoke / collect_metrics / secret_scan / invoice_diff_report（AC3 差异清单与期望自证）
-tests/            27 个测试文件，206 个用例（含协议一致性测试）
+tests/            27 个测试文件，209 个用例（含协议一致性测试）
 fixtures/         合成源数据（batches/products/suppliers）、发票预览件（invoices/）与 expected.json
 reports/          sample50_report.json / metrics.json / secret_scan_report.json /
                   invoice_diff_report.md / invoice_diff_report.json
@@ -91,7 +91,7 @@ docs/             部署文档与操作手册
 在买家自己的机器上，从干净 clone 起逐条执行，全部离线、无外网调用：
 
 1. 装依赖：`.venv/Scripts/python.exe -m pip install -r requirements.txt` —— 预期退出码 `0`（只有 PyYAML 与 pytest 两个包）。
-2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `206 passed`。
+2. 跑测试：`.venv/Scripts/python.exe -m pytest -q` —— 预期退出码 `0`，末行 `209 passed`。
 3. 跑差异清单：`.venv/Scripts/python.exe scripts/invoice_diff_report.py` —— 预期退出码 `0`，打印 `invoices 6 clean 3 dirty 3 diffs 3 ... verified yes`，并生成 `reports/invoice_diff_report.md` 与 `reports/invoice_diff_report.json`。
 4. 跑主流程：`.venv/Scripts/python.exe -m core.cli --batch B2026-0001` —— 预期退出码 `0`，stdout 是一份 JSON 摘要（`batch_no` / 行数 / 列数 / `module4_invoice_ledger` 的耗用与剩余 / 差异条数 / 闸门状态）；换个不存在的批次号则退出码 `1`、stderr 有中文原因。
 5. 跑模块四自检：`.venv/Scripts/python.exe -m prepublish.check --config deploy/isolated/isolated.example.yaml` —— 预期退出码 `0`、末行 `ok`；把配置里的白名单换成公网 IP、模型地址换成公网域名、原件目录放进 OneDrive，再跑一次预期退出码 `2` 并逐条列出 3 条 `problems`。
@@ -117,7 +117,7 @@ docs/             部署文档与操作手册
 | 连接 | 代码 | 环境变量 | 触发方式 |
 | --- | --- | --- | --- |
 | 领星 ERP 开放 API（官方 v2 协议） | `core/lingxing_client.py` / `core/lingxing_crypto.py` / `core/lingxing_map.py` | `LINGXING_BASE_URL` / `LINGXING_APP_ID` / `LINGXING_APP_SECRET`（旧名 `LINGXING_APP_KEY` 仍作别名）/ `LINGXING_ACCESS_TOKEN` / `LINGXING_REFRESH_TOKEN`；货件需 `LINGXING_SID` / `LINGXING_START_DATE` / `LINGXING_END_DATE` | `python -m core.cli --batch ... --source lingxing`；证据抓取 `python scripts/live_capture.py --source lingxing` |
-| 钉钉开放平台（工作簿/区域读写） | `core/dingtalk_client.py` | `DINGTALK_BASE_URL` / `DINGTALK_CLIENT_ID`（或 `DINGTALK_APP_KEY`）/ `DINGTALK_CLIENT_SECRET`（或 `DINGTALK_APP_SECRET`）/ `DINGTALK_WORKBOOK_ID` / `DINGTALK_SHEET_ID` / `DINGTALK_OPERATOR_ID` | `--source dingtalk`，写回加 `--write-sheet`；证据抓取 `python scripts/live_capture.py --source dingtalk` |
+| 钉钉开放平台（工作簿/区域读写） | `core/dingtalk_client.py` | `DINGTALK_BASE_URL` / `DINGTALK_CLIENT_ID`（或 `DINGTALK_APP_KEY`）/ `DINGTALK_CLIENT_SECRET`（或 `DINGTALK_APP_SECRET`）/ `DINGTALK_WORKBOOK_ID` / `DINGTALK_SHEET_ID` / `DINGTALK_OPERATOR_ID`（操作人 unionId，读区域与写区域都会先校验） | `--source dingtalk`，写回加 `--write-sheet`；证据抓取 `python scripts/live_capture.py --source dingtalk`（可加 `--operator-id` / `--write-sample`） |
 | 视觉模型 + Computer Use | `core/vision_client.py` / `core/computer_use.py` | `VISION_BASE_URL` / `VISION_API_KEY` / `VISION_MODEL` / `VISION_THRESHOLD`；`COMPUTER_USE_BASE_URL` / `COMPUTER_USE_API_KEY` | `--vision-image <含 {row_key} 的地址模板>` 与 `--computer-use` |
 | 模块四本地模型 | `core/local_model.py` | `LOCAL_MODEL_BASE_URL`（必须回环或内网）/ `LOCAL_MODEL_API_KEY` / `LOCAL_MODEL_MODEL` | `--local-model-image <地址模板>`（可配 `--egress-whitelist`） |
 | 电子税务局 | `core/etax.py` | `ETAX_BASE_URL` / `ETAX_APP_KEY` / `ETAX_APP_SECRET` / `ETAX_TOKEN` | `--etax`（提交仍需人工闸门确认） |
@@ -146,7 +146,7 @@ docs/             部署文档与操作手册
 | 退税链路 | 不做 | 工单明确列为后续另发（单一窗口导出、加密报关单、免退税配单） |
 | 真实凭据 | 仓库里一条都没有；`fixtures/recorded/` 是**本地合成**的可重放响应 | 交付环境无客户账号；换真实账号后跑 `scripts/live_capture.py --source lingxing` 与 `scripts/recorded_smoke.py --source live` 即可复验同一条调用路径 |
 | 领星真实响应 | 本轮未取得：出口网络 `openapi.lingxing.com:443` TCP 不可达（`TcpTestSucceeded: False`、`curl` 退出码 28）+ 开放接口需付费套餐 | 见 `docs/LIVE_EVIDENCE.md` 第 4 节的命令与原始输出 |
-| 钉钉真实写入 | 令牌换发已真实成功；读/写被 403 挡住（缺 `Document.Workbook.Read` / `.Write`），且未提供 workbookId/sheetId/operatorId | 见 `docs/LIVE_EVIDENCE.md` 第 5 节的 403 原文与申请入口 |
+| 钉钉真实写入 | 令牌换发已真实成功；读写权限已开通（403 变为 400 `MissingoperatorId`，证明 scope 到位）；卡在未提供 workbookId / sheetId / operatorId(unionId)，且 `Contact.User.Read` 未授予导致无法代客户换取 unionId | 见 `docs/LIVE_EVIDENCE.md` 5.2.1 与 5.2.2 节的原文与取值位置 |
 | 渠道列 | 台账 23 列里没有渠道列，合并判定时由调用方传 `channels` 映射 | 客户台账列序已锁定，新增列需客户确认 |
 | 视觉识别率 | 依赖客户现场的截图质量与模型能力；低置信度一律转人工 | 识别率由现场决定，代码只保证「低置信度不静默写错格」 |
 

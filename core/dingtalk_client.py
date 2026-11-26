@@ -248,11 +248,27 @@ class DingTalkClient:
             except HttpError as exc:
                 """403 + AccessTokenPermissionDenied 是缺权限，重试没有意义，直接把 scope 报出来。"""
                 payload_text = str(getattr(exc, "body", "") or "")
+                status = int(getattr(exc, "status", 0) or 0)
                 if "AccessTokenPermissionDenied" in payload_text:
                     raise DingTalkApiError(
                         "钉钉接口缺权限（%s）：%s" % (self._describe_url(url), self._scope_hint(payload_text)),
                         payload=_safe_json(payload_text),
-                        status=int(getattr(exc, "status", 0) or 0),
+                        status=status,
+                    )
+                # 400 里的 operatorId 两类错误都是确定性的（缺参 / 值非法），退避重试只会
+                # 白等 4 秒并发出 4 次同样的请求；直接翻译成人话报出去。
+                if status == 400 and "operatorId" in payload_text:
+                    raise DingTalkApiError(
+                        "钉钉接口参数错误（%s）：%s" % (self._describe_url(url), self._operator_hint(payload_text)),
+                        payload=_safe_json(payload_text),
+                        status=status,
+                    )
+                # 其余 4xx 是客户端侧错误（路径错、参数错），重试不会变好。
+                if 400 <= status < 500 and status != 429:
+                    raise DingTalkApiError(
+                        "钉钉接口返回 HTTP %d（%s）：%s" % (status, self._describe_url(url), payload_text[:300]),
+                        payload=_safe_json(payload_text),
+                        status=status,
                     )
                 if attempt >= self.config.max_retries:
                     raise
@@ -266,6 +282,22 @@ class DingTalkClient:
     @staticmethod
     def _describe_url(url: str) -> str:
         return url.split("?")[0]
+
+    @staticmethod
+    def _operator_hint(payload_text: str) -> str:
+        """把平台的 operatorId 报错翻译成「该配哪个环境变量」。"""
+        parsed = _safe_json(payload_text)
+        code = str(parsed.get("code") or "")
+        if "MissingoperatorId" in code:
+            return (
+                "缺少 operatorId（操作人 unionId）。设置环境变量 %s，"
+                "或给命令加 --operator-id；unionId 可在钉钉管理后台成员详情或"
+                "开放平台 API Explorer 用 userId 换到" % ENV_OPERATOR_ID
+            )
+        return (
+            "operatorId 不是合法的 unionId（平台回 paramError-operatorId）。"
+            "%s 要填操作人的 unionId，不是手机号、不是 userId" % ENV_OPERATOR_ID
+        )
 
     @staticmethod
     def _scope_hint(payload_text: str) -> str:
@@ -283,6 +315,26 @@ class DingTalkClient:
         return payload_text[:300]
 
     # ---- 工作表与区域 ----
+    def _operator_query(self, operator_id: str = "") -> str:
+        """operatorId=操作人 unionId。
+
+        实测（2026-11-26，本机真实调用）：/sheets 与 /ranges 两个接口在权限已授予时
+        都会先校验 operatorId，缺了返回 400 MissingoperatorId
+        「operatorId is mandatory for this action.」；给了非法值返回
+        400 invalidRequest.inputArgs.invalid「paramError-operatorId」。
+        因此读路径也带上它——没配置时不带，保持缺省行为不变。
+        """
+        operator = str(operator_id or self.config.operator_id or "").strip()
+        if not operator:
+            return ""
+        return "operatorId=%s" % quote(operator, safe="")
+
+    @staticmethod
+    def _append_query(url: str, query: str) -> str:
+        if not query:
+            return url
+        return "%s%s%s" % (url, "&" if "?" in url else "?", query)
+
     def list_sheets(self, workbook_id: str = "") -> List[Dict[str, Any]]:
         """列出工作簿下的工作表（官方 GET /v1.0/doc/workbooks/{id}/sheets）。
 
@@ -295,6 +347,7 @@ class DingTalkClient:
             )
         token = self.access_token()
         url = self.config.base_url + self.config.sheets_path.format(workbook_id=book)
+        url = self._append_query(url, self._operator_query())
         body = self._send("GET", url, headers={"x-acs-dingtalk-access-token": token})
         sheets = body.get("sheets") or body.get("value") or body.get("data") or []
         if isinstance(sheets, dict):
@@ -314,6 +367,7 @@ class DingTalkClient:
         """读一个区域，返回二维数组（官方返回体 {"values": [[...]]}）。"""
         token = self.access_token()
         url = self._range_url(address, workbook_id=workbook_id, sheet_id=sheet_id)
+        url = self._append_query(url, self._operator_query())
         body = self._send("GET", url, headers={"x-acs-dingtalk-access-token": token})
         values = body.get("values")
         if not isinstance(values, list):
@@ -338,7 +392,7 @@ class DingTalkClient:
             )
         token = self.access_token()
         url = self._range_url(address, workbook_id=workbook_id, sheet_id=sheet_id)
-        url = "%s?operatorId=%s" % (url, quote(str(operator), safe=""))
+        url = self._append_query(url, self._operator_query(operator))
         return self._send("PUT", url, payload={"values": values}, headers={"x-acs-dingtalk-access-token": token})
 
     # ---- 台账语义（供 core.sources.SheetSink 复用） ----

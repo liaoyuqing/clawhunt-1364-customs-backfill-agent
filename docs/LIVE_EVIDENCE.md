@@ -58,9 +58,9 @@ $env:DINGTALK_CLIENT_ID     = '<钉钉应用 AppKey>'
 $env:DINGTALK_CLIENT_SECRET = '<钉钉应用 AppSecret>'
 $env:DINGTALK_WORKBOOK_ID   = '<工作簿 id：知识库节点 nodeId 或开放平台 workbookId>'
 $env:DINGTALK_SHEET_ID      = '<工作表 id>'
-$env:DINGTALK_OPERATOR_ID   = '<操作人 unionId，写接口的 operatorId 必填>'
+$env:DINGTALK_OPERATOR_ID   = '<操作人 unionId：读区域与写区域都会先校验，缺失回 400 MissingoperatorId>'
 
-.venv\Scripts\python.exe scripts\live_capture.py --source dingtalk --out captures/live/dingtalk
+.venv\Scripts\python.exe scripts\live_capture.py --source dingtalk --out captures/live/dingtalk --write-sample PROBE
 ```
 
 ---
@@ -220,7 +220,7 @@ False            # <- 失败不会留下空目录或占位文件
 
 `manifest.json` 里这一条记为 `status 200 / ok true / origin live`。也就是说：**钉钉应用的 AppKey/AppSecret 有效，等价于「能拿到 7200 秒有效的 accessToken」这一步已经真实验证过**。
 
-### 5.2 读工作表与读区域：403 缺权限（原文）
+### 5.2 权限开通前：403 缺权限（原文，已过时但保留作对照）
 
 ```json
 {
@@ -249,7 +249,53 @@ False            # <- 失败不会留下空目录或占位文件
 
 > 注意：`PLACEHOLDER-*` 是占位 id。占位 id 下的 403 说明的是「应用缺权限」，不能推断表不存在；等权限到位且配上真实 `workbookId/sheetId` 后，同一条命令就会返回真正的表结构与单元格。
 
-### 5.3 拿到权限后的写回样例（本仓库已实现，等权限即可跑）
+### 5.2.1 权限开通后：403 变 400，缺的从「权限」变成「operatorId」（真实原文）
+
+客户于 2026-11-27 给应用勾上了 `Document.Workbook.Read/Write`。同一天用**同一条命令**重抓，平台返回体变了：
+
+```json
+{
+  "_transport_error": "http 400 from https://api.dingtalk.com/v1.0/doc/workbooks/PLACEHOLDER-WORKBOOK-ID/sheets",
+  "status": 400,
+  "body": {
+    "code": "MissingoperatorId",
+    "requestid": "01A218E4-8680-70BE-AD65-4BD65F88D7DA",
+    "message": "operatorId is mandatory for this action."
+  }
+}
+```
+
+读区域（`.../sheets/PLACEHOLDER-SHEET-ID/ranges/A1%3AZ3`）同样返回 400 `MissingoperatorId`，`requestid 01A218E4-876B-7230-98CB-B7F2FF99E4FB`。证据目录 `captures/dingtalk/20261126T172559Z/`（7 个文件 + manifest，`origin live`）。
+
+**这条对照本身就是「权限已到位」的证据**：权限没开通时平台在 scope 校验这一步就 403 拒绝了，根本走不到参数校验；现在能走到 `operatorId` 校验，说明 `Document.Workbook.Read` 已授予。
+
+接下来只剩参数，官方要求 `operatorId` 是**操作人的 unionId**（不是手机号、不是 userId）：
+
+| 再传什么 | 平台返回 | 说明 |
+| --- | --- | --- |
+| 不传 | 400 `MissingoperatorId` / `operatorId is mandatory for this action.` | 见上 |
+| 传 `PROBE` | 400 `invalidRequest.inputArgs.invalid` / `paramError-operatorId` | 串太短 |
+| 传 32 位十六进制 / 32 位小写字母 / 带连字符 UUID | 同上 `paramError-operatorId` | 平台做的是值校验，编不出来 |
+
+所以这一格**必须由客户提供真实 unionId**，猜不出来也造不出来。
+
+### 5.2.2 还缺的三个 id，怎么取
+
+| 变量 | 取值位置 | 备注 |
+| --- | --- | --- |
+| `DINGTALK_WORKBOOK_ID` | 打开钉钉表格 → 右上角「…」→「文档信息」→ 表格 ID | 文档里也写作 nodeId |
+| `DINGTALK_SHEET_ID` | 先 `GET /v1.0/doc/workbooks/{workbookId}/sheets` 返回的 `id` 字段 | 配好 workbookId 与 operatorId 后一条命令就能列出来 |
+| `DINGTALK_OPERATOR_ID` | 操作人 unionId：钉钉管理后台成员详情，或用 userId 调开放平台接口换取 | 也支持命令行 `--operator-id` 临时传入 |
+
+配齐后一条命令就能产出真实写入证据：
+
+```powershell
+python scripts/live_capture.py --source dingtalk --env-file <项目下 .env.local 的绝对路径> --write-sample PROBE
+```
+
+另外实测确认：`GET /v1.0/contact/users/me` 与 `GET /v1.0/contact/users/{userId}` 仍 403 缺 `Contact.User.Read`，所以**本工具不会替客户自动换 unionId**，必须人工提供。老版 `oapi` 通道同理（`getbymobile` / `user/listid` / `department/listsub` 分别缺 `qyapi_get_member_by_mobile` / `qyapi_get_member` / `qyapi_get_department_list`）。
+
+### 5.3 拿到 id 后的写回样例（本仓库已实现，等三个 id 即可跑）
 
 官方写单元格接口：`PUT /v1.0/doc/workbooks/{workbookId}/sheets/{sheetId}/ranges/{rangeAddress}?operatorId={unionId}`，body `{"values": [[...]]}`，头 `x-acs-dingtalk-access-token: <accessToken>`，需要 `Document.Workbook.Write`。
 
@@ -276,8 +322,8 @@ write_ok sheetId=SHEET-SYNTHETIC-NOT-REAL range=A3:D3
 | 领星真实响应 | **未取得**：出口网络 TCP 443 不可达 + 开放接口需付费套餐 | 第 4 节原始输出 |
 | 领星抓取器（live_capture） | 已实现，无凭据退出码 2、不通退出码 3、不落半成品 | 第 4 节末尾两条实测 |
 | 钉钉令牌换发 | **真实成功**（HTTP 200，token 长度 32） | 5.1 节 |
-| 钉钉读表 / 读区域 | **真实打到平台**，被 403 挡住（缺 Document.Workbook.Read） | 5.2 节原文 |
-| 钉钉写台账 | **未取得**：缺 Document.Workbook.Write + 未提供 workbookId/sheetId/operatorId | 5.2、5.3 节 |
+| 钉钉读表 / 读区域 | **真实打到平台**；权限开通前 403（缺 Document.Workbook.Read），开通后变 400（缺 operatorId），证明 scope 已到位 | 5.2、5.2.1 节原文 |
+| 钉钉写台账 | **未取得**：权限已到位，但未提供 workbookId / sheetId / operatorId(unionId)，且 unionId 拿不到（缺 Contact.User.Read），无法代客户生成 | 5.2.1、5.2.2、5.3 节 |
 | AC#1 一致率 1.000000 | 来自合成源，只证明「回填引擎与独立参考实现自洽」，**不算 AC#1 达标证据** | 报告字段 `counts_as_ac1_evidence=false`、`ac1_evidence_status=unverified_on_live_account` |
 
 一句话总结：**协议层与流水线是真的，钉钉的鉴权是真的，但「真实业务数据的一致率」这一格还空着**——它需要客户侧的账号与网络，第 1 节给出了拿到之后一条命令就能填上的路径，而不是一句「请相信我们」。
