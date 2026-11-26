@@ -27,7 +27,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pytest -q
 ```
 
-最后一条预期退出码 `0`、末行 `172 passed`。
+最后一条预期退出码 `0`、末行 `206 passed`。
 
 ### 2.1 配置项
 
@@ -158,6 +158,32 @@ stdout 只输出 JSON、不掺日志，便于直接 `| jq` 或喂给下游脚本
 ```
 
 摘要里对应四段：`module2_vision`（调用次数 / 写入数 / 人工队列数）、`module2_computer_use`（动作数）、`module4_local_model`（识别次数 / 结果 / 问题码）、`module3_etax`（草稿 / 是否提交 / 提交单号）。**默认闸门无人值守，`--etax` 只产出草稿，一次提交请求都不会发出。**
+
+## 2.5 真实取数抓取器（`scripts/live_capture.py`）
+
+```bash
+.venv/Scripts/python.exe scripts/live_capture.py --source lingxing --out captures/live
+.venv/Scripts/python.exe scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>
+.venv/Scripts/python.exe scripts/live_capture.py --source dingtalk --out captures/live/dingtalk
+```
+
+抓取器逐次落盘请求（凭据打码）与原始响应体，并生成 `manifest.json`（endpoint / 时间 / HTTP 状态 / 响应 sha256 / 记录条数 / `origin: live`）。无凭据退出码 2 且不建目录；网络不通把失败请求写进 `failures[]`、`complete=false`、退出码 3。详见 `docs/LIVE_EVIDENCE.md`。
+
+## 2.6 领星 v2 协议与钉钉区域接口的变量名对照
+
+领星开放接口已切到官方 v2 协议，与早期版本的差别集中在三处，变量名与路径都做了兼容：
+
+| 项 | v2 官方口径 | 变量 / 实现 |
+| --- | --- | --- |
+| 应用标识 | `appId`（不再叫 app_key） | `LINGXING_APP_ID`（旧名 `LINGXING_APP_KEY` 仍作别名，二者等价） |
+| 签名 | 参数 ASCII 升序 → `k=v&` 拼接 → MD5 32 位大写 → AES/ECB/PKCS5（密钥=appId）→ Base64 → URL 编码 | `core/lingxing_crypto.py`；报文字段见 `tests/test_protocol_conformance.py` |
+| 公共参数 | `app_key` / `timestamp` / `sign` 走 Query，`access_token` 走 `Authorization: Bearer`；业务参数放 JSON 体但**仍参与签名** | `core/lingxing_client.py` |
+| 令牌 | `POST /api/auth-server/oauth/access-token`，`multipart/form-data`，字段 `appId`/`appSecret`；续约走 `/api/auth-server/oauth/refresh` | 同上；续约令牌 `LINGXING_REFRESH_TOKEN`（可选） |
+| 货件 | `POST /erp/sc/data/fba_report/shipmentList`，必填 `sid` 与日期区间（左闭右开） | `LINGXING_SID` / `LINGXING_START_DATE` / `LINGXING_END_DATE` |
+| 报关字段 | 中文报关名 / 材质 / 用途 / 报关单位 / 境内货源地 / HSCODE 来自报关资料明细 `customsDeclaration/batchDetail`，**不在产品列表** | `core/lingxing_map.py`（字段映射与缺口都写在这里） |
+| 钉钉 | `/v1.0/doc/workbooks/{workbookId}/sheets/{sheetId}/ranges/{range}`，读 `values` 写 `values`，写入需 `operatorId` Query 参数与 `Document.Workbook.Write` 权限 | `core/dingtalk_client.py`；变量 `DINGTALK_WORKBOOK_ID` / `DINGTALK_SHEET_ID` / `DINGTALK_OPERATOR_ID` |
+
+> 领星开放接口不是免费版能力，需要付费套餐；AppID/AppSecret 在开放后台「API 信息」页查看，同页要配 IP 白名单（只接受公网 IP）。开通条件与实测输出见 `docs/LIVE_EVIDENCE.md` 第 3、4 节。
 
 ## 3. 模块四独立虚拟机部署
 

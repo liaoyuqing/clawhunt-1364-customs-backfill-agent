@@ -2,6 +2,18 @@
 
 本文件是验收第 1 条的**根目录证据入口**，供评审直接定位。全部数字由脚本现算，复现命令见下；文中每一处数字都可以用第 2 节的命令重跑得到同一结果。
 
+> **必须先说清的证据口径（买方第 2 次驳回的正题）**
+>
+> 本文件第 1 节的 `1.000000` 来自**合成源**（`fixtures/recorded/*.SYNTHETIC.json`，每个文件自带 `_provenance: "local synthetic replay, not a capture from the vendor API"`）。它证明的是：**回填引擎与独立参考实现在 2408 个格子上逐格一致**，即引擎自身没有实现偏差。
+>
+> 它**不是**「与客户源系统字段级一致率 ≥99.5%」的达标证据。因此报告里 `counts_as_ac1_evidence` 为 `false`、`ac1_evidence_status` 为 `unverified_on_live_account`，并附了原因与客户侧三步复现步骤。
+>
+> 真实账号上的一致率本轮**未取得**，原因有二（均为可复核的客观条件，不是工作量问题）：
+> 1. 领星开放接口（OpenAPI）不是免费版能力，需要付费套餐才开通，也没有公开公共沙箱；
+> 2. `openapi.lingxing.com:443` 从交付方网络 TCP 不可达（DNS 解析到 `114.132.29.163`，`TcpTestSucceeded: False`，`curl` 退出码 28 超时），而 `apidoc.lingxing.com` 与 `api.dingtalk.com` 均可达。
+>
+> 客户侧把它补上的路径只有一条命令：`scripts/live_capture.py --source lingxing` → `scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>`，报告里 `source_origin` 就会变成 `live`、`ac1_evidence_status` 变成 `verified_on_live_account`。完整步骤、manifest 字段、我方实测输出见 **`docs/LIVE_EVIDENCE.md`**。
+
 ---
 
 ## 1. 口径
@@ -21,6 +33,12 @@
 | 一致率 | 1.000000（阈值 0.995） |
 | 来源元数据缺失格数 | 0 |
 | 源数据自身错误条数 | 4 |
+| 数据来源 | `recorded`（本地合成回放） |
+| `source_origin` | `recorded`（非 live） |
+| `counts_as_ac1_evidence` | `false` |
+| `ac1_evidence_status` | `unverified_on_live_account` |
+
+上表 2401/2401 的一致率是在**合成源**上得到的；下面两行的 `false` / `unverified_on_live_account` 是脚本对这份数字的自我限定，防止它被当成 AC1 的验收结论。
 
 分母口径写死为 `一致格数 + 差异条数`；`不可判定格` 单独成列、不进分母，正是客户要求的「源数据自身错误不计入」。
 
@@ -56,32 +74,42 @@ cd <仓库根目录>
 .venv/Scripts/python.exe scripts/sample50.py --source recorded
 ```
 
-真实 stdout（末行即判定行）：
+真实 stdout：
 
 ```text
 batches 50 rows 146 columns 23 compared 2401 consistent 2401 undecidable 7 rate 1.000000 source_missing 0 diffs 0
-source recorded origin local synthetic replay, not a capture from the vendor API fetched_at <取数时间>
+source recorded origin recorded host local files (no network) fetched_at 2026-11-27T00:45:16+08:00
 source_errors 4 (源系统自身错误，不计入分母)
+ac1_evidence unverified_on_live_account counts_as_ac1_evidence=false
+说明：未在真实账号上取得（原因：领星开放接口需付费套餐才开通，且 openapi.lingxing.com 从交付方网络 TCP 443 不可达）；本文件的一致率来自合成源，只证明回填引擎与独立参考实现自洽
 report -> reports/sample50_report.json
 ```
 
-**退出码：0。** 判定规则写在 `scripts/sample50.py:161`：`rate >= 0.995` 且 `source_missing == 0` 且 `diffs` 为空才返回 0，否则返回 1。
+**退出码：0。** 判定规则写在 `scripts/sample50.py` 的 `main()` 末行：`rate >= 0.995` 且 `source_missing == 0` 且 `diffs` 为空才返回 0，否则返回 1。注意这条判定只谈**引擎自洽性**，第二行之后的 `ac1_evidence ...` 与 `说明：` 两行是脚本对「这份数字能不能当 AC1 证据」的自我限定。
 
-### 2.1 换真实接口后断言不变
+### 2.1 真实账号上怎么补上这一格
 
-同一条命令把数据源换成真实领星开放平台：
+四条路汇到同一段比对逻辑，区别只在**取数来源**与**出处标注**：
+
+| `--source` | 取数位置 | 报告里的 `source_origin` | 能否作为 AC1 证据 |
+| --- | --- | --- | --- |
+| `fixture` | 仓库自带合成夹具 | `fixture` | 否 |
+| `recorded` | `fixtures/recorded/*.SYNTHETIC.json` 本地合成回放 | `recorded` | 否 |
+| `capture` | `scripts/live_capture.py` 落盘的真实响应（`--capture-dir`） | `live` | **是**（需 `complete=true` 且 `source=lingxing`） |
+| `lingxing` | 现场直连领星开放平台 | `live` | **是** |
+
+四条路都汇到 `scripts/source_data.py` 的 `load_source_data()`，返回同一套 `{batches, products, suppliers, invoices, provenance}`，之后统一交给 `scripts/sample50.py` 的 `build_ledger()` 与 `compare()`。所以判定行格式、一致率阈值（0.995）、分母口径（剔除 `source_errors`）在真实源上完全一致，变的只有 `source_origin` 与 `ac1_evidence_status`。
+
+客户侧两步（在能访问 `openapi.lingxing.com:443` 且已开通开放接口的机器上）：
 
 ```bash
-.venv/Scripts/python.exe scripts/sample50.py --source lingxing
+.venv/Scripts/python.exe scripts/live_capture.py --source lingxing --out captures/live
+.venv/Scripts/python.exe scripts/sample50.py --source capture --capture-dir captures/live/<时间戳>
 ```
 
-区别只在**取数来源**，比对与判定逻辑一行都不变：
+此时 `source_origin=live`、`counts_as_ac1_evidence=true`，一致率 ≥0.995 且无差异则 `ac1_evidence_status=verified_on_live_account`。未配凭据时明确报错退出码 2，不静默回退到合成数据（`tests/test_ac7_sample_source.py`）。
 
-- `--source recorded` 读 `fixtures/recorded/*.SYNTHETIC.json`（本地合成回放）；
-- `--source lingxing` 走 `core/lingxing_client.py` 打真实开放平台，凭据只从 `LINGXING_*` 环境变量读；
-- 两条路都汇到 `scripts/source_data.py:51` 的 `load_source_data()`，返回同一套 `{batches, products, suppliers, invoices, provenance}`，之后统一交给 `scripts/sample50.py:38` 的 `build_ledger()` 与 `scripts/sample50.py:62` 的 `compare()`。
-
-所以一旦客户账号接通，把 `--source` 换成 `lingxing` 重跑，**判定行格式、一致率阈值（0.995）、分母口径（剔除 `source_errors`）完全一致**，报告里 `source` 字段会变成 `lingxing` 并记录接口地址与取数时间。未配凭据时会明确报错退出码 2，不会静默回退到合成数据（`tests/test_ac7_sample_source.py:91`）。
+**本轮为什么没走到这一步**：`openapi.lingxing.com:443` 从交付方网络 TCP 不可达（`TcpTestSucceeded: False`、`curl` 退出码 28），且开放接口需付费套餐。原始命令与输出见 `docs/LIVE_EVIDENCE.md` 第 4 节。
 
 ---
 
@@ -184,4 +212,6 @@ report -> reports/sample50_report.json
 | AC1 断言 | `tests/test_ac1_fill_consistency.py` |
 | 结余断言 | `tests/test_module4_fill.py` |
 | 数据来源口径断言 | `tests/test_ac7_sample_source.py` |
+| 真实取数 / 写台账证据与复现步骤 | `docs/LIVE_EVIDENCE.md` |
+| 抓取器（落盘请求与响应 + manifest） | `scripts/live_capture.py` |
 | 六条验收的完整对照表 | `EVIDENCE.md` |

@@ -11,3 +11,5 @@ _m.txt
 _raw.py
 _d2.txt
 _msg.txt
+# 真实抓取：客户环境产生的目录可能含真实业务数据，默认不入库（交付证据用 captures/dingtalk 这类已脱敏目录）
+captures/live/

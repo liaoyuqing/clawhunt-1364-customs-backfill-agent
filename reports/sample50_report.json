@@ -39,15 +39,18 @@
   ],
   "issue_count": 4,
   "source": "fixture",
-  "source_origin": "synthetic fixtures in this repository",
+  "source_origin": "fixture",
+  "source_origin_detail": "synthetic fixtures in this repository",
+  "source_host": "local files (no network)",
   "source_files": [
     "fixtures/lingxing/batches.json",
     "fixtures/lingxing/products.json",
     "fixtures/lingxing/suppliers.json"
   ],
-  "source_fetched_at": "2026-11-24T03:02:20+08:00",
-  "source_label": "source=fixture(synthetic) 取数时间 2026-11-24T03:02:20+08:00",
+  "source_fetched_at": "2026-11-27T01:03:42+08:00",
+  "source_label": "source=fixture(synthetic) 取数时间 2026-11-27T01:03:42+08:00",
   "source_synthetic": true,
+  "source_mapping_notes": [],
   "source_errors": [
     {
       "column": "HSCODE",
@@ -70,5 +73,14 @@
       "row_key": "B2026-0044#0"
     }
   ],
-  "source_error_count": 4
+  "source_error_count": 4,
+  "counts_as_ac1_evidence": false,
+  "ac1_evidence_status": "unverified_on_live_account",
+  "reason": "未在真实账号上取得（原因：领星开放接口需付费套餐才开通，且 openapi.lingxing.com 从交付方网络 TCP 443 不可达）；本文件的一致率来自合成源，只证明回填引擎与独立参考实现自洽",
+  "reproduce_steps": [
+    "1) 在客户环境配好 LINGXING_BASE_URL / LINGXING_APP_ID / LINGXING_APP_SECRET（领星开放后台 API 信息页取 AppID/AppSecret，并配 IP 白名单）",
+    "2) python scripts/live_capture.py --source lingxing --out captures/live  # 落盘真实响应 + manifest.json（origin=live）",
+    "3) python scripts/sample50.py --source capture --capture-dir captures/live  # 用真实响应重算一致率，报告里 source_origin=live",
+    "4) 报告 ac1_evidence_status 变成 verified_on_live_account，一致率才是 AC#1 的达标证据"
+  ]
 }
